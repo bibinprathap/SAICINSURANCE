@@ -1,6 +1,4 @@
 import RestApi from './restapi';
-import axios from 'axios';
-import {store} from '../redux/store/store';
 
 export default class AppApi {
   sendVerificationSMS = async params => {
@@ -8,6 +6,21 @@ export default class AppApi {
     try {
       let response = await restApi.post({
         url: 'sendOTP',
+        body: params,
+        cancelable: true,
+        showAlerts: true,
+      });
+      return response.data.result;
+    } catch (error) {
+      throw error;
+    }
+  };
+
+  login = async params => {
+    const restApi = new RestApi({controller: 'token'});
+    try {
+      let response = await restApi.post({
+        url: '',
         body: params,
         cancelable: true,
         showAlerts: true,

@@ -9,6 +9,8 @@ import {
   Platform,
   StyleSheet,
   Dimensions,
+  ScrollView,
+  Modal
 } from 'react-native';
 import {
   widthPercentageToDP as wp,
@@ -22,36 +24,94 @@ import FontAwesomeIcon from 'react-native-vector-icons/FontAwesome';
 import {Actions} from 'react-native-router-flux';
 import Loginform from '../../components/Loginform';
 
+import {connect} from 'react-redux';
+import {infoChanged} from '../../actions/loginActions'; 
+import alertsHelper from '../../api/helperServices/alerts';
+import strings, {
+  alignment,
+  normalizeFont,
+} from '../../api/helperServices/language';
+import HeaderGeneric from '../../components/Header/HeaderGeneric'
 import ForgetModal from '../../components/Modal/forgotpassword';
+import AppApi from '../../api/real'; 
+import { environmentInfoChanged } from '../../actions/environmentActions';
+import { storeLanguage } from '../../actions/languageActions';
+const api = new AppApi();
 
 const {width, height} = Dimensions.get('screen');
-const normalizeFont = size => {
-  return size * (width * 0.0025);
-};
+// const normalizeFont = size => {
+//   return size * (width * 0.0025);
+// };
 
-export default class LoginScreen extends React.Component {
-  state = {
-    username: '',
+
+const emptyLoginScreenState = {
+  username: '',
     password: '',
     acceptPolicy: false,
     keepLogged: false,
     forgotPassword: false,
+};
+ class LoginScreen extends React.Component {
+  
+  
+  constructor(props) {
+    super(props);
+    this.state = {
+      ...emptyLoginScreenState ,  
+      ...props.values, 
+      ...props.environment, 
+       settingsVisible: false,
+    };
+    this.updateLoginScreenState = this.updateLoginScreenState.bind(this);
+   }
+   
+  updateLoginScreenState = (newState,env) => {
+    const {dispatch} = this.props;
+    this.setState(newState, () => { 
+      if(env)
+      {
+        const { title, baseURL } = this.state;
+        const stateToStore = { title, baseURL };
+        this.props.changeEnvironment(stateToStore);
+      }
+      else{
+        const stateToStore = {...this.state};
+        dispatch(infoChanged('logindetails', stateToStore));
+      }
+    });
   };
 
-  _loginHandler = () => {
+  handleFieldChange = async (name, value) => {
+    const newState = {};
+    newState[name] = value;
+    this.updateLoginScreenState(newState);
+  };
+  handleFieldChangeEnv = async (name, value) => {
+    const newState = {};
+    newState[name] = value;
+    this.updateLoginScreenState(newState,true);
+  };
+
+  _loginHandler =  async () => {
     if (!this._validateForm()) {
       return false;
     }
-
-    let details = {
-      username: this.state.username,
-      password: this.state.password,
-    };
+    let details = { ...this.state};
+    alertsHelper.showAlert('Login', 'Checking User Information');
+    try {
+      await api.login(details);
+      this.props.navigation.navigate('app')
+    } catch (error) {
+      //alertsHelper.hideAlert();
+      this.props.navigation.navigate('app')
+      alertsHelper.show('error', 'Login', 'Invalid Username Or Password');
+    }
   };
 
   _validateForm = () => {
     if (this.state.username.trim() == '' || this.state.password.trim() == '') {
-      alert('invalid username or password');
+      //alert('invalid username or password');
+      alertsHelper.show('error', 'Login', 'Invalid username or password');
       return false;
     }
 
@@ -63,10 +123,103 @@ export default class LoginScreen extends React.Component {
   };
 
   render() {
-    const {username, password} = this.state;
+    const {username, password,baseURL, title} = this.state;
     const {loading} = this.props;
     return (
       <View style={styles.screen}>
+        <Modal animationType="slide" transparent={false} visible={this.state.settingsVisible} onRequestClose={() => this.setState({ settingsVisible: false })}>
+          <HeaderGeneric backAction={() => this.setState({ settingsVisible: false })} title="Settings" />
+          <ScrollView style={styles.reconciliationWrapper}>
+            <View style={styles.screen}>
+              <KeyboardAvoidingView
+                behavior="padding"
+                style={{
+                  flex: 1,
+                  justifyContent: 'center',
+                  width: '100%',
+                  paddingHorizontal: hp('4'),
+                }}>
+                <Text
+                  style={{
+                    fontFamily: 'Lora-Bold',
+                    textAlign: 'left',
+                    fontSize: normalizeFont(21),
+                  }}>
+                  API Base URI
+          </Text>
+                <View style={{ paddingVertical: hp('2') }}>
+                 <View>
+      <View> 
+         <Text
+            numberOfLines={2}
+            style={{
+              fontSize: normalizeFont(16),
+              color: PrimaryColor,
+              fontFamily: 'Roboto-Bold',
+              flexWrap: 'wrap',
+              paddingVertical: 15,
+              textAlign: alignment(this.props.language),
+            }}>
+            {"URI"}
+          </Text> 
+      </View>
+      <View
+        style={{
+          height: Platform.OS === 'ios' ? 30 : 45, 
+              borderBottomColor:   '#ddd',
+              borderBottomWidth:   1,
+        }}>
+           <TextInput 
+                 placeholder="Base Url"
+            placeholderTextColor="#ddd"
+            onChangeText={this.handleFieldChangeEnv.bind(this, 'baseURL')}
+            value={baseURL}
+            style={{
+              fontSize: normalizeFont(18),
+              width: wp('80'),
+            }}
+          />
+      </View>
+    </View>  
+    <View>
+      <View> 
+         <Text
+            numberOfLines={2}
+            style={{
+              fontSize: normalizeFont(16),
+              color: PrimaryColor,
+              fontFamily: 'Roboto-Bold',
+              flexWrap: 'wrap',
+              paddingVertical: 15,
+              textAlign: alignment(this.props.language),
+            }}>
+            {"Name"}
+          </Text> 
+      </View>
+      <View
+        style={{
+          height: Platform.OS === 'ios' ? 30 : 45, 
+              borderBottomColor:   '#ddd',
+              borderBottomWidth:   1,
+        }}>
+           <TextInput 
+                 placeholder="Title"
+            placeholderTextColor="#ddd"
+            onChangeText={this.handleFieldChangeEnv.bind(this, 'title')}
+            value={title}
+            style={{
+              fontSize: normalizeFont(18),
+              width: wp('80'),
+            }}
+          />
+      </View>
+    </View>  
+      </View> 
+       </KeyboardAvoidingView>
+            </View>
+          </ScrollView>
+        </Modal>
+
         <ForgetModal
           isVisible={this.state.forgotPassword}
           onBackdropPress={() => this.setState({forgotPassword: false})}
@@ -75,6 +228,8 @@ export default class LoginScreen extends React.Component {
         <KeyboardAvoidingView
           style={{flex: 1, justifyContent: 'center', width: '100%'}}
           keyboardVerticalOffset={54}>
+         
+           
           <Animatable.View
             animation="zoomIn"
             style={{
@@ -85,12 +240,18 @@ export default class LoginScreen extends React.Component {
               marginHorizontal: 10,
             }}
             useNativeDriver>
+                  <TouchableOpacity
+            activeOpacity={0.9}
+            onPress={() => this.setState({ settingsVisible: true })}
+          >
             <Image
               source={require('../../assets/logo.png')}
               resizeMode="contain"
               style={{width: '100%', height: '50%', alignSelf: 'center'}}
             />
+             </TouchableOpacity>
           </Animatable.View>
+         
           <View style={{flex: 1}}>
             <View style={[styles.inputContainer]}>
               <Animatable.View
@@ -104,7 +265,7 @@ export default class LoginScreen extends React.Component {
                 <TextInput
                   style={styles.inputStyle}
                   value={username}
-                  onChangeText={text => this.setState({username: text})}
+                  onChangeText={this.handleFieldChange.bind(this, 'username')}
                   placeholderTextColor="#ccc"
                   placeholder="Username"
                   secureTextEntry={false}
@@ -121,7 +282,7 @@ export default class LoginScreen extends React.Component {
                 <TextInput
                   style={styles.inputStyle}
                   value={password}
-                  onChangeText={text => this.setState({password: text})}
+                  onChangeText={this.handleFieldChange.bind(this, 'password')}
                   placeholderTextColor="#ccc"
                   placeholder="Password"
                   secureTextEntry={true}
@@ -178,7 +339,7 @@ export default class LoginScreen extends React.Component {
                 colors={['#4F107B', PrimaryColor]}
                 style={styles.LinearGradient}>
                 <TouchableOpacity
-                  onPress={() => this.props.navigation.navigate('app')}>
+                  onPress={this._loginHandler}>
                   <Text style={styles.loginText}>LOGIN</Text>
                 </TouchableOpacity>
               </LinearGradient>
@@ -246,6 +407,26 @@ export default class LoginScreen extends React.Component {
     );
   }
 }
+
+
+// Map State To Props (Redux Store Passes State To Component)
+const mapStateToProps = state => {
+  // Redux Store --> Component
+  return {
+    values: state.login.logindetails,
+    language: state.language.defaultLanguage,
+    environment: state.environmentReducer,
+  };
+};
+
+function mapDispatchToProps(dispatch) {
+  return {
+    changeLanguage: value => dispatch(storeLanguage(value)),
+    changeEnvironment: value => dispatch(environmentInfoChanged(value)),
+  };
+}
+export default connect(mapStateToProps,
+  mapDispatchToProps)(LoginScreen);
 const styles = StyleSheet.create({
   screen: {
     flex: 1,
@@ -300,4 +481,4 @@ const styles = StyleSheet.create({
   },
 });
 
-module.exports = LoginScreen;
+// module.exports = LoginScreen;

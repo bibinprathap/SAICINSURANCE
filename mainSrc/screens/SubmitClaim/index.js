@@ -1,6 +1,12 @@
 import React, {Component} from 'react';
-import {View, Text, StyleSheet, Dimensions} from 'react-native';
-import {PrimaryColor} from '../../config';
+import {
+  View,
+  Text,
+  StyleSheet,
+  Dimensions,
+  TouchableOpacity,
+} from 'react-native';
+import {PrimaryColor, assetColor} from '../../config';
 import Icons from 'react-native-vector-icons/MaterialIcons';
 import StepIndicator from 'react-native-step-indicator';
 import {
@@ -8,7 +14,12 @@ import {
   heightPercentageToDP as hp,
 } from 'react-native-responsive-screen';
 import DefaultText from '../../components/DefaultText';
-import ClaimDetails from '../../components/ClaimDetails';
+import ClaimDetails from '../../components/Claim/ClaimDetails';
+import PaymentMethod from '../../components/Claim/PaymentMethod';
+import NeededDocuments from '../../components/Claim/NeededDocuments';
+import Confirmation from '../../components/Claim/confirmation';
+import CancelClaimModal from '../../components/Modal/ClaimCancelModal';
+import {ScrollView} from 'react-native-gesture-handler';
 const {width, height} = Dimensions.get('screen');
 const normalizeFont = size => {
   return size * (width * 0.0025);
@@ -50,16 +61,28 @@ class Screen extends Component {
     this.state = {
       claimID: 'P/01/1307/2019/9640',
       currentPosition: 0,
+      cancelModal: false,
     };
   }
   render() {
     const {claimID} = this.state;
     return (
       <View style={styles.screen}>
+        <CancelClaimModal
+          isVisible={this.state.cancelModal}
+          onBackdropPress={() => this.setState({cancelModal: false})}
+          hideModal={() => this.setState({cancelModal: false})}
+          addAction={() =>
+            this.setState({cancelModal: false}, () =>
+              this.props.navigation.goBack(),
+            )
+          }
+        />
         <View style={styles.Headercontainer}>
           <View style={styles.topContainer}>
             <Text
-              onPress={() => this.props.navigation.goBack()}
+              // onPress={() => this.props.navigation.goBack()}
+              onPress={() => this.setState({cancelModal: true})}
               style={styles.textObj}>
               Cancel
             </Text>
@@ -109,63 +132,28 @@ class Screen extends Component {
           </View>
           <View style={{flex: 1, backgroundColor: '#F7F7F7', padding: 10}}>
             {this.state.currentPosition == 0 ? (
-              <View
-                style={{
-                  flex: 1,
-                  backgroundColor: 'white',
-                }}>
-                <View
-                  style={{
-                    flexDirection: 'row',
-                    justifyContent: 'space-between',
-                  }}>
-                  <Text
-                    style={[
-                      styles.textObj,
-                      {color: 'black', fontSize: normalizeFont(17)},
-                    ]}>
-                    Claim Details
-                  </Text>
-                  <Text style={{color: PrimaryColor}}>Required</Text>
-                </View>
-
-                <View style={{flex: 1}}>
-                  <View
-                    style={{
-                      flex: 0.7,
-                      backgroundColor: 'white',
-                      margin: 10,
-                      shadowColor: '#000',
-                      shadowOffset: {width: 0, height: 1},
-                      shadowOpacity: 0.8,
-                      shadowRadius: 2,
-                      elevation: 2,
-                    }}>
-                    <ClaimDetails
-                      title="Select Number"
-                      value="Myself"
-                      nextIcon
-                    />
-                    <ClaimDetails
-                      title="Healthcare Provider Country"
-                      value="United Arab Emirates"
-                      nextIcon
-                    />
-                    <ClaimDetails
-                      title="Service type"
-                      value="Consultation"
-                      nextIcon
-                    />
-                    <ClaimDetails title="Service Date" value="12-03-2020" />
-                    <ClaimDetails title="Claim Account" value="200" />
-                    <ClaimDetails title="Currency" value="AED" nextIcon />
-                    <ClaimDetails title="Add notes" value="" addNotes />
-                  </View>
-                  <View style={{flex: 0.3}} />
-                </View>
-              </View>
-            ) : null}
+              <ClaimDetails />
+            ) : this.state.currentPosition === 1 ? (
+              <NeededDocuments />
+            ) : this.state.currentPosition === 2 ? (
+              <PaymentMethod />
+            ) : (
+              <Confirmation />
+            )}
           </View>
+          <TouchableOpacity
+            activeOpacity={0.9}
+            style={{
+              backgroundColor: PrimaryColor,
+              height: 50,
+              width: '100%',
+              justifyContent: 'center',
+              alignItems: 'center',
+            }}>
+            <DefaultText style={{color: 'white', fontSize: 20}}>
+              Continue
+            </DefaultText>
+          </TouchableOpacity>
         </View>
       </View>
     );

@@ -2,7 +2,7 @@ import axios from 'axios';
 // import envConfig from './config';
 import alertsHelper from './helperServices/alerts';
 import createError from './helperServices/errors';
-import {store} from '../redux/store/store';
+import {store} from '../store'
 
 export default class RestApi {
   static cancelTokens = {};
@@ -88,6 +88,7 @@ export default class RestApi {
 
   static parseUrl = (envConfig = {}, controller = '', url = '', parameters) => {
     if (url.toLowerCase().startsWith('https')) return url;
+    if(url=='')  return `${envConfig.baseURL}/${controller}`;;
     const regex = /:(\w+)\/?/g;
 
     let m;
