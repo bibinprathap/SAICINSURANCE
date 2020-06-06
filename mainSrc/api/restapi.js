@@ -26,7 +26,13 @@ export default class RestApi {
     this.secure = secure;
     this.envConfig = store.getState().environmentReducer;
   }
+  get = ({ url, parameters, body, headers, isFormData, showAlerts, cancelable }) => {
+    return this.restApi('GET', url, parameters, body, headers, isFormData, showAlerts, cancelable);
+};
 
+post = ({ url, parameters, body, headers, isFormData, showAlerts, cancelable }) => {
+    return this.restApi('POST', url, parameters, body, headers, isFormData, showAlerts, cancelable);
+};
   restApi = (
     method = 'GET',
     url = '',
