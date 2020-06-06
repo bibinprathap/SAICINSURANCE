@@ -36,6 +36,8 @@ import ForgetModal from '../../components/Modal/forgotpassword';
 import AppApi from '../../api/real'; 
 import { environmentInfoChanged } from '../../actions/environmentActions';
 import { storeLanguage } from '../../actions/languageActions';
+
+import images from '../../images';
 const api = new AppApi();
 
 const {width, height} = Dimensions.get('screen');
@@ -66,7 +68,7 @@ const emptyLoginScreenState = {
    }
    
   updateLoginScreenState = (newState,env) => {
-    const {dispatch} = this.props;
+   // const {dispatch} = this.props;
     this.setState(newState, () => { 
       if(env)
       {
@@ -76,7 +78,8 @@ const emptyLoginScreenState = {
       }
       else{
         const stateToStore = {...this.state};
-        dispatch(infoChanged('logindetails', stateToStore));
+        this.props.infoChanged('logindetails', stateToStore);
+       // dispatch(infoChanged('logindetails', stateToStore));
       }
     });
   };
@@ -99,6 +102,7 @@ const emptyLoginScreenState = {
     let details = { ...this.state};
     alertsHelper.showAlert('Login', 'Checking User Information');
     try {
+      debugger;
       await api.login(details);
       this.props.navigation.navigate('app')
     } catch (error) {
@@ -231,21 +235,16 @@ const emptyLoginScreenState = {
          
            
           <Animatable.View
-            animation="zoomIn"
-            style={{
-              flex: 0.7,
-              flexDirection: 'row',
-              justifyContent: 'space-around',
-              alignItems: 'center',
-              marginHorizontal: 10,
-            }}
+            animation="zoomInUp"
+            delay={300}
+            
             useNativeDriver>
                   <TouchableOpacity
             activeOpacity={0.9}
             onPress={() => this.setState({ settingsVisible: true })}
           >
             <Image
-              source={require('../../assets/logo.png')}
+              source={images.logo.content}
               resizeMode="contain"
               style={{width: '100%', height: '50%', alignSelf: 'center'}}
             />
@@ -421,6 +420,7 @@ const mapStateToProps = state => {
 
 function mapDispatchToProps(dispatch) {
   return {
+    infoChanged: (property,value) => dispatch(infoChanged(property,value)),
     changeLanguage: value => dispatch(storeLanguage(value)),
     changeEnvironment: value => dispatch(environmentInfoChanged(value)),
   };

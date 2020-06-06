@@ -19,7 +19,7 @@ export default class AppApi {
   login = async params => {
     const restApi = new RestApi({controller: 'token'});
     try {
-      let response = await restApi.post({
+      let response = await restApi.get({
         url: '',
         body: params,
         cancelable: true,

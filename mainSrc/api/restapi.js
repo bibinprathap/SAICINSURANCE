@@ -76,18 +76,19 @@ post = ({ url, parameters, body, headers, isFormData, showAlerts, cancelable }) 
       //todo: add token if it is secure call
     };
 
-    if (cancelable) {
-      RestApi.cancelRequest({
-        endpoint: this.endpoint,
-        url: requestUrl,
-        message: 'One request allowed per url',
-      });
+    // if (cancelable) {
+    //   RestApi.cancelRequest({
+    //     endpoint: this.endpoint,
+    //     url: requestUrl,
+    //     message: 'One request allowed per url',
+    //   });
 
-      const newTokenSource = axios.CancelToken.source();
-      newTokenSource.isCancelled = false;
-      RestApi.cancelTokens[requestUrl] = newTokenSource;
-      requestConfig.cancelToken = newTokenSource.token;
-    }
+    //   const newTokenSource = axios.CancelToken.source();
+    //   newTokenSource.isCancelled = false;
+    //   RestApi.cancelTokens[requestUrl] = newTokenSource;
+    //   requestConfig.cancelToken = newTokenSource.token;
+    // }
+    debugger;
     return this.sendRequest(requestConfig, showAlerts);
     //return this.fetchRequest(requestConfig, showAlerts);
   };

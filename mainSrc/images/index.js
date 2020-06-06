@@ -2,6 +2,7 @@
 
 //Todo: get the icons evenly sized where possible
 export default {
+    logo: { content: require('./logo.png'), width: 43, height: 43 },
     notification: { content: require('./notification.png'), width: 43, height: 43 },
     cancelAlert: { content: require('./cancel.png'), width: 36, height: 36 },
     warnAlert: { content: require('./warn.png'), width: 36, height: 36 },
