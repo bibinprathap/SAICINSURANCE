@@ -2,7 +2,7 @@ import axios from 'axios';
 // import envConfig from './config';
 import alertsHelper from './helperServices/alerts';
 import createError from './helperServices/errors';
-import {store} from '../redux/store/store';
+import {store} from '../store'
 
 export default class RestApi {
   static cancelTokens = {};
@@ -26,7 +26,13 @@ export default class RestApi {
     this.secure = secure;
     this.envConfig = store.getState().environmentReducer;
   }
+  get = ({ url, parameters, body, headers, isFormData, showAlerts, cancelable }) => {
+    return this.restApi('GET', url, parameters, body, headers, isFormData, showAlerts, cancelable);
+};
 
+post = ({ url, parameters, body, headers, isFormData, showAlerts, cancelable }) => {
+    return this.restApi('POST', url, parameters, body, headers, isFormData, showAlerts, cancelable);
+};
   restApi = (
     method = 'GET',
     url = '',
@@ -70,24 +76,26 @@ export default class RestApi {
       //todo: add token if it is secure call
     };
 
-    if (cancelable) {
-      RestApi.cancelRequest({
-        endpoint: this.endpoint,
-        url: requestUrl,
-        message: 'One request allowed per url',
-      });
+    // if (cancelable) {
+    //   RestApi.cancelRequest({
+    //     endpoint: this.endpoint,
+    //     url: requestUrl,
+    //     message: 'One request allowed per url',
+    //   });
 
-      const newTokenSource = axios.CancelToken.source();
-      newTokenSource.isCancelled = false;
-      RestApi.cancelTokens[requestUrl] = newTokenSource;
-      requestConfig.cancelToken = newTokenSource.token;
-    }
+    //   const newTokenSource = axios.CancelToken.source();
+    //   newTokenSource.isCancelled = false;
+    //   RestApi.cancelTokens[requestUrl] = newTokenSource;
+    //   requestConfig.cancelToken = newTokenSource.token;
+    // }
+    debugger;
     return this.sendRequest(requestConfig, showAlerts);
     //return this.fetchRequest(requestConfig, showAlerts);
   };
 
   static parseUrl = (envConfig = {}, controller = '', url = '', parameters) => {
     if (url.toLowerCase().startsWith('https')) return url;
+    if(url=='')  return `${envConfig.baseURL}/${controller}`;;
     const regex = /:(\w+)\/?/g;
 
     let m;

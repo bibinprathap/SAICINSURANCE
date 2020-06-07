@@ -1,10 +1,11 @@
 {
   "name": "react-native-simple-toast",
-  "version": "1.0.0",
+  "version": "1.1.2",
   "summary": "Simple Toast for react-native. In Android it's just native toast, in iOS it's https://github.com/scalessec/Toast",
   "license": "MIT",
   "authors": {
-    "name": "xgfe"
+    "name": "Vojtech Novak",
+    "url": "https://github.com/vonovak/"
   },
   "homepage": "https://github.com/vonovak/react-native-simple-toast.git",
   "platforms": {
@@ -12,7 +13,7 @@
   },
   "source": {
     "git": "https://github.com/vonovak/react-native-simple-toast.git",
-    "tag": "v1.0.0"
+    "tag": "v1.1.2"
   },
   "source_files": "ios/**/*.{h,m}",
   "dependencies": {

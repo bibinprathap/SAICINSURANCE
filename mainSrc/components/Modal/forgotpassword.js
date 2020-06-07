@@ -105,13 +105,13 @@ class AddCustomerModal extends Component {
          <View style={{width:'100%', justifyContent: 'center',alignItems: 'center',}}>
         
           <TouchableOpacity
-            style={styles.alertBtton}
+            style={styles.addButton}
             onPress={this.props.hideModal}>
             <Text style={styles.addText}>NO</Text>
           </TouchableOpacity>
           
       <TouchableOpacity
-      style={styles.alertBtton}
+      style={styles.addButton}
       onPress={this.props.renderModel}>
       <Text style={styles.addText}>YES</Text>
     </TouchableOpacity>
@@ -185,20 +185,6 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     width: '100%',
-    height: 50,
-    backgroundColor: PrimaryColor,
-    borderRadius: 5,
-    elevation: 2,
-    shadowColor: 'black',
-    shadowOffset: {width: 0, height: 2},
-    shadowOpacity: 0.2,
-    shadowRadius: 0.2,
-  },
-  alertBtton: {
-    justifyContent: 'center',
-    alignItems: 'center',
-    marginTop:5,
-    width: '80%',
     height: 50,
     backgroundColor: PrimaryColor,
     borderRadius: 5,

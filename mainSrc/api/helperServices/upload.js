@@ -6,10 +6,8 @@ import {
   uploadAttachmentSuccess,
   uploadAttachmentError,
   uploadAttachmentStarted,
-} from '../../redux/actions/attachmentactions';
-import {store} from '../../redux/store/store';
-//'../redux/store/store';
-//'./restapi';
+} from '../../actions/attachmentactions' 
+import {store} from '../../store'; 
 
 const resolveUpload = function(uploadId) {
   return new Promise((resolve, reject) => {

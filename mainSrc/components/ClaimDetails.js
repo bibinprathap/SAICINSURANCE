@@ -25,7 +25,7 @@ const ClaimDetails = props => {
       <View style={{flex: 1, flexDirection: 'row'}}>
         <DefaultText
           style={{
-            fontSize: normalizeFont(16),
+            fontSize: normalizeFont(14),
             fontFamily: 'UberMoveText-Regular',
           }}>
           {props.title}
@@ -38,14 +38,14 @@ const ClaimDetails = props => {
                 }}>
                 *
               </Text>
-              <View
+              {/* <View
                 style={{
                   height: 10,
                   width: 10,
                   backgroundColor: 'green',
                   borderRadius: 10,
                 }}
-              />
+              /> */}
             </>
           )}
         </DefaultText>
@@ -57,7 +57,7 @@ const ClaimDetails = props => {
           justifyContent: 'center',
         }}>
         <View style={{flexDirection: 'row', alignItems: 'center'}}>
-          <Text style={{color: 'grey', fontSize: normalizeFont(16)}}>
+          <Text style={{color: 'grey', fontSize: normalizeFont(14)}}>
             {props.value}
           </Text>
           {props.nextIcon && (

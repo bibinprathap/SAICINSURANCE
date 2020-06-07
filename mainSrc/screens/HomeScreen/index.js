@@ -306,6 +306,7 @@ class HomeScreen extends Component {
 const styles = StyleSheet.create({
   screen: {
     flex: 1,
+    backgroundColor: PrimaryColor,
   },
   headerView: {
     flex: 0.2,
