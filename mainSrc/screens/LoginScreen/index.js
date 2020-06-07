@@ -71,6 +71,10 @@ export default class LoginScreen extends React.Component {
           isVisible={this.state.forgotPassword}
           onBackdropPress={() => this.setState({forgotPassword: false})}
           hideModal={() => this.setState({forgotPassword: false})}
+          title="FORGOT PASSWORD"
+          iconName="work"
+          subTitle="Please fill the following info"
+          forgot
         />
         <KeyboardAvoidingView
           style={{flex: 1, justifyContent: 'center', width: '100%'}}

@@ -7,6 +7,8 @@ import LoginScreen from '../screens/LoginScreen';
 import RegisterScreen from '../screens/RegisterScreen';
 import HomeScreen from '../screens/HomeScreen';
 import ClaimScreen from '../screens/ClaimScreen';
+import Notifications from '../screens/Notifications';
+import VewCard from '../screens/ViewCard';
 import LegalScreen from '../screens/LegalScreen';
 import SettingsScreen from '../screens/SettingsScreen';
 import ProfileScreen from '../screens/ProfileScreen';
@@ -22,6 +24,8 @@ const HomeStack = createStackNavigator(
   {
     Home: HomeScreen,
     Claim: ClaimScreen,
+    Notification: Notifications,
+    VewCard:VewCard,
     Profile: ProfileScreen,
     SubmitClaim: SubmitClaim,
   },

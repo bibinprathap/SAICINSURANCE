@@ -9,6 +9,7 @@ import {
 } from 'react-native-responsive-screen';
 import DefaultText from '../../components/DefaultText';
 import ClaimDetails from '../../components/ClaimDetails';
+import ForgetModal from '../../components/Modal/forgotpassword';
 const {width, height} = Dimensions.get('screen');
 const normalizeFont = size => {
   return size * (width * 0.0025);
@@ -50,16 +51,31 @@ class Screen extends Component {
     this.state = {
       claimID: 'P/01/1307/2019/9640',
       currentPosition: 0,
+      forgotPassword: false,
     };
+  }
+
+  renderModel(){
+   
+      this.props.navigation.goBack();
   }
   render() {
     const {claimID} = this.state;
     return (
       <View style={styles.screen}>
+                <ForgetModal
+          isVisible={this.state.forgotPassword}
+          onBackdropPress={() => this.setState({forgotPassword: false})}
+          renderModel= {() => this.props.navigation.goBack()}
+          hideModal={() => this.setState({forgotPassword: false})}
+          iconName="person"
+          title="Attention"
+          subTitle="Are you sure you want to cancel claim submission?"
+        />
         <View style={styles.Headercontainer}>
           <View style={styles.topContainer}>
             <Text
-              onPress={() => this.props.navigation.goBack()}
+              onPress={() => this.setState({forgotPassword: true})}
               style={styles.textObj}>
               Cancel
             </Text>

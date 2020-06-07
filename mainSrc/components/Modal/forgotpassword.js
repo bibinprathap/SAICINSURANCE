@@ -50,7 +50,7 @@ class AddCustomerModal extends Component {
             <Icon
               size={hp('3.5')}
               style={{alignSelf: 'center'}}
-              name="work"
+              name={this.props.iconName}
               color="#fff"
             />
           </View>
@@ -70,7 +70,7 @@ class AddCustomerModal extends Component {
           </View>
           <View style={{height: 50, marginVertical: 10}}>
             <TouchableOpacity activeOpacity={1} style={styles.titleContainer}>
-              <Text style={styles.titleText}>FORGOT PASSWORD</Text>
+              <Text style={styles.titleText}>{this.props.title}</Text>
             </TouchableOpacity>
             <Text
               style={{
@@ -79,10 +79,10 @@ class AddCustomerModal extends Component {
                 color: '#576574',
                 fontFamily: 'Roboto-Medium',
               }}>
-              Please fill the following info
+            {this.props.subTitle}
             </Text>
           </View>
-
+        {this.props.forgot ? (
           <View style={styles.mainContainer}>
             <View style={styles.viewContainer}>
               <TextInput
@@ -101,6 +101,23 @@ class AddCustomerModal extends Component {
               </TouchableOpacity>
             </View>
           </View>
+        ):(
+         <View style={{width:'100%', justifyContent: 'center',alignItems: 'center',}}>
+        
+          <TouchableOpacity
+            style={styles.alertBtton}
+            onPress={this.props.hideModal}>
+            <Text style={styles.addText}>NO</Text>
+          </TouchableOpacity>
+          
+      <TouchableOpacity
+      style={styles.alertBtton}
+      onPress={this.props.renderModel}>
+      <Text style={styles.addText}>YES</Text>
+    </TouchableOpacity>
+    
+    </View>
+        )}
         </View>
       </Modal>
     );
@@ -168,6 +185,20 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     width: '100%',
+    height: 50,
+    backgroundColor: PrimaryColor,
+    borderRadius: 5,
+    elevation: 2,
+    shadowColor: 'black',
+    shadowOffset: {width: 0, height: 2},
+    shadowOpacity: 0.2,
+    shadowRadius: 0.2,
+  },
+  alertBtton: {
+    justifyContent: 'center',
+    alignItems: 'center',
+    marginTop:5,
+    width: '80%',
     height: 50,
     backgroundColor: PrimaryColor,
     borderRadius: 5,
