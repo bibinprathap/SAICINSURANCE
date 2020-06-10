@@ -5,7 +5,11 @@ import {
   StyleSheet,
   Dimensions,
   TouchableOpacity,
+  Platform,
+  ActionSheetIOS,
+  Image,
 } from 'react-native';
+import ImagePicker from 'react-native-image-crop-picker';
 import {PrimaryColor, assetColor} from '../../config';
 import Icons from 'react-native-vector-icons/MaterialIcons';
 import StepIndicator from 'react-native-step-indicator';
@@ -13,18 +17,23 @@ import {
   widthPercentageToDP as wp,
   heightPercentageToDP as hp,
 } from 'react-native-responsive-screen';
+import AppApi from '../../api/real';
 import DefaultText from '../../components/DefaultText';
-import ForgetModal from '../../components/Modal/forgotpassword';
 import ClaimDetails from '../../components/Claim/ClaimDetails';
 import PaymentMethod from '../../components/Claim/PaymentMethod';
 import NeededDocuments from '../../components/Claim/NeededDocuments';
 import Confirmation from '../../components/Claim/confirmation';
 import CancelClaimModal from '../../components/Modal/ClaimCancelModal';
+import CameraImage from '../../assets/src_assets_camera.png';
+import Modal from 'react-native-modal';
+import GalleryImage from '../../assets/src_assets_gallery.png';
 import {ScrollView} from 'react-native-gesture-handler';
 const {width, height} = Dimensions.get('screen');
 const normalizeFont = size => {
   return size * (width * 0.0025);
 };
+
+const api = new AppApi();
 
 const labels = [
   'Claim Details',
@@ -56,34 +65,267 @@ const customStyles = {
   currentStepLabelColor: 'white',
 };
 
+let Today;
+
 class Screen extends Component {
   constructor(props) {
     super(props);
+    var today = new Date().toISOString().split('T')[0];
+    var td = today
+      .split('/')
+      .reverse()
+      .join('/');
+    var tdd = td
+      .split('/')
+      .reverse()
+      .join('/');
+    Today = tdd
+      .split('-')
+      .reverse()
+      .join('/');
+    this.onPress = Platform.OS === 'ios' && this.showActionSheet.bind(this);
     this.state = {
       claimID: 'P/01/1307/2019/9640',
       currentPosition: 0,
-      forgotPassword: false,
       cancelModal: false,
+      selectNumber: '',
+      countryName: '',
+      serviceType: '',
+      serviceDate: Today,
+      claimAccount: '',
+      currencyValue: '',
+      addNotes: '',
+      image: null,
+      pickerModal: false,
+      myCountry: '',
+      iBAN: '',
+      swiftBIC: '',
+      accountNumber: '',
+      bankName: '',
+      bankAddress: '',
+      accountName: '',
+      myCurrency: '',
+      branchName: '',
+      cityName: '',
+      phoneNumber: '',
+      emailName: '',
     };
   }
 
-  renderModel(){
-   
-      this.props.navigation.goBack();
+  async componentDidMount() {
+    const data = await api.getServiceType();
+
+    console.log(data, 'data');
   }
+
+  pickSingleWithCamera(cropping, mediaType = 'photo') {
+    ImagePicker.openCamera({
+      cropping: cropping,
+      width: 500,
+      height: 500,
+      includeExif: true,
+      mediaType,
+    })
+      .then(image => {
+        console.log('received image', image);
+        this.setState({
+          pickerModal: false,
+          image: {
+            uri: image.path,
+            width: image.width,
+            height: image.height,
+            mime: image.mime,
+          },
+          images: null,
+        });
+      })
+      .catch(e => console.log(e));
+  }
+
+  pickSingle(cropit, circular = false, mediaType) {
+    ImagePicker.openPicker({
+      width: 500,
+      height: 500,
+      cropping: cropit,
+      cropperCircleOverlay: circular,
+      sortOrder: 'none',
+      compressImageMaxWidth: 1000,
+      compressImageMaxHeight: 1000,
+      compressImageQuality: 1,
+      compressVideoPreset: 'MediumQuality',
+      includeExif: true,
+    })
+      .then(image => {
+        this.setState({
+          pickerModal: false,
+          image: {
+            uri: image.path,
+            width: image.width,
+            height: image.height,
+            mime: image.mime,
+          },
+          images: null,
+        });
+      })
+      .catch(e => {
+        console.log(e);
+      });
+  }
+
+  showActionSheet = () => {
+    console.log('hello');
+    ActionSheetIOS.showActionSheetWithOptions(
+      {
+        options: ['Take Photo', 'Photo Library', 'Browser', 'Cancel'],
+        cancelButtonIndex: 3,
+        // destructiveButtonIndex: DESTRUCTIVE_INDEX,
+      },
+      buttonIndex => {
+        console.log(buttonIndex, 'buttonIndex');
+        if (buttonIndex === 0) {
+          this.pickSingleWithCamera(false);
+        } else if (buttonIndex === 1) {
+          this.pickSingle(false);
+        }
+      },
+    );
+  };
+
+  continueAction = () => {
+    const {
+      selectNumber,
+      countryName,
+      serviceType,
+      serviceDate,
+      claimAccount,
+      currencyValue,
+      addNotes,
+      currentPosition,
+      myCountry,
+      iBAN,
+      swiftBIC,
+      accountNumber,
+      accountName,
+      myCurrency,
+      branchName,
+      cityName,
+      phoneNumber,
+      emailName,
+      bankName,
+      bankAddress,
+    } = this.state;
+    if (currentPosition === 0) {
+      if (
+        serviceType.trim() === '' ||
+        serviceDate.trim() === '' ||
+        claimAccount.trim() === '' ||
+        currencyValue.trim() === ''
+      ) {
+        alert('Complete your claim details');
+        return;
+      }
+    }
+
+    if (currentPosition === 1) {
+      if (this.state.image === null) {
+        alert('Upload Image before continue');
+        return;
+      }
+    }
+
+    if (currentPosition === 2) {
+      if (
+        myCountry.trim() === '' ||
+        swiftBIC.trim() === '' ||
+        iBAN.trim() === '' ||
+        accountNumber.trim() === '' ||
+        accountName.trim() === '' ||
+        myCurrency.trim() === '' ||
+        branchName.trim() === '' ||
+        cityName.trim() === '' ||
+        phoneNumber.trim() === '' ||
+        accountName.trim() === '' ||
+        emailName.trim() === '' ||
+        bankName.trim() === '' ||
+        bankAddress.trim() === ''
+      ) {
+        alert('Complete your payment Details before continue');
+        return;
+      }
+
+      if (!this.validateEmail(this.state.emailName)) {
+        alert('invalid Email');
+        return;
+      }
+    }
+
+    if (this.state.currentPosition !== 3) {
+      this.setState({currentPosition: this.state.currentPosition + 1});
+    }
+  };
+
+  renderPickerModal() {
+    const {pickerModal} = this.state;
+    return (
+      <Modal
+        isVisible={pickerModal}
+        style={{
+          justifyContent: 'flex-end',
+        }}
+        onBackdropPress={() => this.setState({pickerModal: false})}
+        onBackButtonPress={() => this.setState({pickerModal: false})}
+        backdropColor="black"
+        backdropOpacity={0.5}>
+        <View
+          style={{
+            backgroundColor: 'white',
+            height: 200,
+            width: '100%',
+            borderRadius: 10,
+            flexDirection: 'row',
+          }}>
+          <TouchableOpacity
+            onPress={() => this.pickSingleWithCamera()}
+            activeOpacity={0.9}
+            style={{flex: 1, justifyContent: 'center', alignItems: 'center'}}>
+            <Image source={CameraImage} style={{width: 100, height: 100}} />
+            <Text style={{fontFamily: 'Roboto-Bold', paddingTop: 15}}>
+              Camera
+            </Text>
+          </TouchableOpacity>
+          <TouchableOpacity
+            onPress={() => this.pickSingle()}
+            activeOpacity={0.9}
+            style={{flex: 1, justifyContent: 'center', alignItems: 'center'}}>
+            <Image source={GalleryImage} style={{width: 100, height: 100}} />
+            <Text style={{fontFamily: 'Roboto-Bold', paddingTop: 15}}>
+              Gallery
+            </Text>
+          </TouchableOpacity>
+        </View>
+      </Modal>
+    );
+  }
+
+  validateEmail = email => {
+    var re = /^(([^<>()\[\]\\.,;:\s@”]+(\.[^<>()\[\]\\.,;:\s@”]+)*)|(“.+”))@((\[[0–9]{1,3}\.[0–9]{1,3}\.[0–9]{1,3}\.[0–9]{1,3}])|(([a-zA-Z\-0–9]+\.)+[a-zA-Z]{2,}))$/;
+    return re.test(email);
+  };
+
   render() {
     const {claimID} = this.state;
     return (
       <View style={styles.screen}>
-                <ForgetModal
+        {this.renderPickerModal()}
+        <CancelClaimModal
           isVisible={this.state.cancelModal}
           onBackdropPress={() => this.setState({cancelModal: false})}
-          renderModel= {() => this.props.navigation.goBack()}
-          hideModal={() => this.setState({cancelModal: false}, () =>
-          this.props.navigation.goBack(),)}
-          iconName="person"
-          title="Attention"
-          subTitle="Are you sure you want to cancel claim submission?"
+          hideModal={() => this.setState({cancelModal: false})}
+          addAction={() =>
+            this.setState({cancelModal: false}, () =>
+              this.props.navigation.goBack(),
+            )
+          }
         />
         <View style={styles.Headercontainer}>
           <View style={styles.topContainer}>
@@ -122,7 +364,20 @@ class Screen extends Component {
                 <Text style={[styles.textObj, {paddingHorizontal: hp('1')}]}>
                   {claimID}
                 </Text>
-                <Icons size={hp('2.5')} name="arrow-forward" color="white" />
+                {this.state.currentPosition !== 3 && (
+                  <TouchableOpacity
+                    onPress={() =>
+                      this.setState({
+                        currentPosition: this.state.currentPosition + 1,
+                      })
+                    }>
+                    <Icons
+                      size={hp('2.5')}
+                      name="arrow-forward"
+                      color="white"
+                    />
+                  </TouchableOpacity>
+                )}
               </View>
             </View>
 
@@ -139,16 +394,110 @@ class Screen extends Component {
           </View>
           <View style={{flex: 1, backgroundColor: '#F7F7F7', padding: 10}}>
             {this.state.currentPosition == 0 ? (
-              <ClaimDetails />
+              <ClaimDetails
+                selectNumberValue={this.state.selectNumber}
+                selectNumber={text => this.setState({selectNumber: text})}
+                countryValue={this.state.countryName}
+                countyValueChange={text => this.setState({countryName: text})}
+                serviceType={this.state.serviceType}
+                serviceTypeChange={text => this.setState({serviceType: text})}
+                serviceDate={this.state.serviceDate}
+                serviceDateChange={date => this.setState({serviceDate: date})}
+                claimAccount={this.state.claimAccount}
+                claimAccountChange={text => this.setState({claimAccount: text})}
+                currencyValue={this.state.currencyValue}
+                currencyValueChange={text =>
+                  this.setState({currencyValue: text})
+                }
+                addNotes={this.state.addNotes}
+                addNotesChange={text => this.setState({addNotes: text})}
+              />
             ) : this.state.currentPosition === 1 ? (
-              <NeededDocuments />
+              <NeededDocuments
+                image={this.state.image}
+                // showActionSheet={Platform.OS === 'ios' && this.showActionSheet}
+                showActionSheet={() => this.setState({pickerModal: true})}
+              />
             ) : this.state.currentPosition === 2 ? (
-              <PaymentMethod />
+              <PaymentMethod
+                myCountry={this.state.myCountry}
+                myCountryValueChange={text => this.setState({myCountry: text})}
+                iBAN={this.state.iBAN}
+                iBANValueChange={text => this.setState({iBAN: text})}
+                swiftBIC={this.state.swiftBIC}
+                swiftBICValueChange={text => this.setState({swiftBIC: text})}
+                accountNumber={this.state.accountNumber}
+                accountValueChange={text =>
+                  this.setState({accountNumber: text})
+                }
+                accountName={this.state.accountName}
+                accountNameChange={text => this.setState({accountName: text})}
+                bankName={this.state.bankName}
+                bankNameChange={text => this.setState({bankName: text})}
+                bankAddress={this.state.bankAddress}
+                bankAddressChange={text => this.setState({bankAddress: text})}
+                myCurrency={this.state.myCurrency}
+                myCurrencyValue={text => this.setState({myCurrency: text})}
+                branchName={this.state.branchName}
+                branchNameChange={text => this.setState({branchName: text})}
+                cityName={this.state.cityName}
+                cityNameChange={text => this.setState({cityName: text})}
+                phoneNumber={this.state.phoneNumber}
+                phoneNumberChange={text => this.setState({phoneNumber: text})}
+                emailName={this.state.emailName}
+                emailChange={text => this.setState({emailName: text})}
+              />
             ) : (
-              <Confirmation />
+              <Confirmation
+                selectMember={this.state.selectNumber}
+                selectMemberChange={text => this.setState({selectNumber: text})}
+                countyValue={this.state.countryName}
+                countyValueChange={text => this.setState({countryName: text})}
+                serviceType={this.state.serviceType}
+                serviceTypeChange={text => this.setState({serviceType: text})}
+                serviceDate={this.state.serviceDate}
+                serviceDateChange={date => this.setState({serviceDate: date})}
+                claimAccount={this.state.claimAccount}
+                claimAccountChange={text => this.setState({claimAccount: text})}
+                currencyValue={this.state.currencyValue}
+                currencyValueChange={text =>
+                  this.setState({currencyValue: text})
+                }
+                addNotes={this.state.addNotes}
+                addNotesChange={text => this.setState({addNotes: text})}
+                image={this.state.image}
+                myCountry={this.state.myCountry}
+                myCountryValueChange={text => this.setState({myCountry: text})}
+                iBAN={this.state.iBAN}
+                iBANValueChange={text => this.setState({iBAN: text})}
+                swiftBIC={this.state.swiftBIC}
+                swiftBICValueChange={text => this.setState({swiftBIC: text})}
+                accountNumber={this.state.accountNumber}
+                accountValueChange={text =>
+                  this.setState({accountNumber: text})
+                }
+                accountName={this.state.accountName}
+                accountNameChange={text => this.setState({accountName: text})}
+                myCurrency={this.state.myCurrency}
+                myCurrencyValue={text => this.setState({myCurrency: text})}
+                bankName={this.state.bankName}
+                bankNameChange={text => this.setState({bankName: text})}
+                bankAddress={this.state.bankAddress}
+                bankAddressChange={text => this.setState({bankAddress: text})}
+                branchName={this.state.branchName}
+                branchNameChange={text => this.setState({branchName: text})}
+                cityName={this.state.cityName}
+                cityNameChange={text => this.setState({cityName: text})}
+                phoneNumber={this.state.phoneNumber}
+                phoneNumberChange={text => this.setState({phoneNumber: text})}
+                emailName={this.state.emailName}
+                emailChange={text => this.setState({emailName: text})}
+                showActionSheet={() => this.setState({pickerModal: true})}
+              />
             )}
           </View>
           <TouchableOpacity
+            onPress={() => this.continueAction()}
             activeOpacity={0.9}
             style={{
               backgroundColor: PrimaryColor,
@@ -157,9 +506,15 @@ class Screen extends Component {
               justifyContent: 'center',
               alignItems: 'center',
             }}>
-            <DefaultText style={{color: 'white', fontSize: 20}}>
-              Continue
-            </DefaultText>
+            {this.state.currentPosition === 3 ? (
+              <DefaultText style={{color: 'white', fontSize: 20}}>
+                Submit
+              </DefaultText>
+            ) : (
+              <DefaultText style={{color: 'white', fontSize: 20}}>
+                Continue
+              </DefaultText>
+            )}
           </TouchableOpacity>
         </View>
       </View>

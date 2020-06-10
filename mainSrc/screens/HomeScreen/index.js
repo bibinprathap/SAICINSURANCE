@@ -157,7 +157,6 @@ class HomeScreen extends Component {
             <View style={{flex: 1}}>
               <View style={styles.headerIcon}>
                 <View style={{flex: 1, marginBottom: hp('1')}}>
-            
                   <Icons
                     size={hp('4')}
                     style={{alignSelf: 'center'}}
@@ -165,12 +164,8 @@ class HomeScreen extends Component {
                     color="white"
                   />
                   <Text style={styles.changePolicy}>Change Policy</Text>
-                  
                 </View>
                 <View style={{flex: 1}}>
-                <TouchableOpacity
-                  activeOpacity={0.9}
-                  onPress={() => this.props.navigation.navigate('VewCard')}>
                   <Icons
                     size={hp('3.5')}
                     style={{alignSelf: 'center'}}
@@ -178,7 +173,6 @@ class HomeScreen extends Component {
                     color="white"
                   />
                   <Text style={styles.changePolicy}>View E-Card</Text>
-                  </TouchableOpacity>
                 </View>
               </View>
             </View>
@@ -213,9 +207,6 @@ class HomeScreen extends Component {
                   alignItems: 'center',
                   justifyContent: 'center',
                 }}>
-                  <TouchableOpacity
-                  activeOpacity={0.9}
-                  onPress={() => this.props.navigation.navigate('Notification')}>
                 <Icons
                   size={hp('4')}
                   style={{alignSelf: 'center'}}
@@ -223,7 +214,6 @@ class HomeScreen extends Component {
                   color={PrimaryColor}
                 />
                 <Text style={styles.middleText}>NOTIFICATION</Text>
-                </TouchableOpacity>
               </View>
             </View>
             <View

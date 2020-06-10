@@ -272,18 +272,13 @@ class Screen extends Component {
                   alignItems: 'center',
                 },
               ]}>
-                  <TouchableOpacity
-                onPress={() => this.props.navigation.navigate('searchWithFilters')}
-                >
               <Icons
                 size={hp('3')}
                 style={{alignSelf: 'center'}}
                 name="search"
                 color="#ccc"
               />
-              </TouchableOpacity>
               <View>
-              
                 <TextInput
                   placeholder="Claim external e.g PB000001"
                   placeholderTextColor="#ccc"
