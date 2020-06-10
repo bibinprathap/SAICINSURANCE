@@ -83,7 +83,7 @@ class VewCard extends Component {
             size={hp('2.5')}
             style={{ position: 'absolute', right: 0 }}
             name="file-download"
-            color="#000"
+            color= {PrimaryColor}
           />
         </View>
         <Image style={{ height: 320, width: windowSize.width, flex: 1 }} source={dataItem.image} />

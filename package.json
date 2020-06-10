@@ -28,6 +28,7 @@
     "react-native-background-upload": "^5.6.1",
     "react-native-connectycube": "^2.1.6",
     "react-native-datepicker": "^1.7.2",
+    "react-native-flexi-radio-button": "^0.2.2",
     "react-native-gesture-handler": "^1.5.5",
     "react-native-image-crop-picker": "^0.31.1",
     "react-native-incall-manager": "3.2.7",

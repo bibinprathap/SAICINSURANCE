@@ -102,7 +102,7 @@ class AddCustomerModal extends Component {
             </View>
           </View>
         ):(
-         <View style={{width:'100%', justifyContent: 'center',alignItems: 'center',}}>
+         <View style={{width:'80%', justifyContent: 'center',alignItems: 'center',}}>
         
           <TouchableOpacity
             style={styles.addButton}
@@ -186,6 +186,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     width: '100%',
     height: 50,
+    marginTop:10,
     backgroundColor: PrimaryColor,
     borderRadius: 5,
     elevation: 2,
