@@ -1,19 +1,47 @@
 import React, {Component} from 'react';
-import {View, Text, StyleSheet, Dimensions} from 'react-native';
+import {View, Text, StyleSheet, Dimensions, TextInput} from 'react-native';
 import Panel from '../Panel';
 import {PrimaryColor} from '../../config';
 import DefaultText from '../DefaultText';
 import Icons from 'react-native-vector-icons/MaterialIcons';
 import {ScrollView} from 'react-native-gesture-handler';
 import PaymentMethod from '../PaymentMethod';
+import RNPickerSelect from 'react-native-picker-select';
 const {width, height} = Dimensions.get('screen');
 const normalizeFont = size => {
   return size * (width * 0.0025);
 };
 
+const pickerSelectStyles = StyleSheet.create({
+  inputIOS: {
+    fontSize: 16,
+    paddingVertical: 5,
+    paddingHorizontal: 10,
+    // borderWidth: 1,
+    borderColor: 'gray',
+    borderRadius: 4,
+    color: 'black',
+    // to ensure the text is never behind the icon
+  },
+  inputAndroid: {
+    fontSize: 16,
+    paddingHorizontal: 10,
+    paddingVertical: 8,
+    borderWidth: 0.5,
+    borderColor: 'purple',
+    borderRadius: 8,
+    color: 'black',
+    // to ensure the text is never behind the icon
+  },
+});
+
 class PaymentMethods extends Component {
   constructor(props) {
     super(props);
+    this.placeholder = {
+      label: 'Select a value',
+      value: null,
+    };
   }
   render() {
     return (
@@ -43,7 +71,7 @@ class PaymentMethods extends Component {
           </View>
         </Panel>
 
-        <Panel header="Bank Account Details" maxItem={610}>
+        <Panel header="Bank Account Details" maxItem={640}>
           <View style={{flex: 1}}>
             <View style={[styles.header]}>
               <PaymentMethod
@@ -51,42 +79,157 @@ class PaymentMethods extends Component {
                 value="United Arab Emirates"
                 nextIcon
                 addNotes
-                start
-              />
-              <PaymentMethod title="IBAN" value="" addNotes start />
-              <PaymentMethod title="SWIFT/BIC" value="EBILAED" addNotes start />
+                start>
+                <RNPickerSelect
+                  placeholder={this.placeholder}
+                  onValueChange={this.props.myCountryValueChange}
+                  value={this.props.myCountry}
+                  items={[
+                    {label: 'India', value: 'India'},
+                    {label: 'China', value: 'China'},
+                    {label: 'USA', value: 'USA'},
+                    {label: 'France', value: 'France'},
+                    {label: 'England', value: 'England'},
+                    {label: 'UAE', value: 'UAE'},
+                  ]}
+                  style={{
+                    ...pickerSelectStyles,
+                    iconContainer: {
+                      top: 10,
+                      right: 12,
+                    },
+                  }}
+                />
+              </PaymentMethod>
+              <PaymentMethod title="IBAN" value="" addNotes start>
+                <TextInput
+                  placeholder="iBAN"
+                  value={this.props.iBAN}
+                  onChangeText={this.props.iBANValueChange}
+                />
+              </PaymentMethod>
+              <PaymentMethod title="SWIFT/BIC" value="EBILAED" addNotes start>
+                <TextInput
+                  placeholder="SWIFT/BIC"
+                  value={this.props.swiftBIC}
+                  onChangeText={this.props.swiftBICValueChange}
+                />
+              </PaymentMethod>
               <PaymentMethod
                 title="Account Number"
                 value=""
                 nextIcon
                 addNotes
-                start
-              />
-              <PaymentMethod title="Account Name" value="" addNotes start />
+                start>
+                <RNPickerSelect
+                  placeholder={this.placeholder}
+                  value={this.props.accountNumber}
+                  onValueChange={this.props.accountValueChange}
+                  items={[
+                    {label: '11113444', value: '1234567'},
+                    {label: '1234567', value: '1234567'},
+                    {label: '987654321', value: '987654321'},
+                    {label: '654345654', value: '4565456'},
+                    {label: '2345678', value: '2345678'},
+                    {label: '8765432', value: '8765432'},
+                  ]}
+                  style={{
+                    ...pickerSelectStyles,
+                    iconContainer: {
+                      top: 10,
+                      right: 12,
+                    },
+                  }}
+                />
+              </PaymentMethod>
+              <PaymentMethod title="Account Name" value="" addNotes start>
+                <TextInput
+                  placeholder="Account Name"
+                  value={this.props.accountName}
+                  onChangeText={this.props.accountNameChange}
+                />
+              </PaymentMethod>
 
               <PaymentMethod
                 title="Currency"
                 value="AED"
                 nextIcon
                 addNotes
-                start
-              />
+                start>
+                <RNPickerSelect
+                  placeholder={this.placeholder}
+                  value={this.props.myCurrency}
+                  onValueChange={this.props.myCurrencyValue}
+                  items={[
+                    {label: 'Rupee', value: 'Rupee'},
+                    {label: 'Dinar', value: 'Dinar'},
+                    {label: 'Doller', value: 'Doller'},
+                    {label: 'Euro', value: 'Euro'},
+                    {label: 'Yen', value: 'Yen'},
+                    {label: 'UAE', value: 'UAE'},
+                  ]}
+                  style={{
+                    ...pickerSelectStyles,
+                    iconContainer: {
+                      top: 10,
+                      right: 12,
+                    },
+                  }}
+                />
+              </PaymentMethod>
               <PaymentMethod
                 title="Bank Name"
                 value="Punjab National Bank"
                 addNotes
-                start
-              />
+                start>
+                <TextInput
+                  placeholder="Bank Name"
+                  value={this.props.bankName}
+                  onChangeText={this.props.bankNameChange}
+                />
+              </PaymentMethod>
               <PaymentMethod
                 title="Bank Address"
                 value="BENYAS STREET,DEIRA"
                 addNotes
-                start
-              />
-              <PaymentMethod title="Branch" value="" addNotes />
-              <PaymentMethod title="City" value="DUBAI" addNotes />
-              <PaymentMethod title="Phone" value="" addNotes />
-              <PaymentMethod title="Email" value="" addNotes />
+                start>
+                <TextInput
+                  placeholder="Bank Address"
+                  value={this.props.bankAddress}
+                  onChangeText={this.props.bankAddressChange}
+                />
+              </PaymentMethod>
+              <PaymentMethod title="Branch" value="" addNotes>
+                <TextInput
+                  placeholder="Branch Name"
+                  value={this.props.branchName}
+                  onChangeText={this.props.branchNameChange}
+                />
+              </PaymentMethod>
+              <PaymentMethod title="City" value="DUBAI" addNotes>
+                <TextInput
+                  placeholder="City"
+                  value={this.props.cityName}
+                  onChangeText={this.props.cityNameChange}
+                />
+              </PaymentMethod>
+              <PaymentMethod title="Phone" value="" addNotes>
+                <TextInput
+                  placeholder="Phone"
+                  keyboardType="phone-pad"
+                  returnKeyType="done"
+                  value={this.props.phoneNumber}
+                  onChangeText={this.props.phoneNumberChange}
+                />
+              </PaymentMethod>
+              <PaymentMethod title="Email" value="" addNotes>
+                <TextInput
+                  keyboardType="email-address"
+                  placeholder="Email"
+                  value={this.props.emailName}
+                  onChangeText={this.props.emailChange}
+                />
+              </PaymentMethod>
             </View>
           </View>
         </Panel>
@@ -109,12 +252,7 @@ const styles = StyleSheet.create({
     elevation: 3,
     margin: 10,
   },
-  Headercontainer: {
-    height: 60,
-    backgroundColor: PrimaryColor,
 
-    paddingHorizontal: 15,
-  },
   textObj: {
     fontSize: normalizeFont(14),
     color: 'white',

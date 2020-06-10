@@ -66,9 +66,7 @@ const PaymentMethod = props => {
           justifyContent: 'center',
         }}>
         <View style={{flexDirection: 'row', alignItems: 'center'}}>
-          <Text style={{color: 'grey', fontSize: normalizeFont(16)}}>
-            {props.value}
-          </Text>
+          {props.children}
           {props.nextIcon && (
             <Icons size={hp('3')} name="keyboard-arrow-right" color="grey" />
           )}

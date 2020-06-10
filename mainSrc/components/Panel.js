@@ -20,8 +20,8 @@ class Panel extends Component {
     this.state = {
       is_visible: false,
       expanded: false,
-      animationValue: new Animated.Value(40),
-      viewState: false,
+      animationValue: new Animated.Value(this.props.maxItem),
+      viewState: true,
     };
   }
 

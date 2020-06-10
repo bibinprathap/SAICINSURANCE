@@ -2,7 +2,7 @@ import axios from 'axios';
 // import envConfig from './config';
 import alertsHelper from './helperServices/alerts';
 import createError from './helperServices/errors';
-import {store} from '../store'
+import {store} from '../store';
 
 export default class RestApi {
   static cancelTokens = {};
@@ -15,10 +15,10 @@ export default class RestApi {
     // 'bibin';
 
     this.header = {
-      Accept: 'application/json',
-      'Content-Type': 'multipart/form-data',
-      // 'Content-Type': 'application/json',
-      // Accept: '*/*',
+      // Accept: 'application/json',
+      // 'Content-Type': 'multipart/form-data',
+      //'Content-Type': 'application/x-www-form-urlencoded',
+     // Accept: '*/*',
     };
     this.controller = controller || '';
 
@@ -26,13 +26,47 @@ export default class RestApi {
     this.secure = secure;
     this.envConfig = store.getState().environmentReducer;
   }
-  get = ({ url, parameters, body, headers, isFormData, showAlerts, cancelable }) => {
-    return this.restApi('GET', url, parameters, body, headers, isFormData, showAlerts, cancelable);
-};
+  get = ({
+    url,
+    parameters,
+    body,
+    headers,
+    isFormData,
+    showAlerts,
+    cancelable,
+  }) => {
+    return this.restApi(
+      'GET',
+      url,
+      parameters,
+      body,
+      headers,
+      isFormData,
+      showAlerts,
+      cancelable,
+    );
+  };
 
-post = ({ url, parameters, body, headers, isFormData, showAlerts, cancelable }) => {
-    return this.restApi('POST', url, parameters, body, headers, isFormData, showAlerts, cancelable);
-};
+  post = ({
+    url,
+    parameters,
+    body,
+    headers,
+    isFormData,
+    showAlerts,
+    cancelable,
+  }) => {
+    return this.restApi(
+      'POST',
+      url,
+      parameters,
+      body,
+      headers,
+      isFormData,
+      showAlerts,
+      cancelable,
+    );
+  };
   restApi = (
     method = 'GET',
     url = '',
@@ -59,15 +93,21 @@ post = ({ url, parameters, body, headers, isFormData, showAlerts, cancelable }) 
     // }
 
     const defaultHeaders = {
-      Accept: 'application/json',
-      'Content-Type': 'multipart/form-data',
-      // 'Content-Type': 'application/json',
-      //'Access-Control-Allow-Origin': '*',
+      // Accept: 'application/json',
+      // 'Content-Type': 'multipart/form-data',
+      'Content-Type': 'application/x-www-form-urlencoded',
+      Accept: '*/*',
     };
+   // ...{
+     // Authorization: `Bearer ${`prNc5HfrKNDBeaLlr6Way1vccEIVQfPEBF2xjffVueylVVWeN8iZgN1mI_0qQ9WgfRdZF4CTAeiUTyr9yFU7sLniAxYFgL6xE8s6Jp3l6_t4MppiiWJ5x3cPO7038LZkg8jJC7H4s0kGSf1r5WyhP1UW0XZQ8If0252-l9qp6LrFdq6-xq4sI-5wdQqQ_DPtFIxLIfm0hHNY2C8iOdStYnOk--Tm6L_lpLoL3Wig4noTNlUcDg1pHRgFRUzW0xU7xX1Q-ZqOFinRANcaGiz2Mc02E0yNpb5bhaXwTmBhjWCVZPwsvwMQdlFocS-lcr8UIqOz9FQaZ2q9YkL6Aj9L9CIEFsmkBIMdISd6hC_2eZCKiAsGy7DscqALam3hh2k7qB-k5ms_4FNW_k3iRXTrtEwQrbyPgN820vLypV1KaSg`}`,
+    //},
     const requestConfig = {
       url: requestUrl,
       method: method,
-      headers: {...defaultHeaders, ...headers},
+      headers: {
+        ...defaultHeaders,
+        ...headers
+      },
       data: body,
       //data: typeof body === undefined ? undefined : typeof body === 'string' ? body : JSON.stringify(body),
       //body: JSON.stringify(body),
@@ -89,13 +129,16 @@ post = ({ url, parameters, body, headers, isFormData, showAlerts, cancelable }) 
     //   requestConfig.cancelToken = newTokenSource.token;
     // }
     debugger;
+    if(method =='GET')
     return this.sendRequest(requestConfig, showAlerts);
+    else
+    return this.sendRequestPOST(requestConfig, showAlerts);
     //return this.fetchRequest(requestConfig, showAlerts);
   };
 
   static parseUrl = (envConfig = {}, controller = '', url = '', parameters) => {
     if (url.toLowerCase().startsWith('https')) return url;
-    if(url=='')  return `${envConfig.baseURL}/${controller}`;;
+    if (url == '') return `${envConfig.baseURL}/${controller}`;
     const regex = /:(\w+)\/?/g;
 
     let m;
@@ -147,8 +190,68 @@ post = ({ url, parameters, body, headers, isFormData, showAlerts, cancelable }) 
     axios.defaults.timeout = requestConfig.timeout;
     const logLevel = 'error';
 
-    return axios
-      .request(requestConfig)
+    // return axios
+    //   .request(requestConfig)
+    return axios.get( requestConfig.url, requestConfig.data, requestConfig.header ) 
+      .then(response => {
+        const cancelToken = RestApi.cancelTokens[requestConfig.url];
+        console.log(
+          'restApi axios success... url:',
+          requestConfig.url,
+          'response:',
+          response,
+        );
+        if (cancelToken && cancelToken.isCancelled) {
+          //Should never come here, but just in case...
+          console.warn('restApi axios success - request was cancelled');
+          throw 'isCancel';
+        }
+        //Todo:  dispatch --> this.dispatch(ajax-call-counter-decrement-action)
+
+        delete RestApi.cancelTokens[requestConfig.url];
+        if (logLevel === 'debug') {
+          const logAction = {
+            type: 'LOG_API_ERRORS',
+            message: '',
+            details: {response},
+          };
+          store.dispatch(logAction);
+        }
+
+        return response;
+      })
+      .catch(error => {
+        //Todo:  dispatch --> this.dispatch(ajax-call-counter-decrement-action)
+        console.log('restApi axios error: ', {error});
+        let errorToThrow = createError(error);
+        errorToThrow.isCancel = error === 'isCancell' || axios.isCancel(error);
+
+        let errorMessage = errorToThrow.detail || errorToThrow.message;
+        if (showAlerts && errorToThrow) {
+          alertsHelper.show('error', errorToThrow.message, errorMessage);
+          errorToThrow.handled = true;
+        }
+
+        const logAction = {
+          type: 'LOG_API_ERRORS',
+          message: errorMessage,
+          details: {response: error && error.response},
+        };
+        store.dispatch(logAction);
+
+        throw errorToThrow;
+      });
+  };
+  sendRequestPOST = (requestConfig, showAlerts) => {
+    //Todo:  dispatch --> this.dispatch(ajax-call-counter-increment-action)
+    console.log('restApi axios request: ', requestConfig);
+    axios.defaults.withCredentials = true;
+    axios.defaults.timeout = requestConfig.timeout;
+    const logLevel = 'error';
+
+    // return axios
+    //   .request(requestConfig)
+    return axios.post( requestConfig.url, requestConfig.data, requestConfig.header ) 
       .then(response => {
         const cancelToken = RestApi.cancelTokens[requestConfig.url];
         console.log(

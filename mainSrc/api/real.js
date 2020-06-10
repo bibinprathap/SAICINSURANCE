@@ -17,7 +17,10 @@ export default class AppApi {
   };
 
   login = async params => {
-    const restApi = new RestApi({controller: 'token'});
+  const data =  {UserName:'saic@yahoo.com',
+  Password:'test123',
+  grant_type:'password'}
+    const restApi = new RestApi({controller: `token?UserName=${encodeURIComponent(data.UserName)}&Password=${encodeURIComponent(data.Password)}&grant_type=${encodeURIComponent(data.grant_type)}`});
     try {
       let response = await restApi.get({
         url: '',
@@ -30,6 +33,24 @@ export default class AppApi {
       throw error;
     }
   };
+
+  getServiceType = async params => {
+    const restApi = new RestApi({
+      controller: 'ServiceType?EmployeeCode=2018100002',
+    });
+    try {
+      let response = await restApi.get({
+        url: '',
+        body: params,
+        cancelable: true,
+        showAlerts: true,
+      });
+      return response.data.result;
+    } catch (error) {
+      throw error;
+    }
+  };
+
   confirmsmsTocken = async params => {
     const restApi = new RestApi({controller: 'Inspection'});
     try {

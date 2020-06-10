@@ -8,6 +8,7 @@ import {
   ActionSheetIOS,
   Platform,
   ImageBackground,
+  Image,
 } from 'react-native';
 import Panel from '../Panel';
 import {PrimaryColor, assetColor} from '../../config';
@@ -15,10 +16,14 @@ import ClaimDetails from '../ClaimDetails';
 import DefaultText from '../DefaultText';
 import Icons from 'react-native-vector-icons/MaterialIcons';
 import ImagePicker from 'react-native-image-crop-picker';
+import Modal from 'react-native-modal';
 import {
   widthPercentageToDP as wp,
   heightPercentageToDP as hp,
 } from 'react-native-responsive-screen';
+import {ScrollView} from 'react-native-gesture-handler';
+import CameraImage from '../../assets/src_assets_camera.png';
+import GalleryImage from '../../assets/src_assets_gallery.png';
 const {width, height} = Dimensions.get('screen');
 const normalizeFont = size => {
   return size * (width * 0.0025);
@@ -35,6 +40,7 @@ class ClaimDetailScreen extends Component {
     this.state = {
       image: null,
       images: null,
+      pickerModal: false,
     };
   }
 
@@ -49,6 +55,7 @@ class ClaimDetailScreen extends Component {
       .then(image => {
         console.log('received image', image);
         this.setState({
+          pickerModal: false,
           image: {
             uri: image.path,
             width: image.width,
@@ -75,8 +82,8 @@ class ClaimDetailScreen extends Component {
       includeExif: true,
     })
       .then(image => {
-        console.log('received image', image);
         this.setState({
+          pickerModal: false,
           image: {
             uri: image.path,
             width: image.width,
@@ -102,16 +109,61 @@ class ClaimDetailScreen extends Component {
       buttonIndex => {
         console.log(buttonIndex, 'buttonIndex');
         if (buttonIndex === 0) {
-          //   this.pickSingleWithCamera(false);
+          this.pickSingleWithCamera(false);
         } else if (buttonIndex === 1) {
           this.pickSingle(false);
         }
       },
     );
   };
+
+  renderPickerModal() {
+    const {pickerModal} = this.state;
+    return (
+      <Modal
+        isVisible={pickerModal}
+        style={{
+          justifyContent: 'flex-end',
+        }}
+        onBackdropPress={() => this.setState({pickerModal: false})}
+        onBackButtonPress={() => this.setState({pickerModal: false})}
+        backdropColor="black"
+        backdropOpacity={0.5}>
+        <View
+          style={{
+            backgroundColor: 'white',
+            height: 200,
+            width: '100%',
+            borderRadius: 10,
+            flexDirection: 'row',
+          }}>
+          <TouchableOpacity
+            onPress={() => this.pickSingleWithCamera()}
+            activeOpacity={0.9}
+            style={{flex: 1, justifyContent: 'center', alignItems: 'center'}}>
+            <Image source={CameraImage} style={{width: 100, height: 100}} />
+            <Text style={{fontFamily: 'Roboto-Bold', paddingTop: 15}}>
+              Camera
+            </Text>
+          </TouchableOpacity>
+          <TouchableOpacity
+            onPress={() => this.pickSingle()}
+            activeOpacity={0.9}
+            style={{flex: 1, justifyContent: 'center', alignItems: 'center'}}>
+            <Image source={GalleryImage} style={{width: 100, height: 100}} />
+            <Text style={{fontFamily: 'Roboto-Bold', paddingTop: 15}}>
+              Gallery
+            </Text>
+          </TouchableOpacity>
+        </View>
+      </Modal>
+    );
+  }
+
   render() {
     return (
-      <View>
+      <ScrollView showsVerticalScrollIndicator={false}>
+        {this.renderPickerModal()}
         <Panel header="Needed Documents" maxItem={250}>
           <View style={{margin: 10, backgroundColor: 'white', flex: 1}}>
             <DefaultText style={{fontSize: normalizeFont(16)}}>
@@ -140,30 +192,51 @@ class ClaimDetailScreen extends Component {
         </Panel>
         <Panel header="Uploaded Documents" maxItem={250}>
           <ImageBackground
-            source={this.state.image}
+            source={this.props.image}
             style={{margin: 10, backgroundColor: 'white', flex: 1}}>
-            <TouchableOpacity
-              onPress={this.showActionSheet}
-              style={{
-                alignItems: 'flex-end',
-                paddingRight: 10,
-                paddingTop: 10,
-              }}>
-              <View
+            {Platform.OS === 'android' ? (
+              <TouchableOpacity
+                onPress={() => this.setState({pickerModal: true})}
+                // onPress={Platform.OS === 'android' && this.showActionSheet}
                 style={{
-                  backgroundColor: assetColor,
-                  padding: 10,
-                  borderRadius: 20,
+                  alignItems: 'flex-end',
+                  paddingRight: 10,
+                  paddingTop: 10,
                 }}>
-                <Icons size={hp('2.5')} name="edit" color="#fff" />
-              </View>
-            </TouchableOpacity>
+                <View
+                  style={{
+                    backgroundColor: assetColor,
+                    padding: 10,
+                    borderRadius: 20,
+                  }}>
+                  <Icons size={hp('2.5')} name="edit" color="#fff" />
+                </View>
+              </TouchableOpacity>
+            ) : (
+              <TouchableOpacity
+                // onPress={this.showActionSheet}
+                onPress={this.props.showActionSheet}
+                style={{
+                  alignItems: 'flex-end',
+                  paddingRight: 10,
+                  paddingTop: 10,
+                }}>
+                <View
+                  style={{
+                    backgroundColor: assetColor,
+                    padding: 10,
+                    borderRadius: 20,
+                  }}>
+                  <Icons size={hp('2.5')} name="edit" color="#fff" />
+                </View>
+              </TouchableOpacity>
+            )}
           </ImageBackground>
         </Panel>
         <Panel header="Add Documents" maxItem={250}>
           <View style={{margin: 10, backgroundColor: 'white', flex: 1}} />
         </Panel>
-      </View>
+      </ScrollView>
     );
   }
 }

@@ -22,7 +22,7 @@ const ClaimDetails = props => {
         flexDirection: 'row',
         paddingHorizontal: 10,
       }}>
-      <View style={{flex: 1, flexDirection: 'row'}}>
+      <View style={{flex: 1, flexDirection: 'row', alignItems: 'center'}}>
         <DefaultText
           style={{
             fontSize: normalizeFont(14),
@@ -57,9 +57,10 @@ const ClaimDetails = props => {
           justifyContent: 'center',
         }}>
         <View style={{flexDirection: 'row', alignItems: 'center'}}>
-          <Text style={{color: 'grey', fontSize: normalizeFont(14)}}>
+          {props.children}
+          {/* <Text style={{color: 'grey', fontSize: normalizeFont(14)}}>
             {props.value}
-          </Text>
+          </Text> */}
           {props.nextIcon && (
             <Icons size={hp('3')} name="keyboard-arrow-right" color="grey" />
           )}
