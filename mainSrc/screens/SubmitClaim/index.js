@@ -14,6 +14,7 @@ import {
   heightPercentageToDP as hp,
 } from 'react-native-responsive-screen';
 import DefaultText from '../../components/DefaultText';
+import ForgetModal from '../../components/Modal/forgotpassword';
 import ClaimDetails from '../../components/Claim/ClaimDetails';
 import PaymentMethod from '../../components/Claim/PaymentMethod';
 import NeededDocuments from '../../components/Claim/NeededDocuments';
@@ -61,22 +62,28 @@ class Screen extends Component {
     this.state = {
       claimID: 'P/01/1307/2019/9640',
       currentPosition: 0,
+      forgotPassword: false,
       cancelModal: false,
     };
+  }
+
+  renderModel(){
+   
+      this.props.navigation.goBack();
   }
   render() {
     const {claimID} = this.state;
     return (
       <View style={styles.screen}>
-        <CancelClaimModal
+                <ForgetModal
           isVisible={this.state.cancelModal}
           onBackdropPress={() => this.setState({cancelModal: false})}
-          hideModal={() => this.setState({cancelModal: false})}
-          addAction={() =>
-            this.setState({cancelModal: false}, () =>
-              this.props.navigation.goBack(),
-            )
-          }
+          renderModel= {() => this.props.navigation.goBack()}
+          hideModal={() => this.setState({cancelModal: false}, () =>
+          this.props.navigation.goBack(),)}
+          iconName="person"
+          title="Attention"
+          subTitle="Are you sure you want to cancel claim submission?"
         />
         <View style={styles.Headercontainer}>
           <View style={styles.topContainer}>

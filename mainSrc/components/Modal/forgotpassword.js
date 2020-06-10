@@ -50,7 +50,7 @@ class AddCustomerModal extends Component {
             <Icon
               size={hp('3.5')}
               style={{alignSelf: 'center'}}
-              name="work"
+              name={this.props.iconName}
               color="#fff"
             />
           </View>
@@ -70,7 +70,7 @@ class AddCustomerModal extends Component {
           </View>
           <View style={{height: 50, marginVertical: 10}}>
             <TouchableOpacity activeOpacity={1} style={styles.titleContainer}>
-              <Text style={styles.titleText}>FORGOT PASSWORD</Text>
+              <Text style={styles.titleText}>{this.props.title}</Text>
             </TouchableOpacity>
             <Text
               style={{
@@ -79,10 +79,10 @@ class AddCustomerModal extends Component {
                 color: '#576574',
                 fontFamily: 'Roboto-Medium',
               }}>
-              Please fill the following info
+            {this.props.subTitle}
             </Text>
           </View>
-
+        {this.props.forgot ? (
           <View style={styles.mainContainer}>
             <View style={styles.viewContainer}>
               <TextInput
@@ -101,6 +101,23 @@ class AddCustomerModal extends Component {
               </TouchableOpacity>
             </View>
           </View>
+        ):(
+         <View style={{width:'80%', justifyContent: 'center',alignItems: 'center',}}>
+        
+          <TouchableOpacity
+            style={styles.addButton}
+            onPress={this.props.hideModal}>
+            <Text style={styles.addText}>NO</Text>
+          </TouchableOpacity>
+          
+      <TouchableOpacity
+      style={styles.addButton}
+      onPress={this.props.renderModel}>
+      <Text style={styles.addText}>YES</Text>
+    </TouchableOpacity>
+    
+    </View>
+        )}
         </View>
       </Modal>
     );
@@ -169,6 +186,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     width: '100%',
     height: 50,
+    marginTop:10,
     backgroundColor: PrimaryColor,
     borderRadius: 5,
     elevation: 2,

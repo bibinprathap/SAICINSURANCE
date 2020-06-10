@@ -86,7 +86,7 @@ class AddCustomerModal extends Component {
           <View style={styles.mainContainer}>
             <View style={styles.viewContainer}>
               <TouchableOpacity
-                style={styles.addButton}
+                style={styles.buttonyn}
                 onPress={this.props.hideModal}>
                 <Text style={styles.addText}>No</Text>
               </TouchableOpacity>
@@ -94,7 +94,7 @@ class AddCustomerModal extends Component {
 
             <View style={styles.addButtonContainer}>
               <TouchableOpacity
-                style={styles.addButton}
+                style={styles.buttonyn}
                 onPress={this.props.addAction}>
                 <Text style={styles.addText}>Yes</Text>
               </TouchableOpacity>
@@ -147,6 +147,7 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'space-around',
     paddingHorizontal: 20,
+    paddingBottom: 20,
   },
   textInput: {
     height: hp('5'),
@@ -166,7 +167,21 @@ const styles = StyleSheet.create({
   addButton: {
     justifyContent: 'center',
     alignItems: 'center',
-    width: '100%',
+    width: '80%',
+    height: 50,
+    backgroundColor: PrimaryColor,
+    paddingBottom:10,
+    borderRadius: 5,
+    elevation: 2,
+    shadowColor: 'black',
+    shadowOffset: {width: 0, height: 2},
+    shadowOpacity: 0.2,
+    shadowRadius: 0.2,
+  },
+  buttonyn: {
+    justifyContent: 'center',
+    alignItems: 'center',
+    width: '80%',
     height: 50,
     backgroundColor: PrimaryColor,
     borderRadius: 5,
