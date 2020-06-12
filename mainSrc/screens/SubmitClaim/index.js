@@ -17,6 +17,7 @@ import {
   widthPercentageToDP as wp,
   heightPercentageToDP as hp,
 } from 'react-native-responsive-screen';
+import ForgetModal from '../../components/Modal/forgotpassword';
 import AppApi from '../../api/real';
 import DefaultText from '../../components/DefaultText';
 import ClaimDetails from '../../components/Claim/ClaimDetails';
@@ -88,6 +89,7 @@ class Screen extends Component {
       claimID: 'P/01/1307/2019/9640',
       currentPosition: 0,
       cancelModal: false,
+      forgotPassword: false,
       selectNumber: '',
       countryName: '',
       serviceType: '',
@@ -117,6 +119,10 @@ class Screen extends Component {
 
     console.log(data, 'data');
   }
+  renderModel(){
+   
+    this.props.navigation.goBack();
+}
 
   pickSingleWithCamera(cropping, mediaType = 'photo') {
     ImagePicker.openCamera({
@@ -317,15 +323,15 @@ class Screen extends Component {
     return (
       <View style={styles.screen}>
         {this.renderPickerModal()}
-        <CancelClaimModal
+        <ForgetModal
           isVisible={this.state.cancelModal}
           onBackdropPress={() => this.setState({cancelModal: false})}
-          hideModal={() => this.setState({cancelModal: false})}
-          addAction={() =>
-            this.setState({cancelModal: false}, () =>
-              this.props.navigation.goBack(),
-            )
-          }
+          renderModel= {() => this.props.navigation.goBack()}
+          hideModal={() => this.setState({cancelModal: false}, () =>
+          this.props.navigation.goBack(),)}
+          iconName="person"
+          title="Attention"
+          subTitle="Are you sure you want to cancel claim submission?"
         />
         <View style={styles.Headercontainer}>
           <View style={styles.topContainer}>

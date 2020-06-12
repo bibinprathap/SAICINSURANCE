@@ -10,7 +10,7 @@ import {
   StyleSheet,
   Dimensions,
   ScrollView,
-  Modal,
+  Modal
 } from 'react-native';
 import {
   widthPercentageToDP as wp,
@@ -25,19 +25,19 @@ import {Actions} from 'react-native-router-flux';
 import Loginform from '../../components/Loginform';
 
 import {connect} from 'react-redux';
-import {infoChanged} from '../../actions/loginActions';
+import {infoChanged} from '../../actions/loginActions'; 
 import alertsHelper from '../../api/helperServices/alerts';
 import strings, {
   alignment,
   normalizeFont,
 } from '../../api/helperServices/language';
-import HeaderGeneric from '../../components/Header/HeaderGeneric';
+import HeaderGeneric from '../../components/Header/HeaderGeneric'
 import ForgetModal from '../../components/Modal/forgotpassword';
 import AppApi from '../../api/real'; 
 import { environmentInfoChanged } from '../../actions/environmentActions';
 import { storeLanguage } from '../../actions/languageActions';
 
-import images from '../../images'; 
+import images from '../../images';
 const api = new AppApi();
 
 const {width, height} = Dimensions.get('screen');
@@ -45,24 +45,27 @@ const {width, height} = Dimensions.get('screen');
 //   return size * (width * 0.0025);
 // };
 
+
 const emptyLoginScreenState = {
   username: '',
-  password: '',
-  acceptPolicy: false,
-  keepLogged: false,
-  forgotPassword: false,
+    password: '',
+    acceptPolicy: false,
+    keepLogged: false,
+    forgotPassword: false,
 };
-class LoginScreen extends React.Component {
+ class LoginScreen extends React.Component {
+  
+  
   constructor(props) {
     super(props);
     this.state = {
-      ...emptyLoginScreenState,
-      ...props.values,
-      ...props.environment,
-      settingsVisible: false,
+      ...emptyLoginScreenState ,  
+      ...props.values, 
+      ...props.environment, 
+       settingsVisible: false,
     };
     this.updateLoginScreenState = this.updateLoginScreenState.bind(this);
-  }
+   }
    
   updateLoginScreenState = (newState,env) => {
    // const {dispatch} = this.props;
@@ -72,7 +75,8 @@ class LoginScreen extends React.Component {
         const { title, baseURL } = this.state;
         const stateToStore = { title, baseURL };
         this.props.changeEnvironment(stateToStore);
-      } else {
+      }
+      else{
         const stateToStore = {...this.state};
         this.props.infoChanged('logindetails', stateToStore);
        // dispatch(infoChanged('logindetails', stateToStore));
@@ -88,9 +92,9 @@ class LoginScreen extends React.Component {
   handleFieldChangeEnv = async (name, value) => {
     const newState = {};
     newState[name] = value;
-    this.updateLoginScreenState(newState, true);
+    this.updateLoginScreenState(newState,true);
   };
- 
+
   _loginHandler =  async () => {
     if (!this._validateForm()) {
       return false;
@@ -127,19 +131,12 @@ class LoginScreen extends React.Component {
   };
 
   render() {
-    const {username, password, baseURL, title} = this.state;
+    const {username, password,baseURL, title} = this.state;
     const {loading} = this.props;
     return (
       <View style={styles.screen}>
-        <Modal
-          animationType="slide"
-          transparent={false}
-          visible={this.state.settingsVisible}
-          onRequestClose={() => this.setState({settingsVisible: false})}>
-          <HeaderGeneric
-            backAction={() => this.setState({settingsVisible: false})}
-            title="Settings"
-          />
+        <Modal animationType="slide" transparent={false} visible={this.state.settingsVisible} onRequestClose={() => this.setState({ settingsVisible: false })}>
+          <HeaderGeneric backAction={() => this.setState({ settingsVisible: false })} title="Settings" />
           <ScrollView style={styles.reconciliationWrapper}>
             <View style={styles.screen}>
               <KeyboardAvoidingView
@@ -157,82 +154,76 @@ class LoginScreen extends React.Component {
                     fontSize: normalizeFont(21),
                   }}>
                   API Base URI
-                </Text>
-                <View style={{paddingVertical: hp('2')}}>
-                  <View>
-                    <View>
-                      <Text
-                        numberOfLines={2}
-                        style={{
-                          fontSize: normalizeFont(16),
-                          color: PrimaryColor,
-                          fontFamily: 'Roboto-Bold',
-                          flexWrap: 'wrap',
-                          paddingVertical: 15,
-                          textAlign: alignment(this.props.language),
-                        }}>
-                        {'URI'}
-                      </Text>
-                    </View>
-                    <View
-                      style={{
-                        height: Platform.OS === 'ios' ? 30 : 45,
-                        borderBottomColor: '#ddd',
-                        borderBottomWidth: 1,
-                      }}>
-                      <TextInput
-                        placeholder="Base Url"
-                        placeholderTextColor="#ddd"
-                        onChangeText={this.handleFieldChangeEnv.bind(
-                          this,
-                          'baseURL',
-                        )}
-                        value={baseURL}
-                        style={{
-                          fontSize: normalizeFont(18),
-                          width: wp('80'),
-                        }}
-                      />
-                    </View>
-                  </View>
-                  <View>
-                    <View>
-                      <Text
-                        numberOfLines={2}
-                        style={{
-                          fontSize: normalizeFont(16),
-                          color: PrimaryColor,
-                          fontFamily: 'Roboto-Bold',
-                          flexWrap: 'wrap',
-                          paddingVertical: 15,
-                          textAlign: alignment(this.props.language),
-                        }}>
-                        {'Name'}
-                      </Text>
-                    </View>
-                    <View
-                      style={{
-                        height: Platform.OS === 'ios' ? 30 : 45,
-                        borderBottomColor: '#ddd',
-                        borderBottomWidth: 1,
-                      }}>
-                      <TextInput
-                        placeholder="Title"
-                        placeholderTextColor="#ddd"
-                        onChangeText={this.handleFieldChangeEnv.bind(
-                          this,
-                          'title',
-                        )}
-                        value={title}
-                        style={{
-                          fontSize: normalizeFont(18),
-                          width: wp('80'),
-                        }}
-                      />
-                    </View>
-                  </View>
-                </View>
-              </KeyboardAvoidingView>
+          </Text>
+                <View style={{ paddingVertical: hp('2') }}>
+                 <View>
+      <View> 
+         <Text
+            numberOfLines={2}
+            style={{
+              fontSize: normalizeFont(16),
+              color: PrimaryColor,
+              fontFamily: 'Roboto-Bold',
+              flexWrap: 'wrap',
+              paddingVertical: 15,
+              textAlign: alignment(this.props.language),
+            }}>
+            {"URI"}
+          </Text> 
+      </View>
+      <View
+        style={{
+          height: Platform.OS === 'ios' ? 30 : 45, 
+              borderBottomColor:   '#ddd',
+              borderBottomWidth:   1,
+        }}>
+           <TextInput 
+                 placeholder="Base Url"
+            placeholderTextColor="#ddd"
+            onChangeText={this.handleFieldChangeEnv.bind(this, 'baseURL')}
+            value={baseURL}
+            style={{
+              fontSize: normalizeFont(18),
+              width: wp('80'),
+            }}
+          />
+      </View>
+    </View>  
+    <View>
+      <View> 
+         <Text
+            numberOfLines={2}
+            style={{
+              fontSize: normalizeFont(16),
+              color: PrimaryColor,
+              fontFamily: 'Roboto-Bold',
+              flexWrap: 'wrap',
+              paddingVertical: 15,
+              textAlign: alignment(this.props.language),
+            }}>
+            {"Name"}
+          </Text> 
+      </View>
+      <View
+        style={{
+          height: Platform.OS === 'ios' ? 30 : 45, 
+              borderBottomColor:   '#ddd',
+              borderBottomWidth:   1,
+        }}>
+           <TextInput 
+                 placeholder="Title"
+            placeholderTextColor="#ddd"
+            onChangeText={this.handleFieldChangeEnv.bind(this, 'title')}
+            value={title}
+            style={{
+              fontSize: normalizeFont(18),
+              width: wp('80'),
+            }}
+          />
+      </View>
+    </View>  
+      </View> 
+       </KeyboardAvoidingView>
             </View>
           </ScrollView>
         </Modal>
@@ -241,10 +232,16 @@ class LoginScreen extends React.Component {
           isVisible={this.state.forgotPassword}
           onBackdropPress={() => this.setState({forgotPassword: false})}
           hideModal={() => this.setState({forgotPassword: false})}
+          title="FORGOT PASSWORD"
+          iconName="work"
+          subTitle="Please fill the following info"
+          forgot
         />
         <KeyboardAvoidingView
           style={{flex: 1, justifyContent: 'center', width: '100%'}}
           keyboardVerticalOffset={54}>
+         
+           
           <Animatable.View
             animation="zoomInUp"
             delay={300}
@@ -261,7 +258,7 @@ class LoginScreen extends React.Component {
             />
              </TouchableOpacity>
           </Animatable.View>
-
+         
           <View style={{flex: 1}}>
             <View style={[styles.inputContainer]}>
               <Animatable.View
@@ -348,7 +345,8 @@ class LoginScreen extends React.Component {
                 end={{x: 1.1, y: 1.1}}
                 colors={['#4F107B', PrimaryColor]}
                 style={styles.LinearGradient}>
-                <TouchableOpacity onPress={this._loginHandler}>
+                <TouchableOpacity
+                  onPress={this._loginHandler}>
                   <Text style={styles.loginText}>LOGIN</Text>
                 </TouchableOpacity>
               </LinearGradient>
@@ -417,6 +415,7 @@ class LoginScreen extends React.Component {
   }
 }
 
+
 // Map State To Props (Redux Store Passes State To Component)
 const mapStateToProps = state => {
   // Redux Store --> Component
@@ -434,10 +433,8 @@ function mapDispatchToProps(dispatch) {
     changeEnvironment: value => dispatch(environmentInfoChanged(value)),
   };
 }
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps,
-)(LoginScreen);
+export default connect(mapStateToProps,
+  mapDispatchToProps)(LoginScreen);
 const styles = StyleSheet.create({
   screen: {
     flex: 1,

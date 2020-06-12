@@ -7,10 +7,13 @@ import LoginScreen from '../screens/LoginScreen';
 import RegisterScreen from '../screens/RegisterScreen';
 import HomeScreen from '../screens/HomeScreen';
 import ClaimScreen from '../screens/ClaimScreen';
+import Notifications from '../screens/Notifications';
+import VewCard from '../screens/ViewCard';
 import LegalScreen from '../screens/LegalScreen';
 import SettingsScreen from '../screens/SettingsScreen';
 import ProfileScreen from '../screens/ProfileScreen';
 import SubmitClaim from '../screens/SubmitClaim';
+import searchWithFilters from '../screens/searchWithFilters';
 import React from 'react';
 import {Dimensions} from 'react-native';
 const {width, height} = Dimensions.get('screen');
@@ -22,6 +25,9 @@ const HomeStack = createStackNavigator(
   {
     Home: HomeScreen,
     Claim: ClaimScreen,
+    Notification: Notifications,
+    searchWithFilters:searchWithFilters,
+    VewCard:VewCard,
     Profile: ProfileScreen,
     SubmitClaim: SubmitClaim,
   },
@@ -59,7 +65,6 @@ const AuthStack = createStackNavigator(
   },
   {
     mode: 'modal',
-    initialRouteName: 'Login',
     defaultNavigationOptions: {
       headerShown: false,
     },
