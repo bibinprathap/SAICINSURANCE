@@ -103,18 +103,10 @@ export default class Header extends Component {
             style={{
               flexDirection: 'row',
               justifyContent: 'flex-end',
-            }}>
-            <TouchableOpacity
-              onPress={() => this.props.navigation.navigate('Profile')}>
-              <Icons
-                size={25}
-                style={{margin: 10, alignSelf: 'center'}}
-                name="email"
-                color="#fff"
-              />
-            </TouchableOpacity>
-            <TouchableOpacity
-              onPress={() => this.props.navigation.navigate('Profile')}>
+            }}> 
+             <TouchableOpacity 
+              onPress={() => this.props.navigation.navigate('searchWithFilters')}
+              >
               <Icons
                 size={25}
                 style={{margin: 10, alignSelf: 'center'}}

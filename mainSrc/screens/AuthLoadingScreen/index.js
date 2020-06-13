@@ -7,7 +7,7 @@ class AuthLoadingScreen extends React.Component {
   }
 
   _bootstrapAsync = async () => {
-    this.props.navigation.navigate('auth');
+    this.props.navigation.navigate('Language');
   };
 
   render() {

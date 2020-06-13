@@ -21,9 +21,11 @@ import {
 import OctIcon from 'react-native-vector-icons/Octicons';
 import RoundButton from '../../components/RotateButton';
 import {TouchableOpacity} from 'react-native-gesture-handler';
-const normalizeFont = size => {
-  return size * (width * 0.0025);
-};
+import {connect} from 'react-redux';
+import strings, {
+  alignment,
+  normalizeFont,
+} from '../../api/helperServices/language';
 
 const NAVBAR_HEIGHT = 40;
 class HomeScreen extends Component {
@@ -63,6 +65,39 @@ class HomeScreen extends Component {
         },
       ],
 
+      dataSourceAR: [
+        {
+          id: 0,
+          title: 'مستشفى',
+          icon: 'domain',
+        },
+        {
+          id: 1,
+          title: 'مراكز رعاية الأطفال والرعاية النهارية',
+          icon: 'record-voice-over',
+        },
+        {
+          id: 2,
+          title: 'مراكز المختبرات والتشخيص',
+          icon: 'free-breakfast',
+        },
+        {
+          id: 3,
+          title: 'صيدليات',
+          icon: 'streetview',
+        },
+        {
+          id: 4,
+          title: 'سياره اسعاف',
+          icon: 'airport-shuttle',
+        },
+        {
+          id: 5,
+          title: 'عناية صحية منزلية',
+          icon: 'store-mall-directory',
+        },
+      ],
+
       moreItem: [
         {
           id: 0,
@@ -77,6 +112,23 @@ class HomeScreen extends Component {
         {
           id: 2,
           title: 'View More',
+          icon: 'featured-play-list',
+        },
+      ],
+      moreItemAR: [
+        {
+          id: 0,
+          title: 'مستنداتي',
+          icon: 'date-range',
+        },
+        {
+          id: 1,
+          title: 'فوائد السياسة',
+          icon: 'filter-vintage',
+        },
+        {
+          id: 2,
+          title: 'عرض المزيد',
           icon: 'featured-play-list',
         },
       ],
@@ -140,6 +192,7 @@ class HomeScreen extends Component {
   };
 
   render() {
+    const {language} = this.props;
     return (
       <View style={styles.screen}>
         <Header
@@ -151,23 +204,23 @@ class HomeScreen extends Component {
         <ScrollView contentContainerStyle={{flex: 1}}>
           <View style={styles.headerView}>
             <View style={styles.headerItem}>
-              <Text style={styles.titleObj}>Hello Salah</Text>
-              <Text style={styles.description}>How can we help you ?</Text>
+              <Text style={styles.titleObj}> {strings({key: 'HelloSalah', language})} {this.props.values.Name || 'User'}</Text>
+              <Text style={styles.description}>{strings({key: 'Howcanwehelpyou', language})}</Text> 
             </View>
             <View style={{flex: 1}}>
               <View style={styles.headerIcon}>
-                <View style={{flex: 1, marginBottom: hp('1')}}>
+                {/* <View style={{flex: 1, marginBottom: hp('1')}}>
             
                   <Icons
                     size={hp('4')}
                     style={{alignSelf: 'center'}}
                     name="card-membership"
                     color="white"
-                  />
+                  /> 
                   <Text style={styles.changePolicy}>Change Policy</Text>
                   
-                </View>
-                <View style={{flex: 1}}>
+                </View> */}
+     <View style={{flex: 1}}>
                 <TouchableOpacity
                   activeOpacity={0.9}
                   onPress={() => this.props.navigation.navigate('VewCard')}>
@@ -177,7 +230,7 @@ class HomeScreen extends Component {
                     name="featured-play-list"
                     color="white"
                   />
-                  <Text style={styles.changePolicy}>View E-Card</Text>
+                  <Text style={styles.changePolicy}>{strings({key: 'ViewECard', language})}</Text> 
                   </TouchableOpacity>
                 </View>
               </View>
@@ -188,24 +241,23 @@ class HomeScreen extends Component {
               <View style={styles.middleItem}>
                 <TouchableOpacity
                   activeOpacity={0.9}
-                  onPress={() => this.props.navigation.navigate('Claim')}>
-                  <Icons
+                  onPress={() => this.props.navigation.navigate('Claim')}><Icons
                     size={hp('4')}
                     style={{alignSelf: 'center'}}
                     name="assignment"
                     color={PrimaryColor}
-                  />
-                  <Text style={styles.middleText}>CLAIMS</Text>
-                </TouchableOpacity>
+                  /><Text style={styles.middleText}>{strings({key: 'CLAIMS', language})}</Text></TouchableOpacity>
               </View>
-              <View style={styles.middleItem}>
+              <View style={styles.middleItem}> 
+              <TouchableOpacity
+                  activeOpacity={0.9}
+                  onPress={() => this.props.navigation.navigate('Policy')}>
                 <Icons
                   size={hp('4')}
                   style={{alignSelf: 'center'}}
                   name="card-membership"
                   color={PrimaryColor}
-                />
-                <Text style={styles.middleText}>POLICY</Text>
+                /><Text style={styles.middleText}>{strings({key: 'POLICY', language})}</Text></TouchableOpacity>
               </View>
               <View
                 style={{
@@ -221,10 +273,8 @@ class HomeScreen extends Component {
                   style={{alignSelf: 'center'}}
                   name="add-alert"
                   color={PrimaryColor}
-                />
-                <Text style={styles.middleText}>NOTIFICATION</Text>
-                </TouchableOpacity>
-              </View>
+                /><Text style={styles.middleText}>{strings({key: 'NOTIFICATION', language})}</Text> 
+               </TouchableOpacity></View>
             </View>
             <View
               style={{
@@ -232,7 +282,10 @@ class HomeScreen extends Component {
               }}>
               <View style={styles.mainContainer}>
                 <View style={{flex: 0.1, paddingVertical: hp('0.5')}}>
-                  <Text style={styles.providerText}>Providers Network</Text>
+                  <Text style={styles.providerText}>
+                    {' '}
+                    {strings({key: 'ProvidersNetwork', language})}
+                  </Text>
                 </View>
 
                 <View style={styles.locationContainer}>
@@ -262,7 +315,13 @@ class HomeScreen extends Component {
                     name="search"
                     color="#d1ccc0"
                   />
-                  <TextInput placeholder="Search for hospitals and pharmacies" />
+
+                  <TextInput
+                    placeholder={strings({
+                      key: 'Searchforhospitalsandpharmacies',
+                      language,
+                    })}
+                  />
                 </View>
                 <View
                   style={{flex: 0.8, padding: hp('1'), marginTop: hp('0.6')}}>
@@ -270,7 +329,11 @@ class HomeScreen extends Component {
                     numColumns={3}
                     showsHorizontalScrollIndicator={false}
                     showsVerticalScrollIndicator={false}
-                    data={this.state.dataSource}
+                    data={
+                      language === 'English'
+                        ? this.state.dataSource
+                        : this.state.dataSourceAR
+                    }
                     keyExtractor={(item, index) => item.id}
                     renderItem={itemdata => this.renderItem(itemdata)}
                   />
@@ -278,13 +341,19 @@ class HomeScreen extends Component {
               </View>
               <View style={styles.bottomContainer}>
                 <View>
-                  <Text style={styles.moreText}>More</Text>
+                  <Text style={styles.moreText}>
+                    {strings({key: 'More', language})}
+                  </Text>
                 </View>
                 <View style={{flex: 1}}>
                   <FlatList
                     horizontal
                     showsHorizontalScrollIndicator={false}
-                    data={this.state.moreItem}
+                    data={
+                      language === 'English'
+                        ? this.state.moreItem
+                        : this.state.moreItemAR
+                    }
                     keyExtractor={(item, index) => item.id}
                     renderItem={itemData => this.renderMore(itemData)}
                   />
@@ -302,6 +371,7 @@ class HomeScreen extends Component {
     );
   }
 }
+
 
 const styles = StyleSheet.create({
   screen: {
@@ -463,4 +533,20 @@ const styles = StyleSheet.create({
   },
 });
 
-export default HomeScreen;
+
+// Map State To Props (Redux Store Passes State To Component)
+const mapStateToProps = state => {
+  // Redux Store --> Component
+  return {
+    values: state.login.userDetail||{},
+    language: state.language.defaultLanguage,
+    
+  };
+};
+
+function mapDispatchToProps(dispatch) {
+  return { };
+}
+
+
+export default connect(mapStateToProps)(HomeScreen);

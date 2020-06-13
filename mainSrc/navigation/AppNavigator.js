@@ -14,6 +14,8 @@ import SettingsScreen from '../screens/SettingsScreen';
 import ProfileScreen from '../screens/ProfileScreen';
 import SubmitClaim from '../screens/SubmitClaim';
 import searchWithFilters from '../screens/searchWithFilters';
+import LanguageScreen from '../screens/LanguageScreen';
+import PolicyScreen from '../screens/PolicyScreen';
 import React from 'react';
 import {Dimensions} from 'react-native';
 const {width, height} = Dimensions.get('screen');
@@ -30,6 +32,7 @@ const HomeStack = createStackNavigator(
     VewCard:VewCard,
     Profile: ProfileScreen,
     SubmitClaim: SubmitClaim,
+    Policy: PolicyScreen,
   },
   {
     mode: 'modal',
@@ -74,6 +77,7 @@ const AuthStack = createStackNavigator(
 const AppSwitch = createSwitchNavigator(
   {
     AuthLoading: AuthLoadingScreen,
+    Language: LanguageScreen,
     auth: AuthStack,
     app: AppDrawer,
   },

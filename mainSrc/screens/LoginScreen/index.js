@@ -33,9 +33,9 @@ import strings, {
 } from '../../api/helperServices/language';
 import HeaderGeneric from '../../components/Header/HeaderGeneric'
 import ForgetModal from '../../components/Modal/forgotpassword';
-import AppApi from '../../api/real'; 
-import { environmentInfoChanged } from '../../actions/environmentActions';
-import { storeLanguage } from '../../actions/languageActions';
+import AppApi from '../../api/real';
+import {environmentInfoChanged} from '../../actions/environmentActions';
+import {storeLanguage} from '../../actions/languageActions';
 
 import images from '../../images';
 const api = new AppApi();
@@ -65,21 +65,20 @@ const emptyLoginScreenState = {
        settingsVisible: false,
     };
     this.updateLoginScreenState = this.updateLoginScreenState.bind(this);
-   }
-   
-  updateLoginScreenState = (newState,env) => {
-   // const {dispatch} = this.props;
-    this.setState(newState, () => { 
-      if(env)
-      {
-        const { title, baseURL } = this.state;
-        const stateToStore = { title, baseURL };
+  }
+
+  updateLoginScreenState = (newState, env) => {
+    // const {dispatch} = this.props;
+    this.setState(newState, () => {
+      if (env) {
+        const {title, baseURL} = this.state;
+        const stateToStore = {title, baseURL};
         this.props.changeEnvironment(stateToStore);
       }
       else{
         const stateToStore = {...this.state};
         this.props.infoChanged('logindetails', stateToStore);
-       // dispatch(infoChanged('logindetails', stateToStore));
+        // dispatch(infoChanged('logindetails', stateToStore));
       }
     });
   };
@@ -95,23 +94,25 @@ const emptyLoginScreenState = {
     this.updateLoginScreenState(newState,true);
   };
 
-  _loginHandler =  async () => {
+  _loginHandler = async () => {
     if (!this._validateForm()) {
       return false;
     }
-    let details = { ...this.state};
+    let details = {...this.state};
     alertsHelper.showAlert('Login', 'Checking User Information');
     try {
       debugger;
       this.props.navigation.navigate('app')
      // const pokemonApiCall = await fetch('https://adroitclouderpreport.ngrok.io/token');
      // const pokemon = await pokemonApiCall.json();
-      await api.login({...details,grant_type:'password' });
-      this.props.navigation.navigate('app')
+  const    data = await api.login({...details,grant_type:'password' });
+  console.log(data); 
+  alertsHelper.hideAlert();  
+  this.props.navigation.navigate('app')
     } catch (error) {
       console.log(error);
       //alertsHelper.hideAlert();
-      this.props.navigation.navigate('app')
+      this.props.navigation.navigate('app');
       alertsHelper.show('error', 'Login', 'Invalid Username Or Password');
     }
   };
@@ -119,7 +120,16 @@ const emptyLoginScreenState = {
   _validateForm = () => {
     if (this.state.username.trim() == '' || this.state.password.trim() == '') {
       //alert('invalid username or password');
-      alertsHelper.show('error', 'Login', 'Invalid username or password');
+      if (this.props.language === 'English') {
+        alertsHelper.show('error', 'Login', 'Invalid username or password');
+      } else {
+        alertsHelper.show(
+          'error',
+          'تسجيل الدخول',
+          'خطأ في اسم المستخدم أو كلمة مرور',
+        );
+      }
+
       return false;
     }
 
@@ -131,8 +141,8 @@ const emptyLoginScreenState = {
   };
 
   render() {
-    const {username, password,baseURL, title} = this.state;
-    const {loading} = this.props;
+    const {username, password, baseURL, title} = this.state;
+    const {language} = this.props;
     return (
       <View style={styles.screen}>
         <Modal animationType="slide" transparent={false} visible={this.state.settingsVisible} onRequestClose={() => this.setState({ settingsVisible: false })}>
@@ -240,26 +250,29 @@ const emptyLoginScreenState = {
         <KeyboardAvoidingView
           style={{flex: 1, justifyContent: 'center', width: '100%'}}
           keyboardVerticalOffset={54}>
-         
-           
-          <Animatable.View
+          <View
+            style={{
+              justifyContent: 'center',
+              flex: 0.7,
+            }}
             animation="zoomInUp"
             delay={300}
-            
             useNativeDriver>
-                  <TouchableOpacity
-            activeOpacity={0.9}
-            onPress={() => this.setState({ settingsVisible: true })}
-          >
-            <Image
-              source={images.logo.content}
-              resizeMode="contain"
-              style={{width: '100%', height: '50%', alignSelf: 'center'}}
-            />
-             </TouchableOpacity>
-          </Animatable.View>
-         
-          <View style={{flex: 1}}>
+            <TouchableOpacity
+              activeOpacity={0.9}
+              style={{
+                justifyContent: 'center',
+              }}
+              onPress={() => this.setState({settingsVisible: true})}>
+              <Image
+                source={images.logo.content}
+                resizeMode="contain"
+                style={{width: '100%', height: '50%', alignSelf: 'center'}}
+              />
+            </TouchableOpacity>
+          </View>
+
+          <View style={{flex: 1, paddingTop: 5}}>
             <View style={[styles.inputContainer]}>
               <Animatable.View
                 animation="zoomInUp"
@@ -270,11 +283,17 @@ const emptyLoginScreenState = {
                 }}
                 useNativeDriver>
                 <TextInput
-                  style={styles.inputStyle}
+                  style={[
+                    styles.inputStyle,
+                    {
+                      textAlign:
+                        this.props.language === 'English' ? 'left' : 'right',
+                    },
+                  ]}
                   value={username}
                   onChangeText={this.handleFieldChange.bind(this, 'username')}
                   placeholderTextColor="#ccc"
-                  placeholder="Username"
+                  placeholder={strings({key: 'Username', language})}
                   secureTextEntry={false}
                   underlineColorAndroid="transparent"
                 />
@@ -287,11 +306,17 @@ const emptyLoginScreenState = {
                 style={{justifyContent: 'center', alignItems: 'center'}}
                 useNativeDriver>
                 <TextInput
-                  style={styles.inputStyle}
+                  style={[
+                    styles.inputStyle,
+                    {
+                      textAlign:
+                        this.props.language === 'English' ? 'left' : 'right',
+                    },
+                  ]}
                   value={password}
                   onChangeText={this.handleFieldChange.bind(this, 'password')}
                   placeholderTextColor="#ccc"
-                  placeholder="Password"
+                  placeholder={strings({key: 'Password', language})}
                   secureTextEntry={true}
                   underlineColorAndroid="transparent"
                 />
@@ -306,29 +331,65 @@ const emptyLoginScreenState = {
               animation="zoomInUp"
               delay={600}
               useNativeDriver>
-              <TouchableOpacity
-                onPress={() =>
-                  this.setState(prevState => ({
-                    acceptPolicy: !prevState.acceptPolicy,
-                  }))
-                }
-                style={{
-                  height: hp('1.5'),
-                  width: hp('1.5'),
-                  backgroundColor: this.state.acceptPolicy
-                    ? PrimaryColor
-                    : 'white',
-                  borderColor: '#ccc',
-                  borderWidth: 1,
-                  margin: 5,
-                }}
-              />
-              <DefaultText>
-                I have read and accept the{' '}
-                <Text style={{color: PrimaryColor}}>Terms and condition</Text>{' '}
-                and the{' '}
-                <Text style={{color: PrimaryColor}}> Cookeis POlicy</Text>
-              </DefaultText>
+              {this.props.language === 'English' ? (
+                <>
+                  <TouchableOpacity
+                    onPress={() =>
+                      this.setState(prevState => ({
+                        acceptPolicy: !prevState.acceptPolicy,
+                      }))
+                    }
+                    style={{
+                      height: hp('1.5'),
+                      width: hp('1.5'),
+                      backgroundColor: this.state.acceptPolicy
+                        ? PrimaryColor
+                        : 'white',
+                      borderColor: '#ccc',
+                      borderWidth: 1,
+                      margin: 5,
+                    }}
+                  />
+
+                  <DefaultText>
+                    I have read and accept the{' '}
+                    <Text style={{color: PrimaryColor}}>
+                      Terms and condition
+                    </Text>{' '}
+                    and the{' '}
+                    <Text style={{color: PrimaryColor}}> Cookeis Policy</Text>
+                  </DefaultText>
+                </>
+              ) : (
+                <>
+                  <DefaultText style={{textAlign: 'right'}}>
+                    I have read and accept the{' '}
+                    <Text style={{color: PrimaryColor}}>
+                      Terms and condition
+                    </Text>{' '}
+                    and the{' '}
+                    <Text style={{color: PrimaryColor}}> Cookeis Policy</Text>
+                  </DefaultText>
+
+                  <TouchableOpacity
+                    onPress={() =>
+                      this.setState(prevState => ({
+                        acceptPolicy: !prevState.acceptPolicy,
+                      }))
+                    }
+                    style={{
+                      height: hp('1.5'),
+                      width: hp('1.5'),
+                      backgroundColor: this.state.acceptPolicy
+                        ? PrimaryColor
+                        : 'white',
+                      borderColor: '#ccc',
+                      borderWidth: 1,
+                      margin: 5,
+                    }}
+                  />
+                </>
+              )}
             </Animatable.View>
             <Animatable.View
               animation="zoomInUp"
@@ -345,9 +406,10 @@ const emptyLoginScreenState = {
                 end={{x: 1.1, y: 1.1}}
                 colors={['#4F107B', PrimaryColor]}
                 style={styles.LinearGradient}>
-                <TouchableOpacity
-                  onPress={this._loginHandler}>
-                  <Text style={styles.loginText}>LOGIN</Text>
+                <TouchableOpacity onPress={this._loginHandler}>
+                  <Text style={styles.loginText}>
+                    {strings({key: 'Login', language})}
+                  </Text>
                 </TouchableOpacity>
               </LinearGradient>
             </Animatable.View>
@@ -356,28 +418,61 @@ const emptyLoginScreenState = {
                 paddingHorizontal: '10%',
                 flexDirection: 'row',
                 alignItems: 'center',
+                justifyContent:
+                  this.props.language === 'English' ? 'flex-start' : 'flex-end',
               }}
               animation="zoomInUp"
               delay={600}
               useNativeDriver>
-              <TouchableOpacity
-                onPress={() =>
-                  this.setState(prevState => ({
-                    keepLogged: !prevState.keepLogged,
-                  }))
-                }
-                style={{
-                  height: hp('1.5'),
-                  width: hp('1.5'),
-                  backgroundColor: this.state.keepLogged
-                    ? PrimaryColor
-                    : 'white',
-                  borderColor: '#ccc',
-                  borderWidth: 1,
-                  margin: 5,
-                }}
-              />
-              <DefaultText>Keep Logged in</DefaultText>
+              {this.props.language === 'English' ? (
+                <>
+                  <TouchableOpacity
+                    onPress={() =>
+                      this.setState(prevState => ({
+                        keepLogged: !prevState.keepLogged,
+                      }))
+                    }
+                    style={{
+                      height: hp('1.5'),
+                      width: hp('1.5'),
+                      backgroundColor: this.state.keepLogged
+                        ? PrimaryColor
+                        : 'white',
+                      borderColor: '#ccc',
+                      borderWidth: 1,
+                      margin: 5,
+                    }}
+                  />
+                  <DefaultText>
+                    {strings({key: 'KeepLoggedin', language})}
+                  </DefaultText>
+                </>
+              ) : (
+                <>
+                  <DefaultText>
+                    {' '}
+                    {strings({key: 'KeepLoggedin', language})}
+                  </DefaultText>
+
+                  <TouchableOpacity
+                    onPress={() =>
+                      this.setState(prevState => ({
+                        keepLogged: !prevState.keepLogged,
+                      }))
+                    }
+                    style={{
+                      height: hp('1.5'),
+                      width: hp('1.5'),
+                      backgroundColor: this.state.keepLogged
+                        ? PrimaryColor
+                        : 'white',
+                      borderColor: '#ccc',
+                      borderWidth: 1,
+                      margin: 5,
+                    }}
+                  />
+                </>
+              )}
             </Animatable.View>
 
             <Animatable.View
@@ -391,7 +486,7 @@ const emptyLoginScreenState = {
               <DefaultText
                 onPress={() => this.setState({forgotPassword: true})}
                 style={{textAlign: 'center'}}>
-                Forget Password
+                {strings({key: 'ForgetPassword', language})}
               </DefaultText>
             </Animatable.View>
           </View>
@@ -407,7 +502,8 @@ const emptyLoginScreenState = {
           <DefaultText
             onPress={() => this.props.navigation.navigate('Signup')}
             style={{textAlign: 'center', color: '#fff'}}>
-            Not Yet Registerd ? <Text>REGISTER NOW</Text>
+            {strings({key: 'NotYetRegisterd', language})}{' '}
+            <Text>{strings({key: 'REGISTERNOW', language})}</Text>
           </DefaultText>
         </View>
       </View>
@@ -419,6 +515,7 @@ const emptyLoginScreenState = {
 // Map State To Props (Redux Store Passes State To Component)
 const mapStateToProps = state => {
   // Redux Store --> Component
+  console.log(state, 'state');
   return {
     values: state.login.logindetails,
     language: state.language.defaultLanguage,
@@ -428,7 +525,7 @@ const mapStateToProps = state => {
 
 function mapDispatchToProps(dispatch) {
   return {
-    infoChanged: (property,value) => dispatch(infoChanged(property,value)),
+    infoChanged: (property, value) => dispatch(infoChanged(property, value)),
     changeLanguage: value => dispatch(storeLanguage(value)),
     changeEnvironment: value => dispatch(environmentInfoChanged(value)),
   };

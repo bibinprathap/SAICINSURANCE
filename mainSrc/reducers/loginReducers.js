@@ -4,7 +4,7 @@ const initialState = {
    password: '',
    acceptPolicy: false,
    keepLogged: false,
-   forgotPassword: false,}
+   forgotPassword: false,},userDetail:{}
   };
   
 // Reducers (Modifies The State And Returns A New State)

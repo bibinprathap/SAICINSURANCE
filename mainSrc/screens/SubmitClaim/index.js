@@ -116,7 +116,6 @@ class Screen extends Component {
 
   async componentDidMount() {
     const data = await api.getServiceType();
-
     console.log(data, 'data');
   }
   renderModel(){

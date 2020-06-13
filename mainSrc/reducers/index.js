@@ -5,15 +5,15 @@ import loginReducers from './loginReducers';
 import environmentReducer from './environmentReducer';
 
 import attachmentReducer from './attachmentReducer';
-import languageReducer from './languageReducer'
+import languageReducer from '../screens/LanguageScreen/store/reducer';
 
 // Redux: Root Reducer
 const rootReducer = combineReducers({
-  home:HomeReducer,
-  login:loginReducers,
-  language: languageReducer, 
+  home: HomeReducer,
+  login: loginReducers,
+  language: languageReducer,
   environmentReducer: environmentReducer,
-  attachments:attachmentReducer
+  attachments: attachmentReducer,
 });
 
 // Exports

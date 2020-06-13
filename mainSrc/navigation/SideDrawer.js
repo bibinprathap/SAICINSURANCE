@@ -21,6 +21,8 @@ const normalizeFont = size => {
 import Icon from 'react-native-vector-icons/MaterialIcons';
 import {PrimaryColor} from '../config';
 import {NavigationActions, StackActions} from 'react-navigation';
+import {connect} from 'react-redux';
+import strings from '../api/helperServices/language';
 
 const resetAction = StackActions.reset({
   index: 0,
@@ -51,7 +53,31 @@ const datas = [
   },
 ];
 
-export default class SideBar extends React.Component {
+const dataAr = [
+  {
+    name: 'سايك',
+    route: 'Home',
+    icon: 'error-outline',
+    index: 0,
+    key: [0],
+  },
+  {
+    name: 'الإعدادات',
+    route: 'Settings',
+    icon: 'brightness-high',
+    index: 1,
+    key: [1],
+  },
+  {
+    name: 'قانوني',
+    route: 'Legal',
+    icon: 'my-location',
+    index: 2,
+    key: [2],
+  },
+];
+
+class SideBar extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -62,7 +88,8 @@ export default class SideBar extends React.Component {
   }
 
   render() {
-    var menus = datas;
+    const {language} = this.props;
+    var menus = this.props.language === 'English' ? datas : dataAr;
 
     return (
       <SafeAreaView style={{flex: 1}}>
@@ -115,29 +142,45 @@ export default class SideBar extends React.Component {
               <View style={styles.subTitleContainer}>
                 <View style={{flex: 0.25}} />
                 <View style={{flex: 1}}>
-                  {data.name === 'SAIC' ? (
-                    <Text style={styles.text}>About Us</Text>
-                  ) : data.name === 'Settings' ? (
-                    <Text style={styles.text}>Languages</Text>
+                  {data.name === 'SAIC' || data.name === 'سايك' ? (
+                    <Text style={styles.text}>
+                      {strings({key: 'AboutUs', language})}
+                    </Text>
+                  ) : data.name === 'Settings' || data.name === 'الإعدادات' ? (
+                    <Text style={styles.text}>
+                      {' '}
+                      {strings({key: 'Languages', language})}
+                    </Text>
                   ) : (
-                    <Text style={styles.text}>Privacy Notice</Text>
+                    <Text style={styles.text}>
+                      {strings({key: 'PrivacyNotice', language})}
+                    </Text>
                   )}
-                  {data.name === 'SAIC' ? (
-                    <Text style={styles.text}>Contact Us</Text>
-                  ) : data.name === 'Legal' ? (
-                    <Text style={styles.text}>Terms & Conditions</Text>
+                  {data.name === 'SAIC' || data.name === 'سايك' ? (
+                    <Text style={styles.text}>
+                      {strings({key: 'ContactUs', language})}
+                    </Text>
+                  ) : data.name === 'Legal' || data.name === 'قانوني' ? (
+                    <Text style={styles.text}>
+                      {' '}
+                      {strings({key: 'TermsConditions', language})}
+                    </Text>
                   ) : null}
-                  {data.name === 'SAIC' ? (
-                    <Text style={styles.text}>FAQs</Text>
-                  ) : data.name === 'Legal' ? (
-                    <Text style={styles.text}>Cookies Policy</Text>
+                  {data.name === 'SAIC' || data.name === 'سايك' ? (
+                    <Text style={styles.text}>
+                      {strings({key: 'FAQs', language})}
+                    </Text>
+                  ) : data.name === 'Legal' || data.name === 'قانوني' ? (
+                    <Text style={styles.text}>
+                      {strings({key: 'CookiesPolicy', language})}
+                    </Text>
                   ) : null}
                 </View>
               </View>
             </View>
           ))}
-          <TouchableOpacity
-            onPress={() => this.props.navigation.dispatch(resetAction)}
+          <TouchableOpacity 
+            onPress={() => this.props.navigation.navigate('AuthLoading')}
             style={{
               flexDirection: 'row',
               alignItems: 'center',
@@ -157,7 +200,7 @@ export default class SideBar extends React.Component {
                   color: 'red',
                 },
               ]}>
-              LOGOUT
+              {strings({key: 'LOGOUT', language})}
             </Text>
           </TouchableOpacity>
         </ScrollView>
@@ -191,3 +234,12 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
   },
 });
+
+const mapStateToProps = state => {
+  // Redux Store --> Component
+  return {
+    language: state.language.defaultLanguage,
+  };
+};
+
+export default connect(mapStateToProps)(SideBar);

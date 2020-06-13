@@ -17,14 +17,37 @@ export default class AppApi {
   };
 
   login = async params => {
-  const data =  {UserName:'saic@yahoo.com',
-  Password:'test123',
-  grant_type:'password'}
-    const restApi = new RestApi({controller: `token?UserName=${encodeURIComponent(data.UserName)}&Password=${encodeURIComponent(data.Password)}&grant_type=${encodeURIComponent(data.grant_type)}`});
+    debugger
+    var details = {
+      'userName': params.username,
+      'password': params.password,
+      'grant_type': 'password'
+  };
+  
+  var formBody = [];
+  for (var property in details) {
+    var encodedKey = encodeURIComponent(property);
+    var encodedValue = encodeURIComponent(details[property]);
+    formBody.push(encodedKey + "=" + encodedValue);
+  }
+  formBody = formBody.join("&");
+  
+//   const pokemonApiCall = await  fetch('https://adroitclouderpreport.ngrok.io/token', {
+//     method: 'POST',
+//     headers: {
+//       'Content-Type': 'application/x-www-form-urlencoded;charset=UTF-8'
+//     },
+//     body: formBody
+//   });
+//   debugger;
+//  const pokemon = await pokemonApiCall.json();
+//  return pokemon;
+ 
+    const restApi = new RestApi({controller: `token`});
     try {
-      let response = await restApi.get({
+      let response = await restApi.post({
         url: '',
-        body: params,
+        body: formBody,
         cancelable: true,
         showAlerts: true,
       });
