@@ -65,7 +65,7 @@ class ClaimDetailScreen extends Component {
         <Panel header="Claim Details" maxItem={300}>
           <View style={{flex: 1}}>
             <View style={styles.header}>
-              {/* <ClaimDetails title="Select Number" value="Myself" nextIcon>
+              <ClaimDetails title="Select Number" value="Myself" nextIcon>
                 <RNPickerSelect
                   placeholder={this.placeholder}
                   onValueChange={this.props.selectNumber}
@@ -87,7 +87,7 @@ class ClaimDetailScreen extends Component {
                     },
                   }}
                 />
-              </ClaimDetails> */}
+              </ClaimDetails>
               {/* <ClaimDetails
                 title="Healthcare Provider Country"
                 value="United Arab Emirates"

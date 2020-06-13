@@ -51,7 +51,8 @@ export default class AppApi {
         cancelable: true,
         showAlerts: true,
       });
-      return response.data.result;
+      debugger;
+      return response.data;
     } catch (error) {
       throw error;
     }
@@ -59,7 +60,7 @@ export default class AppApi {
 
   getServiceType = async params => {
     const restApi = new RestApi({
-      controller: 'ServiceType?EmployeeCode=2018100002',
+      controller: 'api/ServiceType?EmployeeCode=2018100002',
     });
     try {
       let response = await restApi.get({

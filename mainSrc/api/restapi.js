@@ -102,11 +102,13 @@ export default class RestApi {
     // Authorization: `Bearer ${`prNc5HfrKNDBeaLlr6Way1vccEIVQfPEBF2xjffVueylVVWeN8iZgN1mI_0qQ9WgfRdZF4CTAeiUTyr9yFU7sLniAxYFgL6xE8s6Jp3l6_t4MppiiWJ5x3cPO7038LZkg8jJC7H4s0kGSf1r5WyhP1UW0XZQ8If0252-l9qp6LrFdq6-xq4sI-5wdQqQ_DPtFIxLIfm0hHNY2C8iOdStYnOk--Tm6L_lpLoL3Wig4noTNlUcDg1pHRgFRUzW0xU7xX1Q-ZqOFinRANcaGiz2Mc02E0yNpb5bhaXwTmBhjWCVZPwsvwMQdlFocS-lcr8UIqOz9FQaZ2q9YkL6Aj9L9CIEFsmkBIMdISd6hC_2eZCKiAsGy7DscqALam3hh2k7qB-k5ms_4FNW_k3iRXTrtEwQrbyPgN820vLypV1KaSg`}`,
     //},
     const requestConfig = {
+      
       url: requestUrl,
       method: method,
       headers: {
         ...defaultHeaders,
         ...headers,
+        'Authorization': 'Bearer '+store.getState().login.userDetail.access_token
       },
       data: body,
       //data: typeof body === undefined ? undefined : typeof body === 'string' ? body : JSON.stringify(body),
@@ -190,9 +192,10 @@ export default class RestApi {
 
     // return axios
     //   .request(requestConfig)
-    return axios
-      .get(requestConfig.url, requestConfig.data, requestConfig.header)
-      .then(response => {
+    // return axios
+    //   .get(requestConfig.url, requestConfig.data, requestConfig.header)     
+    return axios({ method: 'get', url: requestConfig.url, headers: requestConfig.headers })
+    .then(response => {
         const cancelToken = RestApi.cancelTokens[requestConfig.url];
         console.log(
           'restApi axios success... url:',

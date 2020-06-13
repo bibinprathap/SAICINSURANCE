@@ -107,6 +107,7 @@ const emptyLoginScreenState = {
      // const pokemon = await pokemonApiCall.json();
   const    data = await api.login({...details,grant_type:'password' });
   console.log(data); 
+  this.props.infoChanged('userDetail', data);
   alertsHelper.hideAlert();  
   this.props.navigation.navigate('app')
     } catch (error) {
