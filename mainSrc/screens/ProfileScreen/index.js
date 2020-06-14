@@ -16,6 +16,8 @@ import {
   heightPercentageToDP as hp,
 } from 'react-native-responsive-screen';
 import ProfileImg from '../../assets/src_assets_profile.png';
+import {connect} from 'react-redux';
+import strings from '../../api/helperServices/language';
 const {width, height} = Dimensions.get('screen');
 const normalizeFont = size => {
   return size * (width * 0.0025);
@@ -23,9 +25,14 @@ const normalizeFont = size => {
 
 class ProfileScreen extends Component {
   render() {
+    const {language} = this.props;
     return (
       <View style={styles.screen}>
-        <Header Back navigation={this.props.navigation} Heading="Profile" />
+        <Header
+          Back
+          navigation={this.props.navigation}
+          Heading={strings({key: 'Profile', language})}
+        />
         <ScrollView contentContainerStyle={{flex: 1}}>
           <View
             style={{flex: 0.2, justifyContent: 'center', alignItems: 'center'}}>
@@ -37,24 +44,37 @@ class ProfileScreen extends Component {
                 flex: 1,
               }}>
               <View style={{flex: 0.25}}>
-                <Text style={styles.headerText}>Personal Information</Text>
+                <Text style={styles.headerText}>
+                  {strings({key: 'PersonalInformation', language})}
+                </Text>
               </View>
               <View style={styles.borderContainer}>
                 <View style={styles.rowContainer}>
-                  <Text style={styles.keyValue}>Full Name</Text>
+                  <Text style={styles.keyValue}>
+                    {' '}
+                    {strings({key: 'FullName', language})}
+                  </Text>
                   <Text style={styles.keyValue}>Rjij raju</Text>
                 </View>
 
                 <View style={styles.rowContainer}>
-                  <Text style={styles.keyValue}>Date of Birth</Text>
+                  <Text style={styles.keyValue}>
+                    {' '}
+                    {strings({key: 'DateofBirth', language})}
+                  </Text>
                   <Text style={styles.keyValue}>10/05/1992</Text>
                 </View>
                 <View style={styles.rowContainer}>
-                  <Text style={styles.keyValue}>Gender</Text>
+                  <Text style={styles.keyValue}>
+                    {' '}
+                    {strings({key: 'Gender', language})}
+                  </Text>
                   <Text style={styles.keyValue}>Female</Text>
                 </View>
                 <View style={styles.rowContainer}>
-                  <Text style={styles.keyValue}>Mobile Number</Text>
+                  <Text style={styles.keyValue}>
+                    {strings({key: 'MobileNumber', language})}
+                  </Text>
                   <Text style={styles.keyValue}>+91-9747559615</Text>
                 </View>
               </View>
@@ -64,11 +84,17 @@ class ProfileScreen extends Component {
                 flex: 1,
               }}>
               <View style={{flex: 0.25}}>
-                <Text style={styles.headerText}>Account Settings</Text>
+                <Text style={styles.headerText}>
+                  {' '}
+                  {strings({key: 'AccountSettings', language})}
+                </Text>
               </View>
               <View style={styles.borderContainer}>
                 <View style={styles.rowContainer}>
-                  <Text style={styles.keyValue}>Change Email</Text>
+                  <Text style={styles.keyValue}>
+                    {' '}
+                    {strings({key: 'ChangeEmail', language})}
+                  </Text>
                   <Icons
                     size={hp('2.5')}
                     style={{alignSelf: 'center'}}
@@ -78,7 +104,10 @@ class ProfileScreen extends Component {
                 </View>
 
                 <View style={styles.rowContainer}>
-                  <Text style={styles.keyValue}>Change Password</Text>
+                  <Text style={styles.keyValue}>
+                    {' '}
+                    {strings({key: 'ChangePassword', language})}
+                  </Text>
                   <Icons
                     size={hp('2.5')}
                     style={{alignSelf: 'center'}}
@@ -87,7 +116,10 @@ class ProfileScreen extends Component {
                   />
                 </View>
                 <View style={styles.rowContainer}>
-                  <Text style={styles.keyValue}>Change Mobile</Text>
+                  <Text style={styles.keyValue}>
+                    {' '}
+                    {strings({key: 'ChangeMobile', language})}
+                  </Text>
                   <Icons
                     size={hp('2.5')}
                     style={{alignSelf: 'center'}}
@@ -106,14 +138,17 @@ class ProfileScreen extends Component {
                   <Text
                     onPress={() => this.props.navigation.navigate('Login')}
                     style={[styles.keyValue, {color: assetColor}]}>
-                    Logout
+                    {strings({key: 'Logout', language})}
                   </Text>
                 </View>
               </View>
             </View>
             <View style={{flex: 0.6}}>
               <View style={{flex: 0.35}}>
-                <Text style={styles.headerText}>Addition Information</Text>
+                <Text style={styles.headerText}>
+                  {' '}
+                  {strings({key: 'AdditionInformation', language})}
+                </Text>
               </View>
 
               <View style={[styles.borderContainer, {flex: 0.8}]}>
@@ -131,7 +166,7 @@ class ProfileScreen extends Component {
                       color="#000"
                     />
                     <Text style={[styles.keyValue, {paddingLeft: 5}]}>
-                      Address Book
+                      {strings({key: 'AddressBook', language})}
                     </Text>
                   </View>
                   <View
@@ -161,7 +196,7 @@ class ProfileScreen extends Component {
                       color="#000"
                     />
                     <Text style={[styles.keyValue, {paddingLeft: 5}]}>
-                      My Documents
+                      {strings({key: 'MyDocuments', language})}
                     </Text>
                   </View>
                   <View
@@ -224,4 +259,11 @@ const styles = StyleSheet.create({
   },
 });
 
-export default ProfileScreen;
+const mapStateToProps = state => {
+  // Redux Store --> Component
+  return {
+    language: state.language.defaultLanguage,
+  };
+};
+
+export default connect(mapStateToProps)(ProfileScreen);

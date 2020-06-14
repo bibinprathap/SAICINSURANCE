@@ -17,13 +17,14 @@ import {
 } from 'react-native-responsive-screen';
 import DefaultText from '../../components/DefaultText';
 import {TouchableOpacity} from 'react-native-gesture-handler';
-
+import {connect} from 'react-redux';
+import strings from '../../api/helperServices/language';
 const {width, height} = Dimensions.get('screen');
 const normalizeFont = size => {
   return size * (width * 0.0025);
 };
 
-class Screen extends Component {
+class ClaimScreen extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -50,11 +51,36 @@ class Screen extends Component {
           claimReference: 'C00121241198/1',
         },
       ],
+
+      dataSourceAr: [
+        {
+          id: 0,
+          date: 'Apr 2',
+          status: 'تمت معالجتها',
+          claimType: 'مباشرة',
+          provider: 'مركز طه الطبي',
+          serviceType: 'العيادات الخارجية',
+          claimedAmount: 0,
+          claimReference: 'C00121241198/1',
+          year: 2020,
+        },
+        {
+          id: 1,
+          date: 'Mar 29',
+          status: 'غير مستعمل',
+          claimType: 'مباشرة',
+          provider: 'مركز صيدلية طه',
+          serviceType: 'العيادات الخارجية',
+          claimedAmount: 0,
+          claimReference: 'C00121241198/1',
+        },
+      ],
     };
   }
 
   renderItem = item => {
     let dataItem = item.item;
+    const {language} = this.props;
     return (
       <View>
         <Text
@@ -101,7 +127,10 @@ class Screen extends Component {
                     name="assignment"
                     color="#000"
                   />
-                  <Text style={{paddingLeft: 5}}>Claim Type</Text>
+                  <Text style={{paddingLeft: 5}}>
+                    {' '}
+                    {strings({key: 'ClaimType', language})}
+                  </Text>
                 </View>
                 <View
                   style={{
@@ -127,7 +156,10 @@ class Screen extends Component {
                     name="store"
                     color="#000"
                   />
-                  <Text style={{paddingLeft: 5}}>Provider</Text>
+                  <Text style={{paddingLeft: 5}}>
+                    {' '}
+                    {strings({key: 'Provider', language})}
+                  </Text>
                 </View>
                 <View
                   style={{
@@ -153,7 +185,9 @@ class Screen extends Component {
                     name="assignment"
                     color="#000"
                   />
-                  <Text style={{paddingLeft: 5}}>Service Type</Text>
+                  <Text style={{paddingLeft: 5}}>
+                    {strings({key: 'ServiceType', language})}
+                  </Text>
                 </View>
                 <View
                   style={{
@@ -179,7 +213,9 @@ class Screen extends Component {
                     name="payment"
                     color="#000"
                   />
-                  <Text style={{paddingLeft: 5}}>Claimed Amount</Text>
+                  <Text style={{paddingLeft: 5}}>
+                    {strings({key: 'ClaimedAmount', language})}
+                  </Text>
                 </View>
                 <View
                   style={{
@@ -205,7 +241,9 @@ class Screen extends Component {
                     name="payment"
                     color="#000"
                   />
-                  <Text style={{paddingLeft: 5}}>Claimed Reference</Text>
+                  <Text style={{paddingLeft: 5}}>
+                    {strings({key: 'ClaimedReference', language})}
+                  </Text>
                 </View>
                 <View
                   style={{
@@ -230,23 +268,26 @@ class Screen extends Component {
     );
   };
   render() {
+    const {language} = this.props;
     return (
       <View style={styles.screen}>
         <Header
           Back
           Claims
           navigation={this.props.navigation}
-          Heading="Claims"
+          Heading={strings({key: 'claim', language})}
         />
         <ScrollView contentContainerStyle={{flex: 1}}>
           <View style={styles.headerView}>
             <View style={{flex: 0.8}}>
-              <Text style={styles.BeneficiaryText}>Beneficary</Text>
+              <Text style={styles.BeneficiaryText}>
+                {strings({key: 'Beneficiary', language})}
+              </Text>
             </View>
 
             <View style={styles.RightView}>
               <Text style={[styles.textObj, {paddingRight: hp('1')}]}>
-                Myself
+                {strings({key: 'Myself', language})}
               </Text>
               <Icons
                 size={hp('2.5')}
@@ -300,7 +341,11 @@ class Screen extends Component {
                 paddingTop: 10,
               }}>
               <FlatList
-                data={this.state.dataSource}
+                data={
+                  language === 'English'
+                    ? this.state.dataSource
+                    : this.state.dataSourceAr
+                }
                 keyExtractor={(item, index) => item.id}
                 renderItem={itemDtata => this.renderItem(itemDtata)}
                 showsVerticalScrollIndicator={false}
@@ -318,7 +363,7 @@ class Screen extends Component {
               }}>
               <DefaultText style={{color: 'white', fontSize: 20}}>
                 <Text style={{fontSize: 30}}>+</Text>
-                {''} <Text>SUBMIT CLAIM</Text>
+                {''} <Text>{strings({key: 'SUBMITCLAIM', language})}</Text>
               </DefaultText>
             </TouchableOpacity>
           </View>
@@ -530,4 +575,11 @@ const styles = StyleSheet.create({
   },
 });
 
-export default Screen;
+const mapStateToProps = state => {
+  // Redux Store --> Component
+  return {
+    language: state.language.defaultLanguage,
+  };
+};
+
+export default connect(mapStateToProps)(ClaimScreen);

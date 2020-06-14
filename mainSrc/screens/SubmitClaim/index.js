@@ -5,8 +5,6 @@ import {
   StyleSheet,
   Dimensions,
   TouchableOpacity,
-  Platform,
-  ActionSheetIOS,
   Image,
 } from 'react-native';
 import ImagePicker from 'react-native-image-crop-picker';
@@ -28,7 +26,8 @@ import CancelClaimModal from '../../components/Modal/ClaimCancelModal';
 import CameraImage from '../../assets/src_assets_camera.png';
 import Modal from 'react-native-modal';
 import GalleryImage from '../../assets/src_assets_gallery.png';
-import {ScrollView} from 'react-native-gesture-handler';
+import {connect} from 'react-redux';
+import strings from '../../api/helperServices/language';
 const {width, height} = Dimensions.get('screen');
 const normalizeFont = size => {
   return size * (width * 0.0025);
@@ -42,6 +41,14 @@ const labels = [
   'Payment Method',
   'Confirmation',
 ];
+
+const labelsAr = [
+  'تفاصيل المطالبة',
+  'المستندات المطلوبة',
+  'طريقة الدفع او السداد',
+  'التأكيد',
+];
+
 const customStyles = {
   stepIndicatorSize: 25,
   currentStepIndicatorSize: 25,
@@ -84,7 +91,7 @@ class Screen extends Component {
       .split('-')
       .reverse()
       .join('/');
-    this.onPress = Platform.OS === 'ios' && this.showActionSheet.bind(this);
+
     this.state = {
       claimID: 'P/01/1307/2019/9640',
       currentPosition: 0,
@@ -176,25 +183,6 @@ class Screen extends Component {
         console.log(e);
       });
   }
-
-  showActionSheet = () => {
-    console.log('hello');
-    ActionSheetIOS.showActionSheetWithOptions(
-      {
-        options: ['Take Photo', 'Photo Library', 'Browser', 'Cancel'],
-        cancelButtonIndex: 3,
-        // destructiveButtonIndex: DESTRUCTIVE_INDEX,
-      },
-      buttonIndex => {
-        console.log(buttonIndex, 'buttonIndex');
-        if (buttonIndex === 0) {
-          this.pickSingleWithCamera(false);
-        } else if (buttonIndex === 1) {
-          this.pickSingle(false);
-        }
-      },
-    );
-  };
 
   continueAction = () => {
     const {
@@ -319,6 +307,7 @@ class Screen extends Component {
 
   render() {
     const {claimID} = this.state;
+    const {language} = this.props;
     return (
       <View style={styles.screen}>
         {this.renderPickerModal()}
@@ -335,12 +324,14 @@ class Screen extends Component {
         <View style={styles.Headercontainer}>
           <View style={styles.topContainer}>
             <Text
-              // onPress={() => this.props.navigation.goBack()}
               onPress={() => this.setState({cancelModal: true})}
               style={styles.textObj}>
-              Cancel
+              {strings({key: 'Cancel', language})}
             </Text>
-            <Text style={[styles.textObj, {color: '#000'}]}>Save</Text>
+            <Text style={[styles.textObj, {color: '#000'}]}>
+              {' '}
+              {strings({key: 'Save', language})}
+            </Text>
           </View>
           <View style={{flex: 1}}>
             <Text
@@ -348,7 +339,7 @@ class Screen extends Component {
                 styles.textObj,
                 {textAlign: 'center', fontSize: normalizeFont(17)},
               ]}>
-              Submit ReimbursementClaims
+              {strings({key: 'SubmitReimbursementClaims', language})}
             </Text>
           </View>
         </View>
@@ -360,7 +351,10 @@ class Screen extends Component {
               paddingHorizontal: 15,
             }}>
             <View style={styles.topContainer}>
-              <Text style={styles.textObj}>PolicyNumber</Text>
+              <Text style={styles.textObj}>
+                {' '}
+                {strings({key: 'PolicyNumber', language})}
+              </Text>
               <View
                 style={{
                   flex: 0.65,
@@ -392,7 +386,7 @@ class Screen extends Component {
                 style={{width: '100%'}}
                 customStyles={customStyles}
                 currentPosition={this.state.currentPosition}
-                labels={labels}
+                labels={language === 'English' ? labels : labelsAr}
                 stepCount={4}
               />
             </View>
@@ -420,7 +414,6 @@ class Screen extends Component {
             ) : this.state.currentPosition === 1 ? (
               <NeededDocuments
                 image={this.state.image}
-                // showActionSheet={Platform.OS === 'ios' && this.showActionSheet}
                 showActionSheet={() => this.setState({pickerModal: true})}
               />
             ) : this.state.currentPosition === 2 ? (
@@ -513,11 +506,11 @@ class Screen extends Component {
             }}>
             {this.state.currentPosition === 3 ? (
               <DefaultText style={{color: 'white', fontSize: 20}}>
-                Submit
+                {strings({key: 'Submit', language})}
               </DefaultText>
             ) : (
               <DefaultText style={{color: 'white', fontSize: 20}}>
-                Continue
+                {strings({key: 'Continue', language})}
               </DefaultText>
             )}
           </TouchableOpacity>
@@ -549,4 +542,10 @@ const styles = StyleSheet.create({
   },
 });
 
-export default Screen;
+const mapStateToProps = state => {
+  return {
+    language: state.language.defaultLanguage,
+  };
+};
+
+export default connect(mapStateToProps)(Screen);

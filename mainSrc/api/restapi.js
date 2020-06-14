@@ -187,7 +187,7 @@ export default class RestApi {
     //Todo:  dispatch --> this.dispatch(ajax-call-counter-increment-action)
     console.log('restApi axios request: ', requestConfig);
     axios.defaults.withCredentials = true;
-    axios.defaults.timeout = requestConfig.timeout;
+   // axios.defaults.timeout = requestConfig.timeout;
     const logLevel = 'error';
 
     // return axios
@@ -248,13 +248,13 @@ export default class RestApi {
     //Todo:  dispatch --> this.dispatch(ajax-call-counter-increment-action)
     console.log('restApi axios request: ', requestConfig);
     axios.defaults.withCredentials = true;
-    axios.defaults.timeout = requestConfig.timeout;
+    //axios.defaults.timeout = requestConfig.timeout;
     const logLevel = 'error';
 
     // return axios
     //   .request(requestConfig)
     return axios
-      .post(requestConfig.url, requestConfig.data, requestConfig.header)
+      .post(requestConfig.url, requestConfig.data, requestConfig.headers)
       .then(response => {
         const cancelToken = RestApi.cancelTokens[requestConfig.url];
         console.log(
