@@ -144,11 +144,11 @@ class HomeScreen extends Component {
             size={hp('3.5')}
             style={{alignSelf: 'center'}}
             name={dataItem.icon}
-            color={PrimaryColor}
+            color='#808080'
           />
         </View>
 
-        <Text style={[styles.middleText, {color: '#000'}]}>
+        <Text style={[styles.middleText, {color: '#808080'}]}>
           {dataItem.title}
         </Text>
       </View>
@@ -163,7 +163,7 @@ class HomeScreen extends Component {
         style={[
           styles.moreContainer,
           {
-            backgroundColor: dataIndex % 2 == 0 ? '#4F107B' : PrimaryColor,
+            backgroundColor: dataIndex % 2 == 0 ? '#808080': '#808080',
           },
         ]}>
         <View style={{flex: 0.7, justifyContent: 'space-around'}}>
@@ -441,7 +441,7 @@ const styles = StyleSheet.create({
     right: 20,
     height: hp('7'),
     width: hp('7'),
-    backgroundColor: PrimaryColor,
+    backgroundColor: '#808080',
     borderRadius: hp('4'),
     elevation: 4,
     shadowColor: '#000',
