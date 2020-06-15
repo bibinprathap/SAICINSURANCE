@@ -130,7 +130,7 @@ export default class RestApi {
     //   RestApi.cancelTokens[requestUrl] = newTokenSource;
     //   requestConfig.cancelToken = newTokenSource.token;
     // }
-    debugger;
+    //debugger;
     if (method == 'GET') return this.sendRequest(requestConfig, showAlerts);
     else return this.sendRequestPOST(requestConfig, showAlerts);
     //return this.fetchRequest(requestConfig, showAlerts);

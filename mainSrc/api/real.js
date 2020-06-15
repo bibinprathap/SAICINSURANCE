@@ -17,7 +17,7 @@ export default class AppApi {
   };
 
   login = async params => {
-    debugger
+    //debugger
     var details = {
       'userName': params.username,
       'password': params.password,
@@ -51,7 +51,84 @@ export default class AppApi {
         cancelable: true,
         showAlerts: true,
       });
-      debugger;
+      //debugger;
+      return response.data;
+    } catch (error) {
+      throw error;
+    }
+  };
+
+  signup = async params => {
+    
+    var details = {
+      'UserIdentity': params.CardNumber,
+      'Email': params.Email,
+      'Password':params.Password,
+      'Name': params.Name,
+      'UserRoles': 'Customer',
+      'PhoneNo': params.PhoneNumber
+  };
+  var formBody = [];
+  for (var property in details) {
+    var encodedKey = decodeURIComponent(property);
+    var encodedValue = decodeURIComponent(details[property]);
+    formBody.push(encodedKey + "=" + encodedValue);
+  }
+  formBody = formBody.join("&");
+    const restApi = new RestApi({controller: `api/Account/Register`});
+    try {
+      let response = await restApi.post({
+        url: '',
+        body: formBody,
+        cancelable: true,
+        showAlerts: true,
+      });
+      return response.data;
+    } catch (error) {
+      throw error;
+    }
+  };
+
+  getProviders = async params => {
+    const restApi = new RestApi({controller: `api/Providers?EmployeeCode`});
+    try {
+      let response = await restApi.get({
+        url: '',
+        body: '',
+        cancelable: true,
+        showAlerts: true,
+      });
+      return response.data;
+    } catch (error) {
+      throw error;
+    }
+  };
+
+  getClaims = async params => {
+    const restApi = new RestApi({controller: `api/GetClaims?PolicyCode=CP1912151312482198510`});
+    try {
+      let response = await restApi.get({
+        url: '',
+        body: '',
+        cancelable: true,
+        showAlerts: true,
+      });
+      return response.data;
+    } catch (error) {
+      throw error;
+    }
+  };
+
+
+  getCurrency = async params => {
+    const restApi = new RestApi({controller: `api/Currency?EmployeeCode`});
+    try {
+      let response = await restApi.get({
+        url: '',
+        body: '',
+        cancelable: true,
+        showAlerts: true,
+      });
       return response.data;
     } catch (error) {
       throw error;
@@ -65,11 +142,11 @@ export default class AppApi {
     try {
       let response = await restApi.get({
         url: '',
-        body: params,
+        body: '',
         cancelable: true,
         showAlerts: true,
       });
-      return response.data.result;
+      return response.data;
     } catch (error) {
       throw error;
     }

@@ -1,10 +1,10 @@
 {
     "logs": [
         {
-            "outputFile": "C:\\Users\\vakka\\OneDrive\\Desktop\\React\\SAICINSURANCE\\android\\app\\build\\intermediates\\incremental\\mergeDebugResources\\merged.dir\\values-zh\\values-zh.xml",
+            "outputFile": "/Users/poojagugu/Desktop/latest/SAICINSURANCE/android/app/build/intermediates/incremental/mergeDebugResources/merged.dir/values-zh/values-zh.xml",
             "map": [
                 {
-                    "source": "C:\\Users\\vakka\\.gradle\\caches\\transforms-2\\files-2.1\\d5be9491930b496d9e6388d478f297c6\\res\\values-zh\\values-zh.xml",
+                    "source": "/Users/poojagugu/.gradle/caches/transforms-2/files-2.1/23953f2e5627ab66f830c39b00eb65f1/res/values-zh/values-zh.xml",
                     "from": {
                         "startLines": "2,3,4",
                         "startColumns": "4,4,4",

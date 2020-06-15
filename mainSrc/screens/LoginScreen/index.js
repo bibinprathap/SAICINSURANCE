@@ -101,7 +101,7 @@ const emptyLoginScreenState = {
     let details = {...this.state};
     alertsHelper.showAlert('Login', 'Checking User Information');
     try {
-      debugger;
+      //debugger;
       this.props.navigation.navigate('app')
      // const pokemonApiCall = await fetch('https://adroitclouderpreport.ngrok.io/token');
      // const pokemon = await pokemonApiCall.json();

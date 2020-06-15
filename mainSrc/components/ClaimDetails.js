@@ -61,9 +61,9 @@ const ClaimDetails = props => {
           {/* <Text style={{color: 'grey', fontSize: normalizeFont(14)}}>
             {props.value}
           </Text> */}
-          {props.nextIcon && (
+          {/* {props.nextIcon && (
             <Icons size={hp('3')} name="keyboard-arrow-right" color="grey" />
-          )}
+          )} */}
         </View>
       </View>
     </View>

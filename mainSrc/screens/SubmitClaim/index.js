@@ -121,9 +121,9 @@ class Screen extends Component {
     };
   }
 
-  async componentDidMount() {
-    const data = await api.getServiceType();
-    console.log(data, 'data');
+  async componentDidUpdate() {
+    //const data = await api.getServiceType();
+    //console.log(data, 'data');
   }
   renderModel(){
    
@@ -315,8 +315,7 @@ class Screen extends Component {
           isVisible={this.state.cancelModal}
           onBackdropPress={() => this.setState({cancelModal: false})}
           renderModel= {() => this.props.navigation.goBack()}
-          hideModal={() => this.setState({cancelModal: false}, () =>
-          this.props.navigation.goBack(),)}
+          hideModal={() => this.setState({cancelModal: false})}
           iconName="person"
           title="Attention"
           subTitle="Are you sure you want to cancel claim submission?"

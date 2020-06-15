@@ -1,10 +1,10 @@
 {
     "logs": [
         {
-            "outputFile": "C:\\Users\\vakka\\OneDrive\\Desktop\\React\\SAICINSURANCE\\android\\app\\build\\intermediates\\incremental\\mergeDebugResources\\merged.dir\\values-small-v4\\values-small-v4.xml",
+            "outputFile": "/Users/poojagugu/Desktop/latest/SAICINSURANCE/android/app/build/intermediates/incremental/mergeDebugResources/merged.dir/values-small-v4/values-small-v4.xml",
             "map": [
                 {
-                    "source": "C:\\Users\\vakka\\.gradle\\caches\\transforms-2\\files-2.1\\2480c5e60137576a3ca56028f8633453\\res\\values-small-v4\\values-small-v4.xml",
+                    "source": "/Users/poojagugu/.gradle/caches/transforms-2/files-2.1/0592b960560c4db6848ec5b2367a60a6/res/values-small-v4/values-small-v4.xml",
                     "from": {
                         "startLines": "2,3,4,5",
                         "startColumns": "4,4,4,4",

@@ -10,9 +10,11 @@ import Header from '../../components/Header';
 import Icons from 'react-native-vector-icons/MaterialIcons';
 import { TouchableOpacity } from 'react-native-gesture-handler';
 import { PrimaryColor, assetColor } from '../../config';
+import AppApi from '../../api/real';
 import DefaultText from '../../components/DefaultText';
 import { RadioGroup, RadioButton } from 'react-native-flexi-radio-button';
 import { Radio } from 'react-native';
+import { Picker, Icon } from 'native-base';
 import {
   widthPercentageToDP as wp,
   heightPercentageToDP as hp,
@@ -22,8 +24,83 @@ const { width, height } = Dimensions.get('screen');
 const normalizeFont = size => {
   return size * (width * 0.0025);
 };
+const api = new AppApi();
 
 class searchWithFilters extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      selected: "Select",
+      providerType: [],
+      location: [],
+      serviceType: [],
+      dataSource: [
+        {
+          "ID": 0,
+          "EName": "None"
+        },
+        {
+          "ID": 1,
+          "EName": "IRAQ"
+        },
+        {
+          "ID": 2,
+          "EName": "BAHRAIN"
+        },
+        {
+          "ID": 3,
+          "EName": "IRAN"
+        },
+
+      ],
+      providerData: [
+        {
+          "ID": 0,
+          "Name": "None"
+        },
+      ],
+      serviceData: [
+        {
+          "ID": 0,
+          "Ename": "None"
+        },
+      ]
+    };
+  }
+  onValueChange2(value) {
+    this.setState({
+      selected: value
+    });
+  }
+
+  Providers = async() => { 
+    try {
+  const    data = await api.getProviders();
+  this.setState({
+    loading: false,
+    providerData: data
+  })
+    } catch (error) {
+      console.log(error); 
+    }
+  };
+
+  ServiceType = async() => { 
+    try {
+  const    data = await api.getServiceType();
+  this.setState({
+    loading: false,
+    serviceData: data
+  })
+    } catch (error) {
+      console.log(error); 
+    }
+  };
+
+  componentDidMount() {
+    this.Providers();
+    this.ServiceType();
+  }
   render() {
     return (
       <View style={styles.screen}>
@@ -40,29 +117,15 @@ class searchWithFilters extends Component {
               </View>
               <View style={[styles.borderContainer, { flex: 0.5 }]}>
                 <View style={styles.rowContainer}>
-                  <View
-                    style={{
-                      flex: 0.5,
-                      flexDirection: 'row',
-                      alignItems: 'center',
-                    }}>
-
-                    <Text style={[styles.keyValue, { paddingLeft: 5 }]}>
-                      MySelf
-                    </Text>
-                  </View>
-                  <View
-                    style={{
-                      flex: 0.2,
-                      justifyContent: 'center',
-                      alignItems: 'flex-end',
-                    }}>
-                    <Icons
-                      size={hp('2.5')}
-                      name="keyboard-arrow-down"
-                      color="#000"
-                    />
-                  </View>
+                  <Picker
+                    mode="dropdown"
+                    iosHeader="Select"
+                    iosIcon={<Icon name="arrow-dropdown-circle" style={{ color: "#007aff", fontSize: 14 }} />}
+                    selectedValue={this.state.selected}
+                  >                
+                      <Picker.Item label="My Self" value="My Self" />
+                      <Picker.Item label="Dependent" value="Dependent" />
+                  </Picker>
                 </View>
               </View>
             </View>
@@ -73,35 +136,25 @@ class searchWithFilters extends Component {
               <View style={{ flex: 0.5 }}>
                 <Text style={styles.headerText}>Provider Type</Text>
               </View>
+
               <View style={[styles.borderContainer, { flex: 0.5 }]}>
                 <View style={styles.rowContainer}>
-                  <View
-                    style={{
-                      flex: 0.5,
-                      flexDirection: 'row',
-                      alignItems: 'center',
-                    }}>
+                  <Picker
+                    mode="dropdown"
+                    iosHeader="Select"
+                    iosIcon={<Icon name="arrow-dropdown-circle" style={{ color: "#007aff", fontSize: 14 }} />}
+                    selectedValue={this.state.selected}
 
-                    <Text style={[styles.keyValue, { paddingLeft: 5 }]}>
-                      Select
-                    </Text>
-                  </View>
-                  <View
-                    style={{
-                      flex: 0.2,
-                      justifyContent: 'center',
-                      alignItems: 'flex-end',
-                    }}>
-                    <Icons
-                      size={hp('2.5')}
-                      name="keyboard-arrow-down"
-                      color="#000"
-                    />
-                  </View>
+                  >
+                    {this.state.providerData.map((_ID, index) => (
+                      <Picker.Item label={_ID.Name} value={index} />
+                    ))}
+
+                  </Picker>
                 </View>
               </View>
             </View>
-            <View
+            {/* <View
               style={{
                 flex: 1,
               }}>
@@ -109,33 +162,22 @@ class searchWithFilters extends Component {
                 <Text style={styles.headerText}>Location</Text>
               </View>
               <View style={[styles.borderContainer, { flex: 0.5 }]}>
-                <View style={styles.rowContainer}>
-                  <View
-                    style={{
-                      flex: 0.5,
-                      flexDirection: 'row',
-                      alignItems: 'center',
-                    }}>
-
-                    <Text style={[styles.keyValue, { paddingLeft: 5 }]}>
-                      Select
-                    </Text>
-                  </View>
-                  <View
-                    style={{
-                      flex: 0.2,
-                      justifyContent: 'center',
-                      alignItems: 'flex-end',
-                    }}>
-                    <Icons
-                      size={hp('2.5')}
-                      name="keyboard-arrow-down"
-                      color="#000"
-                    />
-                  </View>
-                </View>
-              </View>
+              <View style={styles.rowContainer}>
+              <Picker
+              mode="dropdown"
+              iosHeader="Select"
+              iosIcon={<Icon name="arrow-dropdown-circle" style={{ color: "#007aff", fontSize: 14 }} />}
+              selectedValue={this.state.selected}
+              
+            >
+                {this.state.dataSource.map((_ID, index) => (
+         <Picker.Item label={_ID.EName} value={index} />
+    ))}
+             
+            </Picker>
             </View>
+              </View>
+            </View> */}
             <View
               style={{
                 flex: 1,
@@ -173,33 +215,21 @@ class searchWithFilters extends Component {
               </View>
               <View style={[styles.borderContainer, { flex: 0.5 }]}>
                 <View style={styles.rowContainer}>
-                  <View
-                    style={{
-                      flex: 0.5,
-                      flexDirection: 'row',
-                      alignItems: 'center',
-                    }}>
-
-                    <Text style={[styles.keyValue, { paddingLeft: 5 }]}>
-                      Processed
-                    </Text>
-                  </View>
-                  <View
-                    style={{
-                      flex: 0.2,
-                      justifyContent: 'center',
-                      alignItems: 'flex-end',
-                    }}>
-                    <Icons
-                      size={hp('2.5')}
-                      name="keyboard-arrow-down"
-                      color="#000"
-                    />
-                  </View>
+                  <Picker
+                    mode="dropdown"
+                    iosHeader="Select"
+                    iosIcon={<Icon name="arrow-dropdown-circle" style={{ color: "#007aff", fontSize: 14 }} />}
+                    selectedValue={this.state.selected}
+                  >      
+                      <Picker.Item label="Pending" value="Pending" />          
+                      <Picker.Item label="Submitted" value="Submitted" />
+                      <Picker.Item label="Approved" value="Approved" />
+                      
+                  </Picker>
                 </View>
               </View>
             </View>
-            <View
+            {/* <View
               style={{
                 flex: 1,
               }}>
@@ -226,7 +256,7 @@ class searchWithFilters extends Component {
                   </RadioButton>
                 </RadioGroup>
               </View>
-            </View>
+            </View> */}
             <View
               style={{
                 flex: 1,
@@ -236,64 +266,41 @@ class searchWithFilters extends Component {
               </View>
               <View style={[styles.borderContainer, { flex: 0.5 }]}>
                 <View style={styles.rowContainer}>
-                  <View
-                    style={{
-                      flex: 0.5,
-                      flexDirection: 'row',
-                      alignItems: 'center',
-                    }}>
-
-                    <Text style={[styles.keyValue, { paddingLeft: 5 }]}>
-                      Select
-                    </Text>
-                  </View>
-                  <View
-                    style={{
-                      flex: 0.2,
-                      justifyContent: 'center',
-                      alignItems: 'flex-end',
-                    }}>
-                    <Icons
-                      size={hp('2.5')}
-                      name="keyboard-arrow-down"
-                      color="#000"
-                    />
-                  </View>
+                  <Picker
+                    mode="dropdown"
+                    iosHeader="Select"
+                    iosIcon={<Icon name="arrow-dropdown-circle" style={{ color: "#007aff", fontSize: 14 }} />}
+                    selectedValue={this.state.selected}
+                  >                
+                      <Picker.Item label="Direct" value="Direct" />
+                     
+                  </Picker>
                 </View>
               </View>
             </View>
             <View
               style={{
                 flex: 1,
+                marginBottom: 30
               }}>
               <View style={{ flex: 0.5 }}>
                 <Text style={styles.headerText}>Service Type</Text>
               </View>
               <View style={[styles.borderContainer, { flex: 0.5 }]}>
                 <View style={styles.rowContainer}>
-                  <View
-                    style={{
-                      flex: 0.5,
-                      flexDirection: 'row',
-                      alignItems: 'center',
-                    }}>
 
-                    <Text style={[styles.keyValue, { paddingLeft: 5 }]}>
-                      Dental Treatment
-                    </Text>
-                  </View>
-                  <View
-                    style={{
-                      flex: 0.2,
-                      justifyContent: 'center',
-                      alignItems: 'flex-end',
-                    }}>
-                    <Icons
-                      size={hp('2.5')}
-                      name="keyboard-arrow-down"
-                      color="#000"
-                    />
-                  </View>
+                  <Picker
+                    mode="dropdown"
+                    iosHeader="Select"
+                    iosIcon={<Icon name="arrow-dropdown-circle" style={{ color: "#007aff", fontSize: 14 }} />}
+                    selectedValue={this.state.selected}
+
+                  >
+                    {this.state.serviceData.map((_ID, index) => (
+                      <Picker.Item label={_ID.Ename} value={index} />
+                    ))}
+
+                  </Picker>
                 </View>
               </View>
             </View>

@@ -6,6 +6,8 @@ import ClaimDetails from '../ClaimDetails';
 import DatePicker from 'react-native-datepicker';
 const {width, height} = Dimensions.get('screen');
 import RNPickerSelect from 'react-native-picker-select';
+import { Picker, Icon } from 'native-base';
+import AppApi from '../../api/real';
 import Modal from 'react-native-modal';
 const normalizeFont = size => {
   return size * (width * 0.0025);
@@ -17,6 +19,8 @@ const emptyLoginScreenState = {
   keepLogged: false,
   forgotPassword: false,
 };
+
+const api = new AppApi();
 
 const pickerSelectStyles = StyleSheet.create({
   inputIOS: {
@@ -46,19 +50,104 @@ class ClaimDetailScreen extends Component {
     super(props);
     this.state = {
       ...emptyLoginScreenState,
+      serviceselected: "",
+      typeselected: "",
+      currencyselected: "",
+      
+      dataSource: [
+        {
+          "ID": 0,
+          "EName": "None"
+        }
+      ],
+      providerData: [
+        {
+          "ID": 0,
+          "Name": "None"
+        },
+      ],
+      serviceData: [
+        {
+          "ID": 0,
+          "Ename": "None"
+        },
+      ],
+      currencyData: [
+        {
+          "ID": 5,
+        "Country": "Iraq",
+        "CurrencyCode": "IQD"
+        },
+      ]
+
     };
+   
     this.placeholder = {
       label: 'Select a value',
       value: null,
     };
   }
 
-  handleFieldChange = async (name, value) => {
-    const newState = {};
-    newState[name] = value;
-    console.log(newState, 'NewState');
+  Providers = async() => { 
+    try {
+  const    data = await api.getProviders();
+  this.setState({
+    loading: false,
+    providerData: data
+  })
+    } catch (error) {
+      console.log(error); 
+    }
+  };
+  ServiceType = async() => { 
+    try {
+  const    data = await api.getServiceType();
+  this.setState({
+    loading: false,
+    serviceData: data
+  })
+    } catch (error) {
+      console.log(error); 
+    }
+  };
+  Currency = async() => { 
+    try {
+  const    data = await api.getCurrency();
+  this.setState({
+    loading: false,
+    currencyData: data
+  })
+    } catch (error) {
+      console.log(error); 
+    }
   };
 
+
+  componentDidMount() {
+    
+    this.Providers();
+    this.ServiceType();
+    this.Currency();
+  }
+
+  onValueChange(value) {
+        this.setState({
+          serviceselected: value
+        });
+  }
+
+  onTypeValueChange(value) {
+
+    this.setState({
+      typeselected: value
+    });
+}
+onCurrencyValueChange(value) {
+
+  this.setState({
+    currencyselected: value
+  });
+}
   render() {
     return (
       <View>
@@ -66,7 +155,22 @@ class ClaimDetailScreen extends Component {
           <View style={{flex: 1}}>
             <View style={styles.header}>
               <ClaimDetails title="Select Number" value="Myself" nextIcon>
-                <RNPickerSelect
+              <Picker
+                    mode="dropdown"
+                    iosHeader="Select"
+                    iosIcon={<Icon name="arrow-dropdown-circle" style={{ color: "#007aff", fontSize: 14 }} />}
+                    selectedValue={this.state.serviceselected}
+                    onValueChange={this.onValueChange.bind(this)}
+                  >                
+                      <Picker.Item label="97" value="97" />
+                      <Picker.Item label="100" value="100" />
+                      <Picker.Item label="101" value="101" />
+                      <Picker.Item label="150" value="150" />
+                      <Picker.Item label="200" value="200" />
+                      <Picker.Item label="201" value="201" />
+                      
+                  </Picker>
+                {/* <RNPickerSelect
                   placeholder={this.placeholder}
                   onValueChange={this.props.selectNumber}
                   value={this.props.selectNumberValue}
@@ -86,7 +190,7 @@ class ClaimDetailScreen extends Component {
                       right: 12,
                     },
                   }}
-                />
+                /> */}
               </ClaimDetails>
               {/* <ClaimDetails
                 title="Healthcare Provider Country"
@@ -114,7 +218,7 @@ class ClaimDetailScreen extends Component {
                 />
               </ClaimDetails> */}
               <ClaimDetails title="Service type" value="Consultation" nextIcon>
-                <RNPickerSelect
+                {/* <RNPickerSelect
                   placeholder={this.placeholder}
                   onValueChange={this.props.serviceTypeChange}
                   value={this.props.serviceType}
@@ -133,7 +237,19 @@ class ClaimDetailScreen extends Component {
                       right: 12,
                     },
                   }}
-                />
+                /> */}
+                  <Picker
+                    mode="dropdown"
+                    iosHeader="Select"
+                    iosIcon={<Icon name="arrow-dropdown-circle" style={{ color: "#007aff", fontSize: 14 }} />}
+                    selectedValue={this.state.typeselected}
+                    onValueChange={this.onTypeValueChange.bind(this)}
+                  >                
+                        {this.state.serviceData.map((_ID, index) => (
+                      <Picker.Item label={_ID.Ename} value={index} />
+                    ))}
+                  </Picker>
+                
               </ClaimDetails>
               <ClaimDetails title="Service Date" value="12-03-2020">
                 {/* <TextInput
@@ -179,7 +295,7 @@ class ClaimDetailScreen extends Component {
                 />
               </ClaimDetails>
               <ClaimDetails title="Currency" value="AED" nextIcon>
-                <RNPickerSelect
+                {/* <RNPickerSelect
                   placeholder={this.placeholder}
                   onValueChange={this.props.currencyValueChange}
                   value={this.props.currencyValue}
@@ -198,7 +314,19 @@ class ClaimDetailScreen extends Component {
                       right: 12,
                     },
                   }}
-                />
+                /> */}
+                  <Picker
+                    mode="dropdown"
+                    iosHeader="Select"
+                    iosIcon={<Icon name="arrow-dropdown-circle" style={{ color: "#007aff", fontSize: 14 }} />}
+                    selectedValue={this.state.currencyselected}
+                    onValueChange={this.onCurrencyValueChange.bind(this)}
+                    
+                  >                
+                       {this.state.currencyData.map((_ID, index) => (
+                      <Picker.Item label={_ID.CurrencyCode} value={index} />
+                    ))}
+                  </Picker>
               </ClaimDetails>
               <ClaimDetails title="Add notes" value="" addNotes>
                 <TextInput

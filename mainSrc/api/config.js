@@ -19,6 +19,6 @@ export default config = {
     bibin: {
         ...common,
         title: 'Bibin',
-        baseURL: 'https://adroitclouderpreport.ngrok.io/api',
+        baseURL: 'https://adroitclouderpreport.ngrok.io/',
     }
 };

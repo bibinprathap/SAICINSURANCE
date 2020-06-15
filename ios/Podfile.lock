@@ -184,11 +184,11 @@ PODS:
     - React-cxxreact (= 0.61.5)
     - React-jsi (= 0.61.5)
   - React-jsinspector (0.61.5)
-  - react-native-background-upload (5.6.1):
+  - react-native-background-upload (5.7.0):
     - React
   - react-native-safe-area-context (0.6.4):
     - React
-  - react-native-simple-toast (1.1.2):
+  - react-native-simple-toast (1.0.0):
     - React
     - Toast (~> 4.0.0)
   - react-native-webrtc (1.75.3):
@@ -230,11 +230,11 @@ PODS:
     - ReactCommon/jscallinvoker (= 0.61.5)
   - ReactNativeIncallManager (3.2.7):
     - React
-  - RNCAsyncStorage (1.11.0):
+  - RNCAsyncStorage (1.7.1):
     - React
-  - RNCMaskedView (0.1.10):
+  - RNCMaskedView (0.1.6):
     - React
-  - RNGestureHandler (1.6.1):
+  - RNGestureHandler (1.6.0):
     - React
   - RNImageCropPicker (0.31.1):
     - React-Core
@@ -245,9 +245,9 @@ PODS:
     - React-Core
     - React-RCTImage
     - TOCropViewController
-  - RNReanimated (1.9.0):
+  - RNReanimated (1.7.0):
     - React
-  - RNScreens (2.8.0):
+  - RNScreens (2.1.0):
     - React
   - RNSound (0.11.0):
     - React
@@ -407,9 +407,9 @@ SPEC CHECKSUMS:
   React-jsi: cb2cd74d7ccf4cffb071a46833613edc79cdf8f7
   React-jsiexecutor: d5525f9ed5f782fdbacb64b9b01a43a9323d2386
   React-jsinspector: fa0ecc501688c3c4c34f28834a76302233e29dc0
-  react-native-background-upload: 100602024fcaa2b3b17a28b6984e2884876cc8ec
+  react-native-background-upload: cc72a5d27b57d97950c9b4f16fcbbaeab761bd82
   react-native-safe-area-context: 042dfc9d4db17196841df962ba9497f6e7a5bd02
-  react-native-simple-toast: a3a8e9033a549c11741debe875e54698cc4c0dd7
+  react-native-simple-toast: 9c2f5979dfe555d0aa7b084348a06fd6ef7a6f55
   react-native-webrtc: 86d841823e66d68cc1f86712db1c2956056bf0c2
   React-RCTActionSheet: 600b4d10e3aea0913b5a92256d2719c0cdd26d76
   React-RCTAnimation: 791a87558389c80908ed06cc5dfc5e7920dfa360
@@ -422,12 +422,12 @@ SPEC CHECKSUMS:
   React-RCTVibration: a49a1f42bf8f5acf1c3e297097517c6b3af377ad
   ReactCommon: 198c7c8d3591f975e5431bec1b0b3b581aa1c5dd
   ReactNativeIncallManager: 35e387f58d3fc6e8cc042f47a2256b5f50134a67
-  RNCAsyncStorage: db711e29e5e0500d9bd21aa0c2e397efa45302b1
-  RNCMaskedView: f5c7d14d6847b7b44853f7acb6284c1da30a3459
-  RNGestureHandler: 8f09cd560f8d533eb36da5a6c5a843af9f056b38
+  RNCAsyncStorage: 8539fc80a0075fcc9c8e2dff84cd22dc5bf1dacf
+  RNCMaskedView: e5b99bc191945f157adeede68da9d424462de177
+  RNGestureHandler: dde546180bf24af0b5f737c8ad04b6f3fa51609a
   RNImageCropPicker: 38865ab4af1b0b2146ad66061196bc0184946855
-  RNReanimated: b5ccb50650ba06f6e749c7c329a1bc3ae0c88b43
-  RNScreens: 62211832af51e0aebcf6e8c36bcf7dd65592f244
+  RNReanimated: 031fe8d9ea93c2bd689a40f05320ef9d96f74d7f
+  RNScreens: 2a9cd603bcebc34319c92e595283d760dd1f55f5
   RNSound: c980916b596cc15c8dcd2f6ecd3b13c4881dbe20
   RNVectorIcons: 0bb4def82230be1333ddaeee9fcba45f0b288ed4
   Toast: 91b396c56ee72a5790816f40d3a94dd357abc196
@@ -436,4 +436,4 @@ SPEC CHECKSUMS:
 
 PODFILE CHECKSUM: 6540e46cfc4ed62c564a5271f78bc1083bfc10e2
 
-COCOAPODS: 1.9.1
+COCOAPODS: 1.9.3

@@ -8,6 +8,7 @@ import {
   TextInput,
   FlatList,
 } from 'react-native';
+import moment from 'moment';
 import Header from '../../components/Header';
 import Icons from 'react-native-vector-icons/MaterialIcons';
 import {PrimaryColor} from '../../config';
@@ -15,6 +16,7 @@ import {
   widthPercentageToDP as wp,
   heightPercentageToDP as hp,
 } from 'react-native-responsive-screen';
+import AppApi from '../../api/real';
 import DefaultText from '../../components/DefaultText';
 import {TouchableOpacity} from 'react-native-gesture-handler';
 import {connect} from 'react-redux';
@@ -23,6 +25,7 @@ const {width, height} = Dimensions.get('screen');
 const normalizeFont = size => {
   return size * (width * 0.0025);
 };
+const api = new AppApi();
 
 class ClaimScreen extends Component {
   constructor(props) {
@@ -36,6 +39,7 @@ class ClaimScreen extends Component {
           claimType: 'Direct',
           provider: 'Taha Medical Center',
           serviceType: 'Out-Patient',
+          CreatedDate: "2020-06-07T20:15:57.457",
           claimedAmount: 0,
           claimReference: 'C00121241198/1',
           year: 2020,
@@ -43,9 +47,10 @@ class ClaimScreen extends Component {
         {
           id: 1,
           date: ' Mar 29',
-          status: 'Not Used',
+          status: 'NotUsed',
           claimType: 'Direct',
           provider: 'Taha Pharmacy Center',
+          CreatedDate: "2020-06-07T20:15:57.457",
           serviceType: 'Out-Patient',
           claimedAmount: 0,
           claimReference: 'C00121241198/1',
@@ -78,6 +83,22 @@ class ClaimScreen extends Component {
     };
   }
 
+  getClaims = async() => { 
+    try {
+  const    data = await api.claims();
+  this.setState({
+    loading: false,
+    dataSource: data
+  })
+    } catch (error) {
+      console.log(error); 
+    }
+  };
+
+  componentDidMount(){
+this.getClaims();
+  }
+    
   renderItem = item => {
     let dataItem = item.item;
     const {language} = this.props;
@@ -90,12 +111,12 @@ class ClaimScreen extends Component {
             color: PrimaryColor,
             paddingBottom: hp('1'),
           }}>
-          {dataItem.year}
+          {moment(dataItem.CreatedDate).format('YYYY')}
         </Text>
 
         <View style={styles.renderItem}>
           <View style={styles.dateContainer}>
-            <Text style={styles.dateText}>{dataItem.date}</Text>
+            <Text style={styles.dateText}>{moment(dataItem.CreatedDate).format('MMM DD')}</Text>
           </View>
           <View style={{width: 2, height: '80%', backgroundColor: '#ccc'}} />
           <View style={{flex: 0.8}}>
@@ -105,7 +126,7 @@ class ClaimScreen extends Component {
                   styles.topView,
                   {
                     backgroundColor:
-                      dataItem.status == 'Processed' ? PrimaryColor : '#ccc',
+                    dataItem.status == 'Processed' ? PrimaryColor : '#ccc',
                   },
                 ]}
               />
@@ -144,7 +165,7 @@ class ClaimScreen extends Component {
                       color: 'grey',
                       fontFamily: 'Roboto-Light',
                     }}>
-                    {dataItem.claimType}
+                    {dataItem.ClaimType}
                   </Text>
                 </View>
               </View>
@@ -173,7 +194,7 @@ class ClaimScreen extends Component {
                       color: 'grey',
                       fontFamily: 'Roboto-Light',
                     }}>
-                    {dataItem.provider}
+                    {dataItem.ProviderName}
                   </Text>
                 </View>
               </View>
@@ -201,7 +222,7 @@ class ClaimScreen extends Component {
                       color: 'grey',
                       fontFamily: 'Roboto-Light',
                     }}>
-                    {dataItem.serviceType}
+                    {dataItem.ServiceName}
                   </Text>
                 </View>
               </View>
@@ -229,7 +250,7 @@ class ClaimScreen extends Component {
                       color: 'grey',
                       fontFamily: 'Roboto-Light',
                     }}>
-                    {dataItem.claimedAmount}
+                    {dataItem.ClaimedAmount}
                   </Text>
                 </View>
               </View>
@@ -257,7 +278,7 @@ class ClaimScreen extends Component {
                       color: 'grey',
                       fontFamily: 'Roboto-Light',
                     }}>
-                    {dataItem.claimReference}
+                    {dataItem.ClaimReference}
                   </Text>
                 </View>
               </View>
@@ -313,16 +334,16 @@ class ClaimScreen extends Component {
                   alignItems: 'center',
                 },
               ]}>
-                  <TouchableOpacity
+                  {/* <TouchableOpacity
                 onPress={() => this.props.navigation.navigate('searchWithFilters')}
-                >
+                > */}
               <Icons
                 size={hp('3')}
                 style={{alignSelf: 'center'}}
                 name="search"
                 color="#ccc"
               />
-              </TouchableOpacity>
+              {/* </TouchableOpacity> */}
               <View>
               
                 <TextInput
@@ -372,6 +393,7 @@ class ClaimScreen extends Component {
     );
   }
 }
+
 
 const styles = StyleSheet.create({
   screen: {

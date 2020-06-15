@@ -2,7 +2,7 @@
 const initialState = {
     env: 'test',
     title: 'test',
-    baseURL: 'https://adroitclouderpreport.ngrok.io/api/' 
+    baseURL: 'https://adroitclouderpreport.ngrok.io/' 
   };
   
 // Reducers (Modifies The State And Returns A New State)
