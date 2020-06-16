@@ -49,14 +49,13 @@ const pickerSelectStyles = StyleSheet.create({
 
 class ClaimDetailScreen extends Component {
   constructor(props) {
-    super(props);
+    super(props); 
     this.state = {
-      ...emptyLoginScreenState,
-      serviceselected: '',
+      ...emptyLoginScreenState,  serviceselected: '',
       typeselected: '',
-      currencyselected: '',
-
-      dataSource: [
+      currencyselected: '', 
+        typeselected: "Dentel",
+      currencyselected: "",  dataSource: [
         {
           ID: 0,
           EName: 'None',
@@ -92,7 +91,7 @@ class ClaimDetailScreen extends Component {
       value: null,
     };
   }
-
+ 
   Providers = async () => {
     try {
       const data = await api.getProviders();
@@ -148,8 +147,60 @@ class ClaimDetailScreen extends Component {
     this.setState({
       currencyselected: value,
     });
+  } 
+  // Providers = async() => { 
+  //   try {
+  // const    data = await api.getProviders();
+  // this.setState({
+  //   loading: false,
+  //   providerData: data
+  // })
+  //   } catch (error) {
+  //     console.log(error); 
+  //   }
+  // };
+  // ServiceType = async() => { 
+  //   try {
+  // const    data = await api.getServiceType();
+  // this.setState({
+  //   loading: false,
+  //   serviceData: data
+  // })
+  //   } catch (error) {
+  //     console.log(error); 
+  //   }
+  // };
+  // Currency = async() => { 
+  //   try {
+  // const    data = await api.getCurrency();
+  // this.setState({
+  //   loading: false,
+  //   currencyData: data
+  // })
+  //   } catch (error) {
+  //     console.log(error); 
+  //   }
+  // };
+
+
+  // componentDidMount() {
+    
+  //   this.Providers();
+  //   this.ServiceType();
+  //   this.Currency();
+  // }
+
+  onValueChange(value) {
+        this.props.onSelectNumber(value);
   }
-  render() {
+
+  onTypeValueChange(value) {
+    this.props.serviceTypeChange(value);
+}
+onCurrencyValueChange(value) {
+  this.props.currencyValueChange(value);
+} 
+render() {
     const {language} = this.props;
     return (
       <View>
@@ -157,24 +208,21 @@ class ClaimDetailScreen extends Component {
           <View style={{flex: 1}}>
             <View style={styles.header}>
               <ClaimDetails title="Select Number" value="Myself" nextIcon>
-                <Picker
-                  mode="dropdown"
-                  iosHeader="Select"
-                  iosIcon={
-                    <Icon
-                      name="arrow-dropdown-circle"
-                      style={{color: '#007aff', fontSize: 14}}
-                    />
-                  }
-                  selectedValue={this.state.serviceselected}
-                  onValueChange={this.onValueChange.bind(this)}>
-                  <Picker.Item label="97" value="97" />
-                  <Picker.Item label="100" value="100" />
-                  <Picker.Item label="101" value="101" />
-                  <Picker.Item label="150" value="150" />
-                  <Picker.Item label="200" value="200" />
-                  <Picker.Item label="201" value="201" />
-                </Picker>
+    <Picker
+                    mode="dropdown"
+                    iosHeader="Select"
+                    iosIcon={<Icon name="arrow-dropdown-circle" style={{ color: "#007aff", fontSize: 14 }} />}
+                    selectedValue={this.props.selectNumberValue}
+                    onValueChange={this.onValueChange.bind(this)}
+                  >                
+                      <Picker.Item label="97" value="97" />
+                      <Picker.Item label="100" value="100" />
+                      <Picker.Item label="101" value="101" />
+                      <Picker.Item label="150" value="150" />
+                      <Picker.Item label="200" value="200" />
+                      <Picker.Item label="201" value="201" />
+                      
+                  </Picker> 
                 {/* <RNPickerSelect
                   placeholder={this.placeholder}
                   onValueChange={this.props.selectNumber}
@@ -241,22 +289,18 @@ class ClaimDetailScreen extends Component {
                       right: 12,
                     },
                   }}
-                /> */}
-                <Picker
-                  mode="dropdown"
-                  iosHeader="Select"
-                  iosIcon={
-                    <Icon
-                      name="arrow-dropdown-circle"
-                      style={{color: '#007aff', fontSize: 14}}
-                    />
-                  }
-                  selectedValue={this.state.typeselected}
-                  onValueChange={this.onTypeValueChange.bind(this)}>
-                  {this.state.serviceData.map((_ID, index) => (
-                    <Picker.Item label={_ID.Ename} value={index} />
-                  ))}
-                </Picker>
+                /> */} 
+                  <Picker
+                    mode="dropdown"
+                    iosHeader="Select"
+                    iosIcon={<Icon name="arrow-dropdown-circle" style={{ color: "#007aff", fontSize: 14 }} />}
+                    selectedValue={this.props.serviceType}
+                    onValueChange={this.onTypeValueChange.bind(this)}
+                  >                
+                        {this.props.serviceData.map((_ID, index) => (
+                      <Picker.Item label={_ID.Ename} value={index} />
+                    ))}
+                  </Picker> 
               </ClaimDetails>
               <ClaimDetails
                 title={strings({key: 'ServiceDate', language})}
@@ -325,22 +369,19 @@ class ClaimDetailScreen extends Component {
                       right: 12,
                     },
                   }}
-                /> */}
-                <Picker
-                  mode="dropdown"
-                  iosHeader="Select"
-                  iosIcon={
-                    <Icon
-                      name="arrow-dropdown-circle"
-                      style={{color: '#007aff', fontSize: 14}}
-                    />
-                  }
-                  selectedValue={this.state.currencyselected}
-                  onValueChange={this.onCurrencyValueChange.bind(this)}>
-                  {this.state.currencyData.map((_ID, index) => (
-                    <Picker.Item label={_ID.CurrencyCode} value={index} />
-                  ))}
-                </Picker>
+                /> */} 
+                  <Picker
+                    mode="dropdown"
+                    iosHeader="Select"
+                    iosIcon={<Icon name="arrow-dropdown-circle" style={{ color: "#007aff", fontSize: 14 }} />}
+                    selectedValue={this.props.currencyValue}
+                    onValueChange={this.onCurrencyValueChange.bind(this)}
+                    
+                  >                
+                       {this.props.currencyData.map((_ID, index) => (
+                      <Picker.Item label={_ID.CurrencyCode} value={index} />
+                    ))}
+                  </Picker> 
               </ClaimDetails>
               <ClaimDetails
                 title={strings({key: 'Addnotes', language})}

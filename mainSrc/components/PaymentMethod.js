@@ -67,9 +67,9 @@ const PaymentMethod = props => {
         }}>
         <View style={{flexDirection: 'row', alignItems: 'center'}}>
           {props.children}
-          {props.nextIcon && (
+          {/* {props.nextIcon && (
             <Icons size={hp('3')} name="keyboard-arrow-right" color="grey" />
-          )}
+          )} */}
         </View>
       </View>
     </View>

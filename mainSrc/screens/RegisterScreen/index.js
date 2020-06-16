@@ -83,6 +83,10 @@ class Screen extends Component {
       alert('Accept the policy before submit');
       return;
     }
+    if (!this.validateEmail(Email)) {
+      alert('invalid Email');
+      return;
+    }
     let details = {...this.state};
     const data = await api.signup({...details});
     if (data.Message == 'created sucessfully') {
@@ -96,6 +100,11 @@ class Screen extends Component {
       alert(data.Message);
       return;
     }
+  };
+
+  validateEmail = email => {
+    var re = /^(([^<>()\[\]\\.,;:\s@”]+(\.[^<>()\[\]\\.,;:\s@”]+)*)|(“.+”))@((\[[0–9]{1,3}\.[0–9]{1,3}\.[0–9]{1,3}\.[0–9]{1,3}])|(([a-zA-Z\-0–9]+\.)+[a-zA-Z]{2,}))$/;
+    return re.test(email);
   };
   render() {
     const {language} = this.props;

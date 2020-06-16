@@ -102,12 +102,13 @@ class Screen extends Component {
       currentPosition: 0,
       cancelModal: false,
       forgotPassword: false,
-      selectNumber: '',
+      selectNumber: '200',
       countryName: '',
-      serviceType: '',
+      serviceType: 'Dental',
       serviceDate: Today,
       claimAccount: '',
-      currencyValue: '',
+      currencyValue: 'IQD',
+
       addNotes: '',
       image: null,
       pickerModal: false,
@@ -122,18 +123,107 @@ class Screen extends Component {
       branchName: '',
       cityName: '',
       phoneNumber: '',
-      emailName: '',
+      emailName: '', 
       imageSource: [],
-      indexCount: 0,
+      indexCount: 0, 
+      serviceData: [
+        {
+          "ID": 0,
+          "Ename": "None"
+        },
+      ],
+      currencyData: [
+        {
+          "ID": 5,
+        "Country": "Iraq",
+        "CurrencyCode": "IQD"
+        },
+      ],
+      countriesData:
+      [
+        {
+          "ID": 1,
+          "EName": "IRAQ"
+        },
+      ] 
     };
   }
+
+  handleLanguage = (langValue) => {
+    this.setState({selectNumber: langValue});
+}
+onSelectedType = (typeValue) => {
+  this.setState({serviceType: typeValue});
+}
+onCurrencyChange = (Value) => {
+  this.setState({currencyValue: Value});
+}
+onCountriesChange = (country) => {
+  this.setState({myCountry: country});
+}
 
   async componentDidUpdate() {
     //const data = await api.getServiceType();
     //console.log(data, 'data');
+  } 
+
+  Providers = async() => { 
+    try {
+  const    data = await api.getProviders();
+  this.setState({
+    loading: false,
+    providerData: data
+  })
+    } catch (error) {
+      console.log(error); 
+    }
+  };
+  ServiceTypeservice = async() => { 
+    try {
+  const    data = await api.getServiceType();
+  this.setState({
+    loading: false,
+    serviceData: data
+  })
+    } catch (error) {
+      console.log(error); 
+    }
+  };
+  Currency = async() => { 
+    try {
+  const    data = await api.getCurrency();
+  this.setState({
+    loading: false,
+    currencyData: data
+  })
+    } catch (error) {
+      console.log(error); 
+    }
+  };
+
+  Countries = async() => { 
+    try {
+  const    data = await api.getCountries();
+  this.setState({
+    loading: false,
+    countriesData: data
+  })
+    } catch (error) {
+      console.log(error); 
+    }
+  };
+  
+
+  componentDidMount() {
+
+    this.Providers();
+    this.ServiceTypeservice();
+    this.Currency();
+    this.Countries();
+    
   }
-  renderModel() {
-    this.props.navigation.goBack();
+  renderModel(){
+     this.props.navigation.goBack();
   }
 
   pickSingleWithCamera(cropping, mediaType = 'photo') {
@@ -236,10 +326,10 @@ class Screen extends Component {
     } = this.state;
     if (currentPosition === 0) {
       if (
-        serviceType.trim() === '' ||
-        serviceDate.trim() === '' ||
-        claimAccount.trim() === '' ||
-        currencyValue.trim() === ''
+        serviceType === '' ||
+        serviceDate === '' ||
+        claimAccount === '' ||
+        currencyValue=== ''
       ) {
         alert('Complete your claim details');
         return;
@@ -482,19 +572,19 @@ class Screen extends Component {
             {this.state.currentPosition == 0 ? (
               <ClaimDetails
                 selectNumberValue={this.state.selectNumber}
-                selectNumber={text => this.setState({selectNumber: text})}
+                onSelectNumber={this.handleLanguage}
                 countryValue={this.state.countryName}
                 countyValueChange={text => this.setState({countryName: text})}
                 serviceType={this.state.serviceType}
-                serviceTypeChange={text => this.setState({serviceType: text})}
+                serviceTypeChange={this.onSelectedType}
+                serviceData={this.state.serviceData}
                 serviceDate={this.state.serviceDate}
                 serviceDateChange={date => this.setState({serviceDate: date})}
                 claimAccount={this.state.claimAccount}
                 claimAccountChange={text => this.setState({claimAccount: text})}
                 currencyValue={this.state.currencyValue}
-                currencyValueChange={text =>
-                  this.setState({currencyValue: text})
-                }
+                currencyValueChange={this.onCurrencyChange}
+                currencyData={this.state.currencyData}
                 addNotes={this.state.addNotes}
                 addNotesChange={text => this.setState({addNotes: text})}
               />
@@ -516,7 +606,8 @@ class Screen extends Component {
             ) : this.state.currentPosition === 2 ? (
               <PaymentMethod
                 myCountry={this.state.myCountry}
-                myCountryValueChange={text => this.setState({myCountry: text})}
+                myCountryValueChange={this.onCountriesChange}
+                countriesData={this.state.countriesData}
                 iBAN={this.state.iBAN}
                 iBANValueChange={text => this.setState({iBAN: text})}
                 swiftBIC={this.state.swiftBIC}
@@ -531,8 +622,9 @@ class Screen extends Component {
                 bankNameChange={text => this.setState({bankName: text})}
                 bankAddress={this.state.bankAddress}
                 bankAddressChange={text => this.setState({bankAddress: text})}
-                myCurrency={this.state.myCurrency}
-                myCurrencyValue={text => this.setState({myCurrency: text})}
+                currencyValue={this.state.currencyValue}
+                currencyValueChange={this.onCurrencyChange}
+                currencyData={this.state.currencyData}
                 branchName={this.state.branchName}
                 branchNameChange={text => this.setState({branchName: text})}
                 cityName={this.state.cityName}
@@ -573,8 +665,6 @@ class Screen extends Component {
                 }
                 accountName={this.state.accountName}
                 accountNameChange={text => this.setState({accountName: text})}
-                myCurrency={this.state.myCurrency}
-                myCurrencyValue={text => this.setState({myCurrency: text})}
                 bankName={this.state.bankName}
                 bankNameChange={text => this.setState({bankName: text})}
                 bankAddress={this.state.bankAddress}

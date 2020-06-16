@@ -83,9 +83,9 @@ class ClaimScreen extends Component {
     };
   }
 
-  getClaims = async() => { 
+  Claims = async() => { 
     try {
-  const    data = await api.claims();
+  const    data = await api.getClaims();
   this.setState({
     loading: false,
     dataSource: data
@@ -96,7 +96,7 @@ class ClaimScreen extends Component {
   };
 
   componentDidMount(){
-this.getClaims();
+this.Claims();
   }
     
   renderItem = item => {
