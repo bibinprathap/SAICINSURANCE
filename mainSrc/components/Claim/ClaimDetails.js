@@ -47,11 +47,11 @@ const pickerSelectStyles = StyleSheet.create({
 
 class ClaimDetailScreen extends Component {
   constructor(props) {
-    super(props);
+    super(props); 
     this.state = {
       ...emptyLoginScreenState,
-      serviceselected: "",
-      typeselected: "",
+     
+      typeselected: "Dentel",
       currencyselected: "",
       
       dataSource: [
@@ -88,65 +88,57 @@ class ClaimDetailScreen extends Component {
     };
   }
 
-  Providers = async() => { 
-    try {
-  const    data = await api.getProviders();
-  this.setState({
-    loading: false,
-    providerData: data
-  })
-    } catch (error) {
-      console.log(error); 
-    }
-  };
-  ServiceType = async() => { 
-    try {
-  const    data = await api.getServiceType();
-  this.setState({
-    loading: false,
-    serviceData: data
-  })
-    } catch (error) {
-      console.log(error); 
-    }
-  };
-  Currency = async() => { 
-    try {
-  const    data = await api.getCurrency();
-  this.setState({
-    loading: false,
-    currencyData: data
-  })
-    } catch (error) {
-      console.log(error); 
-    }
-  };
+  // Providers = async() => { 
+  //   try {
+  // const    data = await api.getProviders();
+  // this.setState({
+  //   loading: false,
+  //   providerData: data
+  // })
+  //   } catch (error) {
+  //     console.log(error); 
+  //   }
+  // };
+  // ServiceType = async() => { 
+  //   try {
+  // const    data = await api.getServiceType();
+  // this.setState({
+  //   loading: false,
+  //   serviceData: data
+  // })
+  //   } catch (error) {
+  //     console.log(error); 
+  //   }
+  // };
+  // Currency = async() => { 
+  //   try {
+  // const    data = await api.getCurrency();
+  // this.setState({
+  //   loading: false,
+  //   currencyData: data
+  // })
+  //   } catch (error) {
+  //     console.log(error); 
+  //   }
+  // };
 
 
-  componentDidMount() {
+  // componentDidMount() {
     
-    this.Providers();
-    this.ServiceType();
-    this.Currency();
-  }
+  //   this.Providers();
+  //   this.ServiceType();
+  //   this.Currency();
+  // }
 
   onValueChange(value) {
-        this.setState({
-          serviceselected: value
-        });
+        this.props.onSelectNumber(value);
   }
 
   onTypeValueChange(value) {
-
-    this.setState({
-      typeselected: value
-    });
+    this.props.serviceTypeChange(value);
 }
 onCurrencyValueChange(value) {
-
-  this.setState({
-    currencyselected: value
-  });
+  this.props.currencyValueChange(value);
 }
   render() {
     return (
@@ -159,7 +151,7 @@ onCurrencyValueChange(value) {
                     mode="dropdown"
                     iosHeader="Select"
                     iosIcon={<Icon name="arrow-dropdown-circle" style={{ color: "#007aff", fontSize: 14 }} />}
-                    selectedValue={this.state.serviceselected}
+                    selectedValue={this.props.selectNumberValue}
                     onValueChange={this.onValueChange.bind(this)}
                   >                
                       <Picker.Item label="97" value="97" />
@@ -242,10 +234,10 @@ onCurrencyValueChange(value) {
                     mode="dropdown"
                     iosHeader="Select"
                     iosIcon={<Icon name="arrow-dropdown-circle" style={{ color: "#007aff", fontSize: 14 }} />}
-                    selectedValue={this.state.typeselected}
+                    selectedValue={this.props.serviceType}
                     onValueChange={this.onTypeValueChange.bind(this)}
                   >                
-                        {this.state.serviceData.map((_ID, index) => (
+                        {this.props.serviceData.map((_ID, index) => (
                       <Picker.Item label={_ID.Ename} value={index} />
                     ))}
                   </Picker>
@@ -319,11 +311,11 @@ onCurrencyValueChange(value) {
                     mode="dropdown"
                     iosHeader="Select"
                     iosIcon={<Icon name="arrow-dropdown-circle" style={{ color: "#007aff", fontSize: 14 }} />}
-                    selectedValue={this.state.currencyselected}
+                    selectedValue={this.props.currencyValue}
                     onValueChange={this.onCurrencyValueChange.bind(this)}
                     
                   >                
-                       {this.state.currencyData.map((_ID, index) => (
+                       {this.props.currencyData.map((_ID, index) => (
                       <Picker.Item label={_ID.CurrencyCode} value={index} />
                     ))}
                   </Picker>

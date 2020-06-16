@@ -3,6 +3,7 @@ import {View, Text, StyleSheet, Dimensions, TextInput} from 'react-native';
 import Panel from '../Panel';
 import {PrimaryColor} from '../../config';
 import DefaultText from '../DefaultText';
+import { Picker, Icon } from 'native-base';
 import Icons from 'react-native-vector-icons/MaterialIcons';
 import {ScrollView} from 'react-native-gesture-handler';
 import PaymentMethod from '../PaymentMethod';
@@ -38,11 +39,54 @@ const pickerSelectStyles = StyleSheet.create({
 class PaymentMethods extends Component {
   constructor(props) {
     super(props);
+    this.state = {
+      paymentOptions: "",
+      currencyselected: "",
+      currencyData: [
+        {
+          "ID": 5,
+        "Country": "Iraq",
+        "CurrencyCode": "IQD"
+        },
+      ],
+      accountData: [
+        {
+          "ID": 1,
+        "AccountCode": "11113444"
+        },
+        {
+          "ID": 1,
+        "AccountCode": "1234567"
+        },
+        {
+          "ID": 1,
+        "AccountCode": "987654321"
+        },
+        {
+          "ID": 1,
+        "AccountCode": "654345654"
+        },
+        {
+          "ID": 1,
+        "AccountCode": "2345678"
+        },
+      ]
+    
+    }
     this.placeholder = {
       label: 'Select a value',
       value: null,
     };
   }
+
+  onValueChange(value) {
+    this.setState({
+      paymentOptions: value
+    });
+}
+onCurrencyValueChange(value) {
+  this.props.currencyValueChange(value);
+}
   render() {
     return (
       <ScrollView showsVerticalScrollIndicator={false}>
@@ -66,11 +110,21 @@ class PaymentMethods extends Component {
                 }}>
                 <Icons size={20} name="done" color="white" />
               </View>
-              <DefaultText style={{paddingLeft: 10}}>Bank Transfer</DefaultText>
+              {/* <DefaultText style={{paddingLeft: 10}}>Bank Transfer</DefaultText> */}
+              <Picker
+                    mode="dropdown"
+                    iosHeader="Select"
+                    iosIcon={<Icon name="arrow-dropdown-circle" style={{ color: "#007aff", fontSize: 14 }} />}
+                    selectedValue={this.state.paymentOptions}
+                    onValueChange={this.onValueChange.bind(this)}
+                  >     
+                      <Picker.Item label="Cash" value="Cash" />           
+                      <Picker.Item label="Bank Transfer" value="Bank Transfer" />            
+                  </Picker>
             </View>
           </View>
         </Panel>
-
+        {this.state.paymentOptions=="Bank Transfer" ?
         <Panel header="Bank Account Details" maxItem={640}>
           <View style={{flex: 1}}>
             <View style={[styles.header]}>
@@ -80,7 +134,7 @@ class PaymentMethods extends Component {
                 nextIcon
                 addNotes
                 start>
-                <RNPickerSelect
+                {/* <RNPickerSelect
                   placeholder={this.placeholder}
                   onValueChange={this.props.myCountryValueChange}
                   value={this.props.myCountry}
@@ -99,7 +153,19 @@ class PaymentMethods extends Component {
                       right: 12,
                     },
                   }}
-                />
+                /> */}
+                  <Picker
+                    mode="dropdown"
+                    iosHeader="Select"
+                    iosIcon={<Icon name="arrow-dropdown-circle" style={{ color: "#007aff", fontSize: 14 }} />}
+                    selectedValue={this.props.currencyValue}
+                    onValueChange={this.onCurrencyValueChange.bind(this)}
+                    
+                  >                
+                       {this.props.countriesData.map((_ID, index) => (
+                      <Picker.Item label={_ID.EName} value={index} />
+                    ))}
+                  </Picker>
               </PaymentMethod>
               <PaymentMethod title="IBAN" value="" addNotes start>
                 <TextInput
@@ -121,7 +187,7 @@ class PaymentMethods extends Component {
                 nextIcon
                 addNotes
                 start>
-                <RNPickerSelect
+                {/* <RNPickerSelect
                   placeholder={this.placeholder}
                   value={this.props.accountNumber}
                   onValueChange={this.props.accountValueChange}
@@ -140,7 +206,20 @@ class PaymentMethods extends Component {
                       right: 12,
                     },
                   }}
-                />
+                /> */}
+                <Picker
+                    mode="dropdown"
+                    iosHeader="Select"
+                    iosIcon={<Icon name="arrow-dropdown-circle" style={{ color: "#007aff", fontSize: 14 }} />}
+                    selectedValue={this.props.currencyValue}
+                    onValueChange={this.onCurrencyValueChange.bind(this)}
+                    
+                  >                
+                       {this.state.accountData.map((_ID, index) => (
+                      <Picker.Item label={_ID.AccountCode} value={index} />
+                    ))}
+                  </Picker>
+
               </PaymentMethod>
               <PaymentMethod title="Account Name" value="" addNotes start>
                 <TextInput
@@ -156,7 +235,7 @@ class PaymentMethods extends Component {
                 nextIcon
                 addNotes
                 start>
-                <RNPickerSelect
+                {/* <RNPickerSelect
                   placeholder={this.placeholder}
                   value={this.props.myCurrency}
                   onValueChange={this.props.myCurrencyValue}
@@ -175,7 +254,19 @@ class PaymentMethods extends Component {
                       right: 12,
                     },
                   }}
-                />
+                /> */}
+                   <Picker
+                    mode="dropdown"
+                    iosHeader="Select"
+                    iosIcon={<Icon name="arrow-dropdown-circle" style={{ color: "#007aff", fontSize: 14 }} />}
+                    selectedValue={this.props.currencyValue}
+                    onValueChange={this.onCurrencyValueChange.bind(this)}
+                    
+                  >                
+                       {this.props.currencyData.map((_ID, index) => (
+                      <Picker.Item label={_ID.CurrencyCode} value={index} />
+                    ))}
+                  </Picker>
               </PaymentMethod>
               <PaymentMethod
                 title="Bank Name"
@@ -233,6 +324,9 @@ class PaymentMethods extends Component {
             </View>
           </View>
         </Panel>
+        : 
+        null
+   }
       </ScrollView>
     );
   }

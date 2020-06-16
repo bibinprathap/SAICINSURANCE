@@ -104,6 +104,21 @@ export default class AppApi {
     }
   };
 
+  getCountries = async params => {
+    const restApi = new RestApi({controller: `api/Countries?EmployeeCode`});
+    try {
+      let response = await restApi.get({
+        url: '',
+        body: '',
+        cancelable: true,
+        showAlerts: true,
+      });
+      return response.data;
+    } catch (error) {
+      throw error;
+    }
+  };
+
   getClaims = async params => {
     const restApi = new RestApi({controller: `api/GetClaims?PolicyCode=CP1912151312482198510`});
     try {
