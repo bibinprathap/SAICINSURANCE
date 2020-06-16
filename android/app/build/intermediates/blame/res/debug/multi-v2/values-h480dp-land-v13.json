@@ -1,10 +1,10 @@
 {
     "logs": [
         {
-            "outputFile": "/Users/poojagugu/Desktop/latest/SAICINSURANCE/android/app/build/intermediates/incremental/mergeDebugResources/merged.dir/values-h480dp-land-v13/values-h480dp-land-v13.xml",
+            "outputFile": "/Users/bibinprathap/Documents/react-native/insurance/1/RNVideoChat/android/app/build/intermediates/incremental/mergeDebugResources/merged.dir/values-h480dp-land-v13/values-h480dp-land-v13.xml",
             "map": [
                 {
-                    "source": "/Users/poojagugu/.gradle/caches/transforms-2/files-2.1/0592b960560c4db6848ec5b2367a60a6/res/values-h480dp-land-v13/values-h480dp-land-v13.xml",
+                    "source": "/Users/bibinprathap/.gradle/caches/transforms-2/files-2.1/004e3a9ea5ec3c5bf20620ac15df4b3b/res/values-h480dp-land-v13/values-h480dp-land-v13.xml",
                     "from": {
                         "startLines": "2,3,4,5,6,7,8,9,10",
                         "startColumns": "4,4,4,4,4,4,4,4,4",

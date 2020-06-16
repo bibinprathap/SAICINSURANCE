@@ -1,4 +1,4 @@
-#Mon Jun 15 10:19:35 GST 2020
-base.0=/Users/poojagugu/Desktop/latest/SAICINSURANCE/android/app/build/intermediates/transforms/dexMerger/debug/0
+#Mon Jun 15 22:24:51 GST 2020
+base.0=/Users/bibinprathap/Documents/react-native/insurance/1/RNVideoChat/android/app/build/intermediates/transforms/dexMerger/debug/0
 renamed.0=classes.dex
 path.0=classes.dex

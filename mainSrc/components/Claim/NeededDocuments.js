@@ -5,17 +5,17 @@ import {
   StyleSheet,
   Dimensions,
   TouchableOpacity,
-  ActionSheetIOS,
   Platform,
   ImageBackground,
   Image,
 } from 'react-native';
 import Panel from '../Panel';
 import {PrimaryColor, assetColor} from '../../config';
-import ClaimDetails from '../ClaimDetails';
+import {connect} from 'react-redux';
 import DefaultText from '../DefaultText';
 import Icons from 'react-native-vector-icons/MaterialIcons';
 import ImagePicker from 'react-native-image-crop-picker';
+import uploadHelper from '../../api/helperServices/upload';
 import Modal from 'react-native-modal';
 import {
   widthPercentageToDP as wp,
@@ -24,18 +24,16 @@ import {
 import {ScrollView} from 'react-native-gesture-handler';
 import CameraImage from '../../assets/src_assets_camera.png';
 import GalleryImage from '../../assets/src_assets_gallery.png';
+import strings from '../../api/helperServices/language';
 const {width, height} = Dimensions.get('screen');
 const normalizeFont = size => {
   return size * (width * 0.0025);
 };
 
-var BUTTONS = ['Iraqi dinar', 'US dollar', 'Other', 'Cancel'];
-var CANCEL_INDEX = 3;
-
 class ClaimDetailScreen extends Component {
   constructor(props) {
     super(props);
-    this.onPress = Platform.OS === 'ios' && this.showActionSheet.bind(this);
+
     this.pickSingle = this.pickSingle.bind(this);
     this.state = {
       image: null,
@@ -64,6 +62,25 @@ class ClaimDetailScreen extends Component {
           },
           images: null,
         });
+        //const uri =image.path.indexOf('file')==-1? `file://${image.path}`:image.path;
+        // const uri =imagePicker.uri;
+        const uri = image.path.replace('file://', '');
+        const formData = {
+          ClaimId: '7',
+          CreatedBy: '2',
+          DocType: '1',
+          customUploadId: `u-${new Date().getTime()}`,
+        };
+        formData.uploadId = formData.customUploadId;
+        // this.props.dispatch(
+        //   infoChanged(formData.documentType, formData.customUploadId),
+        // );
+        uploadHelper
+          .startUpload(uri, formData, 'api/SaveFile', '')
+          .then(res => {
+            console.log('res', res);
+            // alertsHelper.hideAlert();
+          });
       })
       .catch(e => console.log(e));
   }
@@ -92,33 +109,37 @@ class ClaimDetailScreen extends Component {
           },
           images: null,
         });
+
+        // const uri = `file://${image.path}`;
+
+        //  const uri =image.path.indexOf('file')==-1? `file://${image.path}`:image.path;
+        // const uri =imagePicker.uri;
+        const uri = image.path.replace('file://', '');
+        const formData = {
+          ClaimId: '7',
+          CreatedBy: '2',
+          DocType: '1',
+          customUploadId: `u-${new Date().getTime()}`,
+        };
+        formData.uploadId = formData.customUploadId;
+        // this.props.dispatch(
+        //   infoChanged(formData.documentType, formData.customUploadId),
+        // );
+        uploadHelper
+          .startUpload(uri, formData, 'api/SaveFile', '')
+          .then(res => {
+            console.log('res', res);
+            // alertsHelper.hideAlert();
+          });
       })
       .catch(e => {
         console.log(e);
       });
   }
 
-  showActionSheet = () => {
-    console.log('hello');
-    ActionSheetIOS.showActionSheetWithOptions(
-      {
-        options: ['Take Photo', 'Photo Library', 'Browser', 'Cancel'],
-        cancelButtonIndex: 3,
-        // destructiveButtonIndex: DESTRUCTIVE_INDEX,
-      },
-      buttonIndex => {
-        console.log(buttonIndex, 'buttonIndex');
-        if (buttonIndex === 0) {
-          this.pickSingleWithCamera(false);
-        } else if (buttonIndex === 1) {
-          this.pickSingle(false);
-        }
-      },
-    );
-  };
-
   renderPickerModal() {
     const {pickerModal} = this.state;
+    const {language} = this.props;
     return (
       <Modal
         isVisible={pickerModal}
@@ -143,7 +164,7 @@ class ClaimDetailScreen extends Component {
             style={{flex: 1, justifyContent: 'center', alignItems: 'center'}}>
             <Image source={CameraImage} style={{width: 100, height: 100}} />
             <Text style={{fontFamily: 'Roboto-Bold', paddingTop: 15}}>
-              Camera
+              {strings({key: 'Camera', language})}
             </Text>
           </TouchableOpacity>
           <TouchableOpacity
@@ -152,7 +173,7 @@ class ClaimDetailScreen extends Component {
             style={{flex: 1, justifyContent: 'center', alignItems: 'center'}}>
             <Image source={GalleryImage} style={{width: 100, height: 100}} />
             <Text style={{fontFamily: 'Roboto-Bold', paddingTop: 15}}>
-              Gallery
+              {strings({key: 'Gallery', language})}
             </Text>
           </TouchableOpacity>
         </View>
@@ -161,19 +182,22 @@ class ClaimDetailScreen extends Component {
   }
 
   render() {
+    const {language} = this.props;
     return (
       <ScrollView showsVerticalScrollIndicator={false}>
         {this.renderPickerModal()}
-        <Panel header="Needed Documents" maxItem={250}>
+        <Panel
+          header={strings({key: 'NeededDocuments', language})}
+          maxItem={250}>
           <View style={{margin: 10, backgroundColor: 'white', flex: 1}}>
             <DefaultText style={{fontSize: normalizeFont(16)}}>
-              Claim Details{' '}
+              {strings({key: 'ClaimDetails', language})}
               <Text style={{color: PrimaryColor, fontSize: normalizeFont(20)}}>
                 *
               </Text>
             </DefaultText>
             <DefaultText style={{fontSize: normalizeFont(16)}}>
-              Invoice{' '}
+              {strings({key: 'Invoice', language})}
               <Text style={{color: PrimaryColor, fontSize: normalizeFont(20)}}>
                 *
               </Text>
@@ -190,14 +214,18 @@ class ClaimDetailScreen extends Component {
             </DefaultText>
           </View>
         </Panel>
-        <Panel header="Uploaded Documents" maxItem={250}>
+
+        <View>{this.props.children}</View>
+        {/* <Panel
+          header={strings({key: 'UploadedDocuments', language})}
+          maxItem={this.props.Maxlength}>
+         
           <ImageBackground
-            source={this.props.image}
+            source={this.state.image}
             style={{margin: 10, backgroundColor: 'white', flex: 1}}>
             {Platform.OS === 'android' ? (
               <TouchableOpacity
                 onPress={() => this.setState({pickerModal: true})}
-                // onPress={Platform.OS === 'android' && this.showActionSheet}
                 style={{
                   alignItems: 'flex-end',
                   paddingRight: 10,
@@ -214,7 +242,6 @@ class ClaimDetailScreen extends Component {
               </TouchableOpacity>
             ) : (
               <TouchableOpacity
-                // onPress={this.showActionSheet}
                 onPress={this.props.showActionSheet}
                 style={{
                   alignItems: 'flex-end',
@@ -233,9 +260,9 @@ class ClaimDetailScreen extends Component {
             )}
           </ImageBackground>
         </Panel>
-        <Panel header="Add Documents" maxItem={250}>
+        {/* <Panel header="Add Documents" maxItem={250}>
           <View style={{margin: 10, backgroundColor: 'white', flex: 1}} />
-        </Panel>
+        </Panel> */}
       </ScrollView>
     );
   }
@@ -273,4 +300,10 @@ const styles = StyleSheet.create({
   },
 });
 
-export default ClaimDetailScreen;
+const mapStateToProps = state => {
+  return {
+    language: state.language.defaultLanguage,
+  };
+};
+
+export default connect(mapStateToProps)(ClaimDetailScreen);

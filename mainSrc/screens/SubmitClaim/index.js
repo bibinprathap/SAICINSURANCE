@@ -6,6 +6,8 @@ import {
   Dimensions,
   TouchableOpacity,
   Image,
+  Platform,
+  ImageBackground,
 } from 'react-native';
 import ImagePicker from 'react-native-image-crop-picker';
 import {PrimaryColor, assetColor} from '../../config';
@@ -28,6 +30,7 @@ import Modal from 'react-native-modal';
 import GalleryImage from '../../assets/src_assets_gallery.png';
 import {connect} from 'react-redux';
 import strings from '../../api/helperServices/language';
+import {FlatList} from 'react-native-gesture-handler';
 const {width, height} = Dimensions.get('screen');
 const normalizeFont = size => {
   return size * (width * 0.0025);
@@ -74,6 +77,8 @@ const customStyles = {
 };
 
 let Today;
+var imageArray = [];
+var count = 0;
 
 class Screen extends Component {
   constructor(props) {
@@ -118,6 +123,8 @@ class Screen extends Component {
       cityName: '',
       phoneNumber: '',
       emailName: '',
+      imageSource: [],
+      indexCount: 0,
     };
   }
 
@@ -125,10 +132,9 @@ class Screen extends Component {
     //const data = await api.getServiceType();
     //console.log(data, 'data');
   }
-  renderModel(){
-   
+  renderModel() {
     this.props.navigation.goBack();
-}
+  }
 
   pickSingleWithCamera(cropping, mediaType = 'photo') {
     ImagePicker.openCamera({
@@ -139,27 +145,37 @@ class Screen extends Component {
       mediaType,
     })
       .then(image => {
-        console.log('received image', image);
         this.setState({
           pickerModal: false,
-          image: {
-            uri: image.path,
-            width: image.width,
-            height: image.height,
-            mime: image.mime,
-          },
-          images: null,
         });
+
+        var countData = count;
+
+        let imageChoosen = {
+          uri: image.path,
+          width: image.width,
+          height: image.height,
+          mime: image.mime,
+        };
+
+        let array = {
+          Image: imageChoosen,
+          index: countData,
+        };
+
+        imageArray.push(array);
+
+        this.setState({imageSource: imageArray}, () => count++);
       })
       .catch(e => console.log(e));
   }
 
-  pickSingle(cropit, circular = false, mediaType) {
+  pickSingle = index => {
     ImagePicker.openPicker({
       width: 500,
       height: 500,
-      cropping: cropit,
-      cropperCircleOverlay: circular,
+      cropping: false,
+      cropperCircleOverlay: false,
       sortOrder: 'none',
       compressImageMaxWidth: 1000,
       compressImageMaxHeight: 1000,
@@ -170,19 +186,30 @@ class Screen extends Component {
       .then(image => {
         this.setState({
           pickerModal: false,
-          image: {
-            uri: image.path,
-            width: image.width,
-            height: image.height,
-            mime: image.mime,
-          },
-          images: null,
         });
+
+        var countData = count;
+
+        let imageChoosen = {
+          uri: image.path,
+          width: image.width,
+          height: image.height,
+          mime: image.mime,
+        };
+
+        let array = {
+          Image: imageChoosen,
+          index: countData,
+        };
+
+        imageArray.push(array);
+
+        this.setState({imageSource: imageArray}, () => count++);
       })
       .catch(e => {
         console.log(e);
       });
-  }
+  };
 
   continueAction = () => {
     const {
@@ -220,7 +247,7 @@ class Screen extends Component {
     }
 
     if (currentPosition === 1) {
-      if (this.state.image === null) {
+      if (!this.state.imageSource.length) {
         alert('Upload Image before continue');
         return;
       }
@@ -257,8 +284,44 @@ class Screen extends Component {
     }
   };
 
+  renderImage = itemData => {
+    let item = itemData.item;
+    let indexCount = itemData.index;
+
+    console.log(indexCount, 'index');
+
+    console.log(item, 'itemssss');
+
+    return (
+      <ImageBackground
+        source={item.Image}
+        style={{margin: 10, backgroundColor: 'white', flex: 1, height: 200}}>
+        <TouchableOpacity
+          onPress={() => {
+            imageArray.splice(indexCount, 1);
+            this.setState({imageSource: imageArray});
+          }}
+          style={{
+            alignItems: 'flex-end',
+            paddingRight: 10,
+            paddingTop: 10,
+          }}>
+          <View
+            style={{
+              backgroundColor: assetColor,
+              padding: 10,
+              borderRadius: 20,
+            }}>
+            <Icons size={hp('2.5')} name="delete" color="#fff" />
+          </View>
+        </TouchableOpacity>
+      </ImageBackground>
+    );
+  };
+
   renderPickerModal() {
     const {pickerModal} = this.state;
+    const {language} = this.props;
     return (
       <Modal
         isVisible={pickerModal}
@@ -283,16 +346,18 @@ class Screen extends Component {
             style={{flex: 1, justifyContent: 'center', alignItems: 'center'}}>
             <Image source={CameraImage} style={{width: 100, height: 100}} />
             <Text style={{fontFamily: 'Roboto-Bold', paddingTop: 15}}>
-              Camera
+              {strings({key: 'Camera', language})}
             </Text>
           </TouchableOpacity>
           <TouchableOpacity
-            onPress={() => this.pickSingle()}
+            onPress={() => {
+              this.pickSingle();
+            }}
             activeOpacity={0.9}
             style={{flex: 1, justifyContent: 'center', alignItems: 'center'}}>
             <Image source={GalleryImage} style={{width: 100, height: 100}} />
             <Text style={{fontFamily: 'Roboto-Bold', paddingTop: 15}}>
-              Gallery
+              {strings({key: 'Gallery', language})}
             </Text>
           </TouchableOpacity>
         </View>
@@ -305,6 +370,29 @@ class Screen extends Component {
     return re.test(email);
   };
 
+  renderFooter = () => {
+    const {language} = this.props;
+    return (
+      <View
+        style={{
+          backgroundColor: 'white',
+          borderColor: PrimaryColor,
+          borderWidth: 1,
+          justifyContent: 'center',
+          alignItems: 'center',
+          height: 40,
+          marginTop: 10,
+        }}>
+        <TouchableOpacity
+          onPress={() => {
+            this.setState({pickerModal: true});
+          }}>
+          <Text>{strings({key: 'AddImage', language})}</Text>
+        </TouchableOpacity>
+      </View>
+    );
+  };
+
   render() {
     const {claimID} = this.state;
     const {language} = this.props;
@@ -314,11 +402,11 @@ class Screen extends Component {
         <ForgetModal
           isVisible={this.state.cancelModal}
           onBackdropPress={() => this.setState({cancelModal: false})}
-          renderModel= {() => this.props.navigation.goBack()}
+          renderModel={() => this.props.navigation.goBack()}
           hideModal={() => this.setState({cancelModal: false})}
           iconName="person"
-          title="Attention"
-          subTitle="Are you sure you want to cancel claim submission?"
+          title={strings({key: 'Attention', language})}
+          subTitle={strings({key: 'headerModalText', language})}
         />
         <View style={styles.Headercontainer}>
           <View style={styles.topContainer}>
@@ -413,8 +501,18 @@ class Screen extends Component {
             ) : this.state.currentPosition === 1 ? (
               <NeededDocuments
                 image={this.state.image}
-                showActionSheet={() => this.setState({pickerModal: true})}
-              />
+                Maxlength={400}
+                showActionSheet={() => this.setState({pickerModal: true})}>
+                <View style={{flex: 1, paddingTop: 10}}>
+                  <Text style={styles.text}>Uploaded Documents</Text>
+                  <FlatList
+                    data={this.state.imageSource}
+                    keyExtractor={(item, index) => index.toString()}
+                    renderItem={itemDtata => this.renderImage(itemDtata)}
+                    ListFooterComponent={this.renderFooter}
+                  />
+                </View>
+              </NeededDocuments>
             ) : this.state.currentPosition === 2 ? (
               <PaymentMethod
                 myCountry={this.state.myCountry}
@@ -489,8 +587,14 @@ class Screen extends Component {
                 phoneNumberChange={text => this.setState({phoneNumber: text})}
                 emailName={this.state.emailName}
                 emailChange={text => this.setState({emailName: text})}
-                showActionSheet={() => this.setState({pickerModal: true})}
-              />
+                showActionSheet={() => this.setState({pickerModal: true})}>
+                <FlatList
+                  data={this.state.imageSource}
+                  keyExtractor={(item, index) => index.toString()}
+                  renderItem={itemDtata => this.renderImage(itemDtata)}
+                  // ListFooterComponent={this.renderFooter}
+                />
+              </Confirmation>
             )}
           </View>
           <TouchableOpacity
@@ -538,6 +642,11 @@ const styles = StyleSheet.create({
     flex: 0.6,
     flexDirection: 'row',
     justifyContent: 'space-between',
+  },
+  text: {
+    fontSize: 18,
+    paddingLeft: 5,
+    fontFamily: 'UberMoveText-Light',
   },
 });
 

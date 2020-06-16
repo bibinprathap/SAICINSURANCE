@@ -1,7 +1,8 @@
 import React, {Component} from 'react';
 import {View, Text, StyleSheet, Dimensions, TextInput} from 'react-native';
 import Panel from '../Panel';
-import {PrimaryColor} from '../../config';
+import strings from '../../api/helperServices/language';
+import {connect} from 'react-redux';
 import DefaultText from '../DefaultText';
 import Icons from 'react-native-vector-icons/MaterialIcons';
 import {ScrollView} from 'react-native-gesture-handler';
@@ -42,11 +43,16 @@ class PaymentMethods extends Component {
       label: 'Select a value',
       value: null,
     };
+    this.placeholderAR = {
+      label: 'تحديد قيمة',
+      value: null,
+    };
   }
   render() {
+    const {language} = this.props;
     return (
       <ScrollView showsVerticalScrollIndicator={false}>
-        <Panel header="Payment Method" maxItem={120}>
+        <Panel header={strings({key: 'PaymentMethod', language})} maxItem={120}>
           <View style={{flex: 1}}>
             <View
               style={[
@@ -66,22 +72,29 @@ class PaymentMethods extends Component {
                 }}>
                 <Icons size={20} name="done" color="white" />
               </View>
-              <DefaultText style={{paddingLeft: 10}}>Bank Transfer</DefaultText>
+              <DefaultText style={{paddingLeft: 10}}>
+                {strings({key: 'BankTransfer', language})}
+              </DefaultText>
             </View>
           </View>
         </Panel>
 
-        <Panel header="Bank Account Details" maxItem={640}>
+        <Panel
+          header={strings({key: 'BankAccountDetails', language})}
+          maxItem={640}>
           <View style={{flex: 1}}>
             <View style={[styles.header]}>
               <PaymentMethod
-                title="Country"
-                value="United Arab Emirates"
+                title={strings({key: 'Country', language})}
                 nextIcon
                 addNotes
                 start>
                 <RNPickerSelect
-                  placeholder={this.placeholder}
+                  placeholder={
+                    language === 'English'
+                      ? this.placeholder
+                      : this.placeholderAR
+                  }
                   onValueChange={this.props.myCountryValueChange}
                   value={this.props.myCountry}
                   items={[
@@ -108,7 +121,7 @@ class PaymentMethods extends Component {
                   onChangeText={this.props.iBANValueChange}
                 />
               </PaymentMethod>
-              <PaymentMethod title="SWIFT/BIC" value="EBILAED" addNotes start>
+              <PaymentMethod title="SWIFT/BIC" addNotes start>
                 <TextInput
                   placeholder="SWIFT/BIC"
                   value={this.props.swiftBIC}
@@ -116,13 +129,17 @@ class PaymentMethods extends Component {
                 />
               </PaymentMethod>
               <PaymentMethod
-                title="Account Number"
+                title={strings({key: 'AccountNumber', language})}
                 value=""
                 nextIcon
                 addNotes
                 start>
                 <RNPickerSelect
-                  placeholder={this.placeholder}
+                  placeholder={
+                    language === 'English'
+                      ? this.placeholder
+                      : this.placeholderAR
+                  }
                   value={this.props.accountNumber}
                   onValueChange={this.props.accountValueChange}
                   items={[
@@ -142,22 +159,29 @@ class PaymentMethods extends Component {
                   }}
                 />
               </PaymentMethod>
-              <PaymentMethod title="Account Name" value="" addNotes start>
+              <PaymentMethod
+                title={strings({key: 'AccountName', language})}
+                value=""
+                addNotes
+                start>
                 <TextInput
-                  placeholder="Account Name"
+                  placeholder={strings({key: 'AccountName', language})}
                   value={this.props.accountName}
                   onChangeText={this.props.accountNameChange}
                 />
               </PaymentMethod>
 
               <PaymentMethod
-                title="Currency"
-                value="AED"
+                title={strings({key: 'Currency', language})}
                 nextIcon
                 addNotes
                 start>
                 <RNPickerSelect
-                  placeholder={this.placeholder}
+                  placeholder={
+                    language === 'English'
+                      ? this.placeholder
+                      : this.placeholderAR
+                  }
                   value={this.props.myCurrency}
                   onValueChange={this.props.myCurrencyValue}
                   items={[
@@ -178,54 +202,65 @@ class PaymentMethods extends Component {
                 />
               </PaymentMethod>
               <PaymentMethod
-                title="Bank Name"
-                value="Punjab National Bank"
+                title={strings({key: 'BankName', language})}
                 addNotes
                 start>
                 <TextInput
-                  placeholder="Bank Name"
+                  placeholder={strings({key: 'BankName', language})}
                   value={this.props.bankName}
                   onChangeText={this.props.bankNameChange}
                 />
               </PaymentMethod>
               <PaymentMethod
-                title="Bank Address"
+                title={strings({key: 'BankAddress', language})}
                 value="BENYAS STREET,DEIRA"
                 addNotes
                 start>
                 <TextInput
-                  placeholder="Bank Address"
+                  placeholder={strings({key: 'BankAddress', language})}
                   value={this.props.bankAddress}
                   onChangeText={this.props.bankAddressChange}
                 />
               </PaymentMethod>
-              <PaymentMethod title="Branch" value="" addNotes>
+              <PaymentMethod
+                title={strings({key: 'Branch', language})}
+                value=""
+                addNotes>
                 <TextInput
-                  placeholder="Branch Name"
+                  placeholder={strings({key: 'Branch', language})}
                   value={this.props.branchName}
                   onChangeText={this.props.branchNameChange}
                 />
               </PaymentMethod>
-              <PaymentMethod title="City" value="DUBAI" addNotes>
+              <PaymentMethod
+                title={strings({key: 'City', language})}
+                value="DUBAI"
+                addNotes>
                 <TextInput
-                  placeholder="City"
+                  placeholder={strings({key: 'City', language})}
                   value={this.props.cityName}
                   onChangeText={this.props.cityNameChange}
                 />
               </PaymentMethod>
-              <PaymentMethod title="Phone" value="" addNotes>
+              <PaymentMethod
+                title={strings({key: 'Phone', language})}
+                value=""
+                addNotes>
                 <TextInput
-                  placeholder="Phone"
+                  placeholder={strings({key: 'Phone', language})}
                   keyboardType="phone-pad"
                   returnKeyType="done"
                   value={this.props.phoneNumber}
                   onChangeText={this.props.phoneNumberChange}
                 />
               </PaymentMethod>
-              <PaymentMethod title="Email" value="" addNotes>
+              <PaymentMethod
+                title={strings({key: 'Email', language})}
+                value=""
+                addNotes>
                 <TextInput
                   keyboardType="email-address"
-                  placeholder="Email"
+                  placeholder={strings({key: 'Email', language})}
                   value={this.props.emailName}
                   onChangeText={this.props.emailChange}
                 />
@@ -265,4 +300,10 @@ const styles = StyleSheet.create({
   },
 });
 
-export default PaymentMethods;
+const mapStateToProps = state => {
+  return {
+    language: state.language.defaultLanguage,
+  };
+};
+
+export default connect(mapStateToProps)(PaymentMethods);

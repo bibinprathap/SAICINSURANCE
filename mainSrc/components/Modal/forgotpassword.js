@@ -13,6 +13,8 @@ import {
   widthPercentageToDP as wp,
   heightPercentageToDP as hp,
 } from 'react-native-responsive-screen';
+import {connect} from 'react-redux';
+import strings from '../../api/helperServices/language';
 import {PrimaryColor} from '../../config';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 const {width} = Dimensions.get('screen');
@@ -22,6 +24,7 @@ const normalizeFont = size => {
 
 class AddCustomerModal extends Component {
   render() {
+    const {language} = this.props;
     return (
       <Modal
         {...this.props}
@@ -79,45 +82,55 @@ class AddCustomerModal extends Component {
                 color: '#576574',
                 fontFamily: 'Roboto-Medium',
               }}>
-            {this.props.subTitle}
+              {this.props.subTitle}
             </Text>
           </View>
-        {this.props.forgot ? (
-          <View style={styles.mainContainer}>
-            <View style={styles.viewContainer}>
-              <TextInput
-                value={this.props.businessName}
-                placeholder="Email"
-                style={styles.textInput}
-                onChangeText={this.props.changeBusinessName}
-              />
-            </View>
+          {this.props.forgot ? (
+            <View style={styles.mainContainer}>
+              <View style={styles.viewContainer}>
+                <TextInput
+                  value={this.props.businessName}
+                  placeholder={strings({key: 'email', language})}
+                  style={styles.textInput}
+                  onChangeText={this.props.changeBusinessName}
+                />
+              </View>
 
-            <View style={styles.addButtonContainer}>
+              <View style={styles.addButtonContainer}>
+                <TouchableOpacity
+                  style={styles.addButton}
+                  onPress={this.props.addAction}>
+                  <Text style={styles.addText}>
+                    {strings({key: 'Submit', language})}
+                  </Text>
+                </TouchableOpacity>
+              </View>
+            </View>
+          ) : (
+            <View
+              style={{
+                width: '80%',
+                justifyContent: 'center',
+                alignItems: 'center',
+              }}>
               <TouchableOpacity
                 style={styles.addButton}
-                onPress={this.props.addAction}>
-                <Text style={styles.addText}>SUBMIT</Text>
+                onPress={this.props.hideModal}>
+                <Text style={styles.addText}>
+                  {strings({key: 'No', language})}
+                </Text>
+              </TouchableOpacity>
+
+              <TouchableOpacity
+                style={styles.addButton}
+                onPress={this.props.renderModel}>
+                <Text style={styles.addText}>
+                  {' '}
+                  {strings({key: 'Yes', language})}
+                </Text>
               </TouchableOpacity>
             </View>
-          </View>
-        ):(
-         <View style={{width:'80%', justifyContent: 'center',alignItems: 'center',}}>
-        
-          <TouchableOpacity
-            style={styles.addButton}
-            onPress={this.props.hideModal}>
-            <Text style={styles.addText}>NO</Text>
-          </TouchableOpacity>
-          
-      <TouchableOpacity
-      style={styles.addButton}
-      onPress={this.props.renderModel}>
-      <Text style={styles.addText}>YES</Text>
-    </TouchableOpacity>
-    
-    </View>
-        )}
+          )}
         </View>
       </Modal>
     );
@@ -186,7 +199,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     width: '100%',
     height: 50,
-    marginTop:10,
+    marginTop: 10,
     backgroundColor: PrimaryColor,
     borderRadius: 5,
     elevation: 2,
@@ -203,4 +216,10 @@ const styles = StyleSheet.create({
   },
 });
 
-export default AddCustomerModal;
+const mapStateToProps = state => {
+  return {
+    language: state.language.defaultLanguage,
+  };
+};
+
+export default connect(mapStateToProps)(AddCustomerModal);

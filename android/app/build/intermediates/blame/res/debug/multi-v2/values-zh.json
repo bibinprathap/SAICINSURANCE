@@ -1,10 +1,10 @@
 {
     "logs": [
         {
-            "outputFile": "/Users/poojagugu/Desktop/latest/SAICINSURANCE/android/app/build/intermediates/incremental/mergeDebugResources/merged.dir/values-zh/values-zh.xml",
+            "outputFile": "/Users/bibinprathap/Documents/react-native/insurance/1/RNVideoChat/android/app/build/intermediates/incremental/mergeDebugResources/merged.dir/values-zh/values-zh.xml",
             "map": [
                 {
-                    "source": "/Users/poojagugu/.gradle/caches/transforms-2/files-2.1/23953f2e5627ab66f830c39b00eb65f1/res/values-zh/values-zh.xml",
+                    "source": "/Users/bibinprathap/.gradle/caches/transforms-2/files-2.1/6123a00707d19814019ce2b63d672c6f/res/values-zh/values-zh.xml",
                     "from": {
                         "startLines": "2,3,4",
                         "startColumns": "4,4,4",

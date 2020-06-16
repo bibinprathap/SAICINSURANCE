@@ -10,7 +10,7 @@ import {
   StyleSheet,
   Dimensions,
   ScrollView,
-  Modal
+  Modal,
 } from 'react-native';
 import {
   widthPercentageToDP as wp,
@@ -25,13 +25,13 @@ import {Actions} from 'react-native-router-flux';
 import Loginform from '../../components/Loginform';
 
 import {connect} from 'react-redux';
-import {infoChanged} from '../../actions/loginActions'; 
+import {infoChanged} from '../../actions/loginActions';
 import alertsHelper from '../../api/helperServices/alerts';
 import strings, {
   alignment,
   normalizeFont,
 } from '../../api/helperServices/language';
-import HeaderGeneric from '../../components/Header/HeaderGeneric'
+import HeaderGeneric from '../../components/Header/HeaderGeneric';
 import ForgetModal from '../../components/Modal/forgotpassword';
 import AppApi from '../../api/real';
 import {environmentInfoChanged} from '../../actions/environmentActions';
@@ -45,24 +45,21 @@ const {width, height} = Dimensions.get('screen');
 //   return size * (width * 0.0025);
 // };
 
-
 const emptyLoginScreenState = {
   username: '',
-    password: '',
-    acceptPolicy: false,
-    keepLogged: false,
-    forgotPassword: false,
+  password: '',
+  acceptPolicy: false,
+  keepLogged: false,
+  forgotPassword: false,
 };
- class LoginScreen extends React.Component {
-  
-  
+class LoginScreen extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      ...emptyLoginScreenState ,  
-      ...props.values, 
-      ...props.environment, 
-       settingsVisible: false,
+      ...emptyLoginScreenState,
+      ...props.values,
+      ...props.environment,
+      settingsVisible: false,
     };
     this.updateLoginScreenState = this.updateLoginScreenState.bind(this);
   }
@@ -74,8 +71,7 @@ const emptyLoginScreenState = {
         const {title, baseURL} = this.state;
         const stateToStore = {title, baseURL};
         this.props.changeEnvironment(stateToStore);
-      }
-      else{
+      } else {
         const stateToStore = {...this.state};
         this.props.infoChanged('logindetails', stateToStore);
         // dispatch(infoChanged('logindetails', stateToStore));
@@ -91,7 +87,7 @@ const emptyLoginScreenState = {
   handleFieldChangeEnv = async (name, value) => {
     const newState = {};
     newState[name] = value;
-    this.updateLoginScreenState(newState,true);
+    this.updateLoginScreenState(newState, true);
   };
 
   _loginHandler = async () => {
@@ -102,14 +98,14 @@ const emptyLoginScreenState = {
     alertsHelper.showAlert('Login', 'Checking User Information');
     try {
       //debugger;
-      this.props.navigation.navigate('app')
-     // const pokemonApiCall = await fetch('https://adroitclouderpreport.ngrok.io/token');
-     // const pokemon = await pokemonApiCall.json();
-  const    data = await api.login({...details,grant_type:'password' });
-  console.log(data); 
-  this.props.infoChanged('userDetail', data);
-  alertsHelper.hideAlert();  
-  this.props.navigation.navigate('app')
+      this.props.navigation.navigate('app');
+      // const pokemonApiCall = await fetch('https://adroitclouderpreport.ngrok.io/token');
+      // const pokemon = await pokemonApiCall.json();
+      const data = await api.login({...details, grant_type: 'password'});
+      console.log(data);
+      this.props.infoChanged('userDetail', data);
+      alertsHelper.hideAlert();
+      this.props.navigation.navigate('app');
     } catch (error) {
       console.log(error);
       //alertsHelper.hideAlert();
@@ -146,8 +142,15 @@ const emptyLoginScreenState = {
     const {language} = this.props;
     return (
       <View style={styles.screen}>
-        <Modal animationType="slide" transparent={false} visible={this.state.settingsVisible} onRequestClose={() => this.setState({ settingsVisible: false })}>
-          <HeaderGeneric backAction={() => this.setState({ settingsVisible: false })} title="Settings" />
+        <Modal
+          animationType="slide"
+          transparent={false}
+          visible={this.state.settingsVisible}
+          onRequestClose={() => this.setState({settingsVisible: false})}>
+          <HeaderGeneric
+            backAction={() => this.setState({settingsVisible: false})}
+            title="Settings"
+          />
           <ScrollView style={styles.reconciliationWrapper}>
             <View style={styles.screen}>
               <KeyboardAvoidingView
@@ -165,76 +168,82 @@ const emptyLoginScreenState = {
                     fontSize: normalizeFont(21),
                   }}>
                   API Base URI
-          </Text>
-                <View style={{ paddingVertical: hp('2') }}>
-                 <View>
-      <View> 
-         <Text
-            numberOfLines={2}
-            style={{
-              fontSize: normalizeFont(16),
-              color: PrimaryColor,
-              fontFamily: 'Roboto-Bold',
-              flexWrap: 'wrap',
-              paddingVertical: 15,
-              textAlign: alignment(this.props.language),
-            }}>
-            {"URI"}
-          </Text> 
-      </View>
-      <View
-        style={{
-          height: Platform.OS === 'ios' ? 30 : 45, 
-              borderBottomColor:   '#ddd',
-              borderBottomWidth:   1,
-        }}>
-           <TextInput 
-                 placeholder="Base Url"
-            placeholderTextColor="#ddd"
-            onChangeText={this.handleFieldChangeEnv.bind(this, 'baseURL')}
-            value={baseURL}
-            style={{
-              fontSize: normalizeFont(18),
-              width: wp('80'),
-            }}
-          />
-      </View>
-    </View>  
-    <View>
-      <View> 
-         <Text
-            numberOfLines={2}
-            style={{
-              fontSize: normalizeFont(16),
-              color: PrimaryColor,
-              fontFamily: 'Roboto-Bold',
-              flexWrap: 'wrap',
-              paddingVertical: 15,
-              textAlign: alignment(this.props.language),
-            }}>
-            {"Name"}
-          </Text> 
-      </View>
-      <View
-        style={{
-          height: Platform.OS === 'ios' ? 30 : 45, 
-              borderBottomColor:   '#ddd',
-              borderBottomWidth:   1,
-        }}>
-           <TextInput 
-                 placeholder="Title"
-            placeholderTextColor="#ddd"
-            onChangeText={this.handleFieldChangeEnv.bind(this, 'title')}
-            value={title}
-            style={{
-              fontSize: normalizeFont(18),
-              width: wp('80'),
-            }}
-          />
-      </View>
-    </View>  
-      </View> 
-       </KeyboardAvoidingView>
+                </Text>
+                <View style={{paddingVertical: hp('2')}}>
+                  <View>
+                    <View>
+                      <Text
+                        numberOfLines={2}
+                        style={{
+                          fontSize: normalizeFont(16),
+                          color: PrimaryColor,
+                          fontFamily: 'Roboto-Bold',
+                          flexWrap: 'wrap',
+                          paddingVertical: 15,
+                          textAlign: alignment(this.props.language),
+                        }}>
+                        {'URI'}
+                      </Text>
+                    </View>
+                    <View
+                      style={{
+                        height: Platform.OS === 'ios' ? 30 : 45,
+                        borderBottomColor: '#ddd',
+                        borderBottomWidth: 1,
+                      }}>
+                      <TextInput
+                        placeholder="Base Url"
+                        placeholderTextColor="#ddd"
+                        onChangeText={this.handleFieldChangeEnv.bind(
+                          this,
+                          'baseURL',
+                        )}
+                        value={baseURL}
+                        style={{
+                          fontSize: normalizeFont(18),
+                          width: wp('80'),
+                        }}
+                      />
+                    </View>
+                  </View>
+                  <View>
+                    <View>
+                      <Text
+                        numberOfLines={2}
+                        style={{
+                          fontSize: normalizeFont(16),
+                          color: PrimaryColor,
+                          fontFamily: 'Roboto-Bold',
+                          flexWrap: 'wrap',
+                          paddingVertical: 15,
+                          textAlign: alignment(this.props.language),
+                        }}>
+                        {'Name'}
+                      </Text>
+                    </View>
+                    <View
+                      style={{
+                        height: Platform.OS === 'ios' ? 30 : 45,
+                        borderBottomColor: '#ddd',
+                        borderBottomWidth: 1,
+                      }}>
+                      <TextInput
+                        placeholder="Title"
+                        placeholderTextColor="#ddd"
+                        onChangeText={this.handleFieldChangeEnv.bind(
+                          this,
+                          'title',
+                        )}
+                        value={title}
+                        style={{
+                          fontSize: normalizeFont(18),
+                          width: wp('80'),
+                        }}
+                      />
+                    </View>
+                  </View>
+                </View>
+              </KeyboardAvoidingView>
             </View>
           </ScrollView>
         </Modal>
@@ -243,9 +252,9 @@ const emptyLoginScreenState = {
           isVisible={this.state.forgotPassword}
           onBackdropPress={() => this.setState({forgotPassword: false})}
           hideModal={() => this.setState({forgotPassword: false})}
-          title="FORGOT PASSWORD"
+          title={strings({key: 'FORGOTPASSWORD', language})}
           iconName="work"
-          subTitle="Please fill the following info"
+          subTitle={strings({key: 'fillthefollowing', language})}
           forgot
         />
         <KeyboardAvoidingView
@@ -512,7 +521,6 @@ const emptyLoginScreenState = {
   }
 }
 
-
 // Map State To Props (Redux Store Passes State To Component)
 const mapStateToProps = state => {
   // Redux Store --> Component
@@ -531,8 +539,10 @@ function mapDispatchToProps(dispatch) {
     changeEnvironment: value => dispatch(environmentInfoChanged(value)),
   };
 }
-export default connect(mapStateToProps,
-  mapDispatchToProps)(LoginScreen);
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps,
+)(LoginScreen);
 const styles = StyleSheet.create({
   screen: {
     flex: 1,

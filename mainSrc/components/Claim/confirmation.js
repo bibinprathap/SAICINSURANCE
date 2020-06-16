@@ -12,6 +12,8 @@ import {
 } from 'react-native';
 import {PrimaryColor} from '../../config';
 import Icons from 'react-native-vector-icons/MaterialIcons';
+import {connect} from 'react-redux';
+import strings from '../../api/helperServices/language';
 import {
   widthPercentageToDP as wp,
   heightPercentageToDP as hp,
@@ -36,6 +38,7 @@ class ConfirmationScreen extends Component {
     };
   }
   render() {
+    const {language} = this.props;
     return (
       <ScrollView
         style={{flex: 1, backgroundColor: '#F7F7F7'}}
@@ -51,7 +54,7 @@ class ConfirmationScreen extends Component {
             alignItems: 'center',
           }}>
           <Text style={{paddingVertical: 10, fontSize: normalizeFont(17)}}>
-            Claim Details
+            {strings({key: 'ClaimDetails', language})}
           </Text>
           <TouchableOpacity
             onPress={() =>
@@ -70,49 +73,16 @@ class ConfirmationScreen extends Component {
           </TouchableOpacity>
         </View>
         <View style={{flex: 1}}>
-          {/* <View style={styles.row}>
+          <View style={styles.row}>
             {this.state.claimEdit ? (
               <DefaultText style={{fontSize: normalizeFont(16)}}>
-                Select Member{' '}
-                <Text style={{fontSize: normalizeFont(16)}}>*</Text>
-              </DefaultText>
-            ) : (
-              <DefaultText style={{fontSize: normalizeFont(16)}}>
-                Select Member
-              </DefaultText>
-            )}
-            <TextInput
-              value={this.props.selectMember}
-              onChangeText={this.props.selectMemberChange}
-              editable={this.state.claimEdit}
-            />
-          </View> */}
-          {/* <View style={styles.row}>
-            {this.state.claimEdit ? (
-              <DefaultText style={{fontSize: normalizeFont(16)}}>
-                Healthcare provider country{' '}
+                {strings({key: 'Servicetype', language})}
                 <Text style={{fontSize: normalizeFont(16)}}>*</Text>
               </DefaultText>
             ) : (
               <Text style={{fontSize: normalizeFont(16)}}>
-                Healthcare provider country
+                {strings({key: 'Servicetype', language})}
               </Text>
-            )}
-
-            <TextInput
-              value={this.props.countyValue}
-              onChangeText={this.props.countyValueChange}
-              editable={this.state.claimEdit}
-            />
-          </View> */}
-          <View style={styles.row}>
-            {this.state.claimEdit ? (
-              <DefaultText style={{fontSize: normalizeFont(16)}}>
-                Service Type{' '}
-                <Text style={{fontSize: normalizeFont(16)}}>*</Text>
-              </DefaultText>
-            ) : (
-              <Text style={{fontSize: normalizeFont(16)}}>Service Type</Text>
             )}
 
             <TextInput
@@ -124,11 +94,13 @@ class ConfirmationScreen extends Component {
           <View style={styles.row}>
             {this.state.claimEdit ? (
               <DefaultText style={{fontSize: normalizeFont(16)}}>
-                Service Date{' '}
+                {strings({key: 'ServiceDate', language})}
                 <Text style={{fontSize: normalizeFont(16)}}>*</Text>
               </DefaultText>
             ) : (
-              <Text style={{fontSize: normalizeFont(16)}}>Service Date</Text>
+              <Text style={{fontSize: normalizeFont(16)}}>
+                {strings({key: 'ServiceDate', language})}
+              </Text>
             )}
 
             <DatePicker
@@ -136,8 +108,8 @@ class ConfirmationScreen extends Component {
               mode="date"
               placeholder="select date"
               format="DD-MM-YYYY"
-              confirmBtnText="Confirm"
-              cancelBtnText="Cancel"
+              confirmBtnText={strings({key: 'Confirm', language})}
+              cancelBtnText={strings({key: 'Cancel', language})}
               showIcon={false}
               customStyles={{
                 dateInput: {
@@ -161,11 +133,13 @@ class ConfirmationScreen extends Component {
           <View style={styles.row}>
             {this.state.claimEdit ? (
               <DefaultText style={{fontSize: normalizeFont(16)}}>
-                Claim Account{' '}
+                {strings({key: 'ClaimAccount', language})}
                 <Text style={{fontSize: normalizeFont(16)}}>*</Text>
               </DefaultText>
             ) : (
-              <Text style={{fontSize: normalizeFont(16)}}>Claim Account</Text>
+              <Text style={{fontSize: normalizeFont(16)}}>
+                {strings({key: 'ClaimAccount', language})}
+              </Text>
             )}
 
             <TextInput
@@ -177,10 +151,13 @@ class ConfirmationScreen extends Component {
           <View style={styles.row}>
             {this.state.claimEdit ? (
               <DefaultText style={{fontSize: normalizeFont(16)}}>
-                Currency <Text style={{fontSize: normalizeFont(16)}}>*</Text>
+                {strings({key: 'Currency', language})}{' '}
+                <Text style={{fontSize: normalizeFont(16)}}>*</Text>
               </DefaultText>
             ) : (
-              <Text style={{fontSize: normalizeFont(16)}}>Currency</Text>
+              <Text style={{fontSize: normalizeFont(16)}}>
+                {strings({key: 'Currency', language})}
+              </Text>
             )}
 
             <TextInput
@@ -192,10 +169,13 @@ class ConfirmationScreen extends Component {
           <View style={styles.row}>
             {this.state.claimEdit ? (
               <DefaultText style={{fontSize: normalizeFont(16)}}>
-                Currency <Text style={{fontSize: normalizeFont(16)}}>*</Text>
+                {strings({key: 'Addnotes', language})}{' '}
+                <Text style={{fontSize: normalizeFont(16)}}>*</Text>
               </DefaultText>
             ) : (
-              <Text style={{fontSize: normalizeFont(16)}}>Add Notes</Text>
+              <Text style={{fontSize: normalizeFont(16)}}>
+                {strings({key: 'Addnotes', language})}
+              </Text>
             )}
 
             <TextInput
@@ -214,7 +194,7 @@ class ConfirmationScreen extends Component {
             alignItems: 'center',
           }}>
           <Text style={{paddingVertical: 10, fontSize: normalizeFont(17)}}>
-            Needed Documents
+            {strings({key: 'NeededDocuments', language})}
           </Text>
           <TouchableOpacity
             onPress={() =>
@@ -233,7 +213,8 @@ class ConfirmationScreen extends Component {
           </TouchableOpacity>
         </View>
         <View>
-          {this.props.image && (
+          {this.props.children}
+          {/* {this.props.image && (
             <ImageBackground
               source={this.props.image}
               style={{height: 200, width: '100%'}}
@@ -258,7 +239,7 @@ class ConfirmationScreen extends Component {
                 </TouchableOpacity>
               )}
             </ImageBackground>
-          )}
+          )} */}
         </View>
 
         <View
@@ -269,7 +250,7 @@ class ConfirmationScreen extends Component {
             alignItems: 'center',
           }}>
           <Text style={{paddingVertical: 10, fontSize: normalizeFont(17)}}>
-            Payment Method
+            {strings({key: 'PaymentMethod', language})}
           </Text>
           <TouchableOpacity
             onPress={() =>
@@ -291,26 +272,34 @@ class ConfirmationScreen extends Component {
           <View style={styles.row}>
             {this.state.paymentEdit ? (
               <DefaultText style={{fontSize: normalizeFont(16)}}>
-                Payment Method{' '}
+                {strings({key: 'PaymentMethod', language})}
                 <Text style={{fontSize: normalizeFont(16)}}>*</Text>
               </DefaultText>
             ) : (
-              <Text style={{fontSize: normalizeFont(16)}}>Payment Method</Text>
+              <Text style={{fontSize: normalizeFont(16)}}>
+                {strings({key: 'PaymentMethod', language})}
+              </Text>
             )}
 
-            <Text style={{fontSize: normalizeFont(16)}}>Bank Transfer</Text>
+            <Text style={{fontSize: normalizeFont(16)}}>
+              {strings({key: 'BankTransfer', language})}
+            </Text>
           </View>
           <View style={styles.row}>
             {this.state.paymentEdit ? (
               <DefaultText style={{fontSize: normalizeFont(16)}}>
-                Country <Text style={{fontSize: normalizeFont(16)}}>*</Text>
+                {strings({key: 'Country', language})}{' '}
+                <Text style={{fontSize: normalizeFont(16)}}>*</Text>
               </DefaultText>
             ) : (
-              <Text style={{fontSize: normalizeFont(16)}}>Country</Text>
+              <Text style={{fontSize: normalizeFont(16)}}>
+                {' '}
+                {strings({key: 'Country', language})}
+              </Text>
             )}
 
             <TextInput
-              placeholder="Country"
+              placeholder={strings({key: 'Country', language})}
               value={this.props.myCountry}
               onChangeText={this.props.myCountryValueChange}
             />
@@ -318,15 +307,17 @@ class ConfirmationScreen extends Component {
           <View style={styles.row}>
             {this.state.paymentEdit ? (
               <DefaultText style={{fontSize: normalizeFont(16)}}>
-                Account Number{' '}
+                {strings({key: 'AccountNumber', language})}{' '}
                 <Text style={{fontSize: normalizeFont(16)}}>*</Text>
               </DefaultText>
             ) : (
-              <Text style={{fontSize: normalizeFont(16)}}>Account Number</Text>
+              <Text style={{fontSize: normalizeFont(16)}}>
+                {strings({key: 'AccountNumber', language})}
+              </Text>
             )}
 
             <TextInput
-              placeholder="Account Number"
+              placeholder={strings({key: 'AccountNumber', language})}
               value={this.props.accountNumber}
               onChangeText={this.props.accountValueChange}
             />
@@ -334,14 +325,17 @@ class ConfirmationScreen extends Component {
           <View style={styles.row}>
             {this.state.paymentEdit ? (
               <DefaultText style={{fontSize: normalizeFont(16)}}>
-                Bank Name <Text style={{fontSize: normalizeFont(16)}}>*</Text>
+                {strings({key: 'BankName', language})}{' '}
+                <Text style={{fontSize: normalizeFont(16)}}>*</Text>
               </DefaultText>
             ) : (
-              <Text style={{fontSize: normalizeFont(16)}}>Bank Name</Text>
+              <Text style={{fontSize: normalizeFont(16)}}>
+                {strings({key: 'BankName', language})}
+              </Text>
             )}
 
             <TextInput
-              placeholder="Bank Name"
+              placeholder={strings({key: 'BankName', language})}
               value={this.props.bankName}
               onChangeText={this.props.bankNameChange}
             />
@@ -349,15 +343,17 @@ class ConfirmationScreen extends Component {
           <View style={styles.row}>
             {this.state.paymentEdit ? (
               <DefaultText style={{fontSize: normalizeFont(16)}}>
-                Bank Address{' '}
+                {strings({key: 'BankAddress', language})}{' '}
                 <Text style={{fontSize: normalizeFont(16)}}>*</Text>
               </DefaultText>
             ) : (
-              <Text style={{fontSize: normalizeFont(16)}}>Bank Address</Text>
+              <Text style={{fontSize: normalizeFont(16)}}>
+                {strings({key: 'BankAddress', language})}
+              </Text>
             )}
 
             <TextInput
-              placeholder="Bank Address"
+              placeholder={strings({key: 'BankAddress', language})}
               value={this.props.bankAddress}
               onChangeText={this.props.bankAddressChange}
             />
@@ -365,14 +361,17 @@ class ConfirmationScreen extends Component {
           <View style={styles.row}>
             {this.state.paymentEdit ? (
               <DefaultText style={{fontSize: normalizeFont(16)}}>
-                Branch <Text style={{fontSize: normalizeFont(16)}}>*</Text>
+                {strings({key: 'Branch', language})}{' '}
+                <Text style={{fontSize: normalizeFont(16)}}>*</Text>
               </DefaultText>
             ) : (
-              <Text style={{fontSize: normalizeFont(16)}}>Branch</Text>
+              <Text style={{fontSize: normalizeFont(16)}}>
+                {strings({key: 'Branch', language})}
+              </Text>
             )}
 
             <TextInput
-              placeholder="Branch Name"
+              placeholder={strings({key: 'Branch', language})}
               value={this.props.branchName}
               onChangeText={this.props.branchNameChange}
             />
@@ -380,14 +379,17 @@ class ConfirmationScreen extends Component {
           <View style={styles.row}>
             {this.state.paymentEdit ? (
               <DefaultText style={{fontSize: normalizeFont(16)}}>
-                Branch <Text style={{fontSize: normalizeFont(16)}}>*</Text>
+                {strings({key: 'City', language})}{' '}
+                <Text style={{fontSize: normalizeFont(16)}}>*</Text>
               </DefaultText>
             ) : (
-              <Text style={{fontSize: normalizeFont(16)}}>City</Text>
+              <Text style={{fontSize: normalizeFont(16)}}>
+                {strings({key: 'City', language})}
+              </Text>
             )}
 
             <TextInput
-              placeholder="City"
+              placeholder={strings({key: 'City', language})}
               value={this.props.cityName}
               onChangeText={this.props.cityNameChange}
             />
@@ -395,14 +397,17 @@ class ConfirmationScreen extends Component {
           <View style={styles.row}>
             {this.state.paymentEdit ? (
               <DefaultText style={{fontSize: normalizeFont(16)}}>
-                Phone <Text style={{fontSize: normalizeFont(16)}}>*</Text>
+                {strings({key: 'Phone', language})}{' '}
+                <Text style={{fontSize: normalizeFont(16)}}>*</Text>
               </DefaultText>
             ) : (
-              <Text style={{fontSize: normalizeFont(16)}}>Phone</Text>
+              <Text style={{fontSize: normalizeFont(16)}}>
+                {strings({key: 'Phone', language})}
+              </Text>
             )}
 
             <TextInput
-              placeholder="Phone"
+              placeholder={strings({key: 'Phone', language})}
               value={this.props.phoneNumber}
               onChangeText={this.props.phoneNumberChange}
             />
@@ -410,14 +415,17 @@ class ConfirmationScreen extends Component {
           <View style={styles.row}>
             {this.state.paymentEdit ? (
               <DefaultText style={{fontSize: normalizeFont(16)}}>
-                Email <Text style={{fontSize: normalizeFont(16)}}>*</Text>
+                {strings({key: 'Email', language})}{' '}
+                <Text style={{fontSize: normalizeFont(16)}}>*</Text>
               </DefaultText>
             ) : (
-              <Text style={{fontSize: normalizeFont(16)}}>Email</Text>
+              <Text style={{fontSize: normalizeFont(16)}}>
+                {strings({key: 'Email', language})}
+              </Text>
             )}
 
             <TextInput
-              placeholder="Email"
+              placeholder={strings({key: 'Email', language})}
               value={this.props.emailName}
               onChangeText={this.props.emailChange}
             />
@@ -438,4 +446,10 @@ const styles = StyleSheet.create({
   },
 });
 
-export default ConfirmationScreen;
+const mapStateToProps = state => {
+  return {
+    language: state.language.defaultLanguage,
+  };
+};
+
+export default connect(mapStateToProps)(ConfirmationScreen);
