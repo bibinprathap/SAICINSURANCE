@@ -6,9 +6,11 @@ import {
   Dimensions,
   TouchableOpacity,
   Image,
+  Alert,
   Platform,
   ImageBackground,
 } from 'react-native';
+import moment from 'moment';
 import ImagePicker from 'react-native-image-crop-picker';
 import {PrimaryColor, assetColor} from '../../config';
 import Icons from 'react-native-vector-icons/MaterialIcons';
@@ -45,6 +47,26 @@ const labels = [
   'Confirmation',
 ];
 
+let currencyData = [
+  {
+    "ID": 5,
+  "Country": "Iraq",
+  "CurrencyCode": "IQD"
+  },
+];
+
+let   serviceData =[
+  {
+    "ID": 0,
+    "Ename": "None"
+  },
+];
+let countriesData =[
+  {
+    "ID": 1,
+    "EName": "IRAQ"
+  },
+];
 const labelsAr = [
   'تفاصيل المطالبة',
   'المستندات المطلوبة',
@@ -104,10 +126,10 @@ class Screen extends Component {
       forgotPassword: false,
       selectNumber: '200',
       countryName: '',
-      serviceType: 'Dental',
+      serviceType: '',
       serviceDate: Today,
       claimAccount: '',
-      currencyValue: 'IQD',
+      currencyValue: '',
 
       addNotes: '',
       image: null,
@@ -126,26 +148,6 @@ class Screen extends Component {
       emailName: '', 
       imageSource: [],
       indexCount: 0, 
-      serviceData: [
-        {
-          "ID": 0,
-          "Ename": "None"
-        },
-      ],
-      currencyData: [
-        {
-          "ID": 5,
-        "Country": "Iraq",
-        "CurrencyCode": "IQD"
-        },
-      ],
-      countriesData:
-      [
-        {
-          "ID": 1,
-          "EName": "IRAQ"
-        },
-      ],
       SaveClaimData:[
         {
           "ID": 0,
@@ -154,6 +156,7 @@ class Screen extends Component {
       ],
       SubmitClaimData:{
         ID:1,
+        IsSuccess:false,
         Message:'Please complete claim details'
       }
     };
@@ -179,6 +182,7 @@ accountValueChange = (acconunt) => {
   async componentDidUpdate() {
     //const data = await api.getServiceType();
     //console.log(data, 'data');
+
   } 
 
   Providers = async() => { 
@@ -195,10 +199,11 @@ accountValueChange = (acconunt) => {
   ServiceTypeservice = async() => { 
     try {
   const    data = await api.getServiceType();
-  this.setState({
-    loading: false,
-    serviceData: data
-  })
+  serviceData = data;
+  // this.setState({
+  //   loading: false,
+  //   serviceData: data
+  // })
     } catch (error) {
       console.log(error); 
     }
@@ -206,10 +211,7 @@ accountValueChange = (acconunt) => {
   Currency = async() => { 
     try {
   const    data = await api.getCurrency();
-  this.setState({
-    loading: false,
-    currencyData: data
-  })
+  currencyData = data;
     } catch (error) {
       console.log(error); 
     }
@@ -218,10 +220,11 @@ accountValueChange = (acconunt) => {
   Countries = async() => { 
     try {
   const    data = await api.getCountries();
-  this.setState({
-    loading: false,
-    countriesData: data
-  })
+  countriesData= data;
+  // this.setState({
+  //   loading: false,
+  //   countriesData: data
+  // })
     } catch (error) {
       console.log(error); 
     }
@@ -235,11 +238,19 @@ accountValueChange = (acconunt) => {
   };
 
   componentDidMount() {
-
     this.Providers();
     this.ServiceTypeservice();
     this.Currency();
     this.Countries();
+    if(this.props.navigation.state.params){
+      this.setState({
+        currencyValue: this.props.navigation.state.params.dataItem.CurrencyId,
+        serviceType: this.props.navigation.state.params.dataItem.ServiceTypeId,
+        claimAccount: this.props.navigation.state.params.dataItem.ClaimedAmount.toString(),
+        serviceDate:moment(this.props.navigation.state.params.dataItem.ServiceDate).format('DD-MM-YYYY '),
+      });
+    
+    }
     
   }
   renderModel(){
@@ -335,9 +346,12 @@ accountValueChange = (acconunt) => {
   }
 
   submitClaimData =  async()  => {
-     
+    let details = {
+      ClaimRef:this.state.SaveClaimData.ID,
+      PaymentMethodId:1
+      };
     try {
-      const    data = await api.SubmitClaim(this.state.SaveClaimData);
+      const    data = await api.SubmitClaim(details);
       this.setState({
         loading: false,
         SubmitClaimData: data
@@ -346,7 +360,7 @@ accountValueChange = (acconunt) => {
         Alert.alert('Successfully Submitted', '', [
           {
             text: 'OK',
-            onPress: () => this.props.navigation.goBack(),
+            onPress: () => {this.props.navigation.navigate('Claim')},
           },
         ]);
       }
@@ -427,7 +441,7 @@ accountValueChange = (acconunt) => {
       this.setState({currentPosition: this.state.currentPosition + 1});
     }
     if (this.state.currentPosition === 3) {
-      this.submitClaimData;
+      this.submitClaimData();
     }
   };
 
@@ -550,7 +564,7 @@ accountValueChange = (acconunt) => {
           isVisible={this.state.cancelModal}
           onBackdropPress={() => this.setState({cancelModal: false})}
           renderModel= {() => {
-            this.DeleteCurrentClaim();
+            //this.DeleteCurrentClaim();
             this.props.navigation.goBack()
           }
         }
@@ -642,14 +656,14 @@ accountValueChange = (acconunt) => {
                 countyValueChange={text => this.setState({countryName: text})}
                 serviceType={this.state.serviceType}
                 serviceTypeChange={this.onSelectedType}
-                serviceData={this.state.serviceData}
+                serviceData={serviceData}
                 serviceDate={this.state.serviceDate}
                 serviceDateChange={date => this.setState({serviceDate: date})}
                 claimAccount={this.state.claimAccount}
                 claimAccountChange={text => this.setState({claimAccount: text})}
                 currencyValue={this.state.currencyValue}
                 currencyValueChange={this.onCurrencyChange}
-                currencyData={this.state.currencyData}
+                currencyData={currencyData}
                 addNotes={this.state.addNotes}
                 addNotesChange={text => this.setState({addNotes: text})}
               />
@@ -672,7 +686,7 @@ accountValueChange = (acconunt) => {
               <PaymentMethod
                 myCountry={this.state.myCountry}
                 myCountryValueChange={this.onCountriesChange}
-                countriesData={this.state.countriesData}
+                countriesData={countriesData}
                 iBAN={this.state.iBAN}
                 iBANValueChange={text => this.setState({iBAN: text})}
                 swiftBIC={this.state.swiftBIC}
@@ -687,7 +701,7 @@ accountValueChange = (acconunt) => {
                 bankAddressChange={text => this.setState({bankAddress: text})}
                 currencyValue={this.state.currencyValue}
                 currencyValueChange={this.onCurrencyChange}
-                currencyData={this.state.currencyData}
+                currencyData={currencyData}
                 branchName={this.state.branchName}
                 branchNameChange={text => this.setState({branchName: text})}
                 cityName={this.state.cityName}

@@ -95,7 +95,7 @@ class ClaimScreen extends Component {
     }
   };
 
-  componentDidMount(){
+  componentWillMount(){
 this.Claims();
   }
     
@@ -103,6 +103,9 @@ this.Claims();
     let dataItem = item.item;
     const {language} = this.props;
     return (
+      <TouchableOpacity
+              onPress={() => this.props.navigation.navigate('SubmitClaim',{ dataItem })}
+             >
       <View>
         <Text
           style={{
@@ -286,10 +289,16 @@ this.Claims();
           </View>
         </View>
       </View>
+      </TouchableOpacity>
     );
   };
   render() {
     const {language} = this.props;
+    const Soucedata=
+      language === 'English'
+        ? this.state.dataSource
+        : this.state.dataSourceAr;
+    
     return (
       <View style={styles.screen}>
         <Header

@@ -147,12 +147,12 @@ export default class AppApi {
       'PolicyCode': 'CP1912151312482198510',
       'ClaimTypeId': 1,
       'ProviderId': 1,
-      'ServiceTypeId': 1,
+      'ServiceTypeId': params.serviceType,
       'ClaimedAmount': params.claimAccount,
       'ClaimReference': '',
       'ServiceDate' : convertedDate,
-      'CurrencyId' : 1,
-      'Comments': '',
+      'CurrencyId' : params.currencyValue,
+      'Comments': params.addNotes,
   };
   var formBody = [];
   for (var property in details) {
@@ -224,18 +224,15 @@ export default class AppApi {
   };
 
   SubmitClaim = async params => {
-    const restApi = new RestApi({controller: 'api/SubmitClaim'});
+    const restApi = new RestApi({controller: 'api/SubmitClaim?ClaimId='+params.ClaimRef+'&PaymentMethodId='+params.PaymentMethodId});
     try {
-      let response = await restApi.post({
-        url: 'GetVehicleViolator',
-        body: {
-          ClaimId: params.ID,
-          PaymentMethodId: 1,
-        },
+      let response = await restApi.get({
+        url: '',
+        body: '',
         cancelable: true,
         showAlerts: true,
       });
-      return response.data.result;
+      return response.data;
     } catch (error) {
       throw error;
     }
