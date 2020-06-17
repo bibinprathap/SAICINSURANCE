@@ -13,6 +13,8 @@ import {
   widthPercentageToDP as wp,
   heightPercentageToDP as hp,
 } from 'react-native-responsive-screen';
+import {connect} from 'react-redux';
+import strings from '../../api/helperServices/language';
 import {PrimaryColor} from '../../config';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 const {width} = Dimensions.get('screen');
@@ -22,6 +24,7 @@ const normalizeFont = size => {
 
 class AddCustomerModal extends Component {
   render() {
+    const {language} = this.props;
     return (
       <Modal
         {...this.props}
@@ -170,7 +173,7 @@ const styles = StyleSheet.create({
     width: '80%',
     height: 50,
     backgroundColor: PrimaryColor,
-    paddingBottom:10,
+    paddingBottom: 10,
     borderRadius: 5,
     elevation: 2,
     shadowColor: 'black',
@@ -199,4 +202,10 @@ const styles = StyleSheet.create({
   },
 });
 
-export default AddCustomerModal;
+const mapStateToProps = state => {
+  return {
+    language: state.language.defaultLanguage,
+  };
+};
+
+export default connect(mapStateToProps)(AddCustomerModal);

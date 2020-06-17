@@ -4,7 +4,7 @@
             "outputFile": "/Users/poojagugu/Desktop/latest/SAICINSURANCE/android/app/build/intermediates/incremental/mergeDebugResources/merged.dir/values-land/values-land.xml",
             "map": [
                 {
-                    "source": "/Users/poojagugu/.gradle/caches/transforms-2/files-2.1/6cc993681c9f7f29b3105fd19611a157/res/values-land/values-land.xml",
+                    "source": "/Users/poojagugu/.gradle/caches/transforms-2/files-2.1/be60f0dd4bc5e2e0bdb1f9dd99732790/res/values-land/values-land.xml",
                     "from": {
                         "startLines": "2,3,4",
                         "startColumns": "4,4,4",
@@ -14,7 +14,7 @@
                     }
                 },
                 {
-                    "source": "/Users/poojagugu/.gradle/caches/transforms-2/files-2.1/0592b960560c4db6848ec5b2367a60a6/res/values-land/values-land.xml",
+                    "source": "/Users/poojagugu/.gradle/caches/transforms-2/files-2.1/7b06547e9b760b11a8dbc2fc0c9710a4/res/values-land/values-land.xml",
                     "from": {
                         "startLines": "2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,24,30",
                         "startColumns": "4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4",

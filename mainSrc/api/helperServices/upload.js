@@ -48,7 +48,7 @@ export default class uploadHelper {
     );
     const env = store.getState().environmentReducer;
 
-    const requestUrl = RestApi.parseUrl(env, controller, uploadUrl);
+    const requestUrl = RestApi.parseUrl(env,uploadUrl, controller );
 
     console.log(requestUrl, 'request');
 

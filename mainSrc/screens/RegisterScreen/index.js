@@ -20,7 +20,9 @@ import {assetColor, PrimaryColor} from '../../config';
 import AppApi from '../../api/real';
 import DefaultText from '../../components/DefaultText';
 import DatePicker from 'react-native-datepicker';
-import { Button } from 'react-native-paper';
+import {Button} from 'react-native-paper';
+import {connect} from 'react-redux';
+import strings from '../../api/helperServices/language';
 const {width, height} = Dimensions.get('screen');
 const normalizeFont = size => {
   return size * (width * 0.0025);
@@ -48,24 +50,32 @@ class Screen extends Component {
       CardNumber: '',
       YearOFBirth: '',
       Name: '',
-      phoneNumber:'',
-      Email:'',
-      Password:'',
-      ConfirmPassword:'',
+      phoneNumber: '',
+      Email: '',
+      Password: '',
+      ConfirmPassword: '',
       dateInput: Today,
       acceptPolicy: false,
     };
   }
 
-  submitAction =  async()  => {
-    const {CardNumber, Name, acceptPolicy, Email, PhoneNumber,Password,ConfirmPassword} = this.state;
+  submitAction = async () => {
+    const {
+      CardNumber,
+      Name,
+      acceptPolicy,
+      Email,
+      PhoneNumber,
+      Password,
+      ConfirmPassword,
+    } = this.state;
 
     if (!CardNumber.length || !Name.length) {
       alert('Complete form before Submit');
       return;
     }
 
-    if(Password !== ConfirmPassword) {
+    if (Password !== ConfirmPassword) {
       alert('Password and Confirm Password are not matched.');
       return;
     }
@@ -78,19 +88,18 @@ class Screen extends Component {
       return;
     }
     let details = {...this.state};
-    const    data = await api.signup({...details});
-    if(data.Message == "created sucessfully"){
-    Alert.alert('Successfully Created', '', [
-      {
-        text: 'OK',
-        onPress: () => this.props.navigation.goBack(),
-      },
-    ]);
-  }
-  else{
-    alert(data.Message);
-    return;
-  }
+    const data = await api.signup({...details});
+    if (data.Message == 'created sucessfully') {
+      Alert.alert('Successfully Created', '', [
+        {
+          text: 'OK',
+          onPress: () => this.props.navigation.goBack(),
+        },
+      ]);
+    } else {
+      alert(data.Message);
+      return;
+    }
   };
 
   validateEmail = email => {
@@ -98,6 +107,7 @@ class Screen extends Component {
     return re.test(email);
   };
   render() {
+    const {language} = this.props;
     return (
       <View style={styles.screen}>
         <KeyboardAvoidingView style={{flex: 1}} keyboardVerticalOffset={54}>
@@ -114,41 +124,44 @@ class Screen extends Component {
             <Text
               onPress={() => this.props.navigation.goBack()}
               style={styles.skipText}>
-              SKIP
+              {strings({key: 'SKIP', language})}
             </Text>
           </View>
           <View style={{flex: 0.9}}>
             <View style={styles.titleContainer}>
-              <Text style={styles.hiText}>HI</Text>
-              <Text>Lets Gets Started</Text>
+              <Text style={styles.hiText}>
+                {' '}
+                {strings({key: 'Hi', language})}
+              </Text>
+              <Text>{strings({key: 'LetsGetsStarted', language})}</Text>
             </View>
             <View style={{flex: 0.8, paddingHorizontal: 20}}>
-            <ScrollView>
-              <Text
-                style={{
-                  color: PrimaryColor,
-                  fontFamily: 'Roboto-Bold',
-                  fontSize: normalizeFont(16),
-                }}>
-                Identify Yourself
-              </Text>
+              <ScrollView>
+                <Text
+                  style={{
+                    color: PrimaryColor,
+                    fontFamily: 'Roboto-Bold',
+                    fontSize: normalizeFont(16),
+                  }}>
+                  {strings({key: 'IdentifyYourself', language})}
+                </Text>
 
-              <TextInput
-                style={styles.inputStyle}
-                onChangeText={text => this.setState({CardNumber: text})}
-                placeholderTextColor="grey"
-                placeholder="Card Number, National ID, Unique ID"
-                underlineColorAndroid="transparent"
-              />
+                <TextInput
+                  style={styles.inputStyle}
+                  onChangeText={text => this.setState({CardNumber: text})}
+                  placeholderTextColor="grey"
+                  placeholder="Card Number, National ID, Unique ID"
+                  underlineColorAndroid="transparent"
+                />
 
-              {/* <DatePicker
+                {/* <DatePicker
                 style={[styles.inputStyle, {paddingVertical: 8}]}
                 date={this.state.dateInput}
                 mode="date"
                 placeholder="select date"
                 format="DD/MM/YYYY"
-                confirmBtnText="Confirm"
-                cancelBtnText="Cancel"
+                confirmBtnText={strings({key: 'Confirm', language})}
+                cancelBtnText={strings({key: 'Cancel', language})}
                 showIcon={false}
                 customStyles={{
                   dateInput: {
@@ -171,77 +184,79 @@ class Screen extends Component {
                 }}
               /> */}
 
-              <TextInput
-                style={styles.inputStyle}
-                onChangeText={text => this.setState({Name: text})}
-                placeholderTextColor="grey"
-                placeholder="Name"
-                underlineColorAndroid="transparent"
-              />
-              <TextInput
-                style={styles.inputStyle}
-                onChangeText={text => this.setState({Email: text})}
-                placeholderTextColor="grey"
-                placeholder="Email"
-                underlineColorAndroid="transparent"
-              />
-               <TextInput
-                style={styles.inputStyle}
-                onChangeText={text => this.setState({PhoneNumber: text})}
-                keyboardType = 'numeric'
-                placeholderTextColor="grey"
-                placeholder="Phone Number"
-                underlineColorAndroid="transparent"
-              />
-               <TextInput
-                style={styles.inputStyle}
-                onChangeText={text => this.setState({Password: text})}
-                placeholderTextColor="grey"
-                secureTextEntry={true} 
-                placeholder="Password"
-                secureTextEntry={true}
-                underlineColorAndroid="transparent"
-              />
-               <TextInput
-                style={styles.inputStyle}
-                onChangeText={text => this.setState({ConfirmPassword: text})}
-                placeholderTextColor="grey"
-                secureTextEntry={true} 
-                placeholder="Confirm Password"
-                secureTextEntry={true}
-                underlineColorAndroid="transparent"
-              />
-              <View style={{flexDirection: 'row', paddingRight: 5}}>
-                <TouchableOpacity
-                  onPress={() =>
-                    this.setState(prevState => ({
-                      acceptPolicy: !prevState.acceptPolicy,
-                    }))
-                  }
-                  style={{
-                    height: hp('1.5'),
-                    width: hp('1.5'),
-                    backgroundColor: this.state.acceptPolicy
-                      ? PrimaryColor
-                      : 'white',
-                    borderColor: '#ccc',
-                    borderWidth: 1,
-                    margin: 5,
-                    paddingRight: 10,
-                  }}
+                <TextInput
+                  style={styles.inputStyle}
+                  onChangeText={text => this.setState({Name: text})}
+                  placeholderTextColor="grey"
+                  placeholder="Name"
+                  underlineColorAndroid="transparent"
                 />
-                <DefaultText>
-                  I have read and accept the{' '}
-                  <Text style={{color: PrimaryColor}}>Terms and condition</Text>{' '}
-                  and the{' '}
-                  <Text style={{color: PrimaryColor}}> Cookeis Policy</Text>
-                </DefaultText>
-              </View>
+                <TextInput
+                  style={styles.inputStyle}
+                  onChangeText={text => this.setState({Email: text})}
+                  placeholderTextColor="grey"
+                  placeholder="Email"
+                  underlineColorAndroid="transparent"
+                />
+                <TextInput
+                  style={styles.inputStyle}
+                  onChangeText={text => this.setState({PhoneNumber: text})}
+                  keyboardType="numeric"
+                  placeholderTextColor="grey"
+                  placeholder="Phone Number"
+                  underlineColorAndroid="transparent"
+                />
+                <TextInput
+                  style={styles.inputStyle}
+                  onChangeText={text => this.setState({Password: text})}
+                  placeholderTextColor="grey"
+                  secureTextEntry={true}
+                  placeholder="Password"
+                  secureTextEntry={true}
+                  underlineColorAndroid="transparent"
+                />
+                <TextInput
+                  style={styles.inputStyle}
+                  onChangeText={text => this.setState({ConfirmPassword: text})}
+                  placeholderTextColor="grey"
+                  secureTextEntry={true}
+                  placeholder="Confirm Password"
+                  secureTextEntry={true}
+                  underlineColorAndroid="transparent"
+                />
+                <View style={{flexDirection: 'row', paddingRight: 5}}>
+                  <TouchableOpacity
+                    onPress={() =>
+                      this.setState(prevState => ({
+                        acceptPolicy: !prevState.acceptPolicy,
+                      }))
+                    }
+                    style={{
+                      height: hp('1.5'),
+                      width: hp('1.5'),
+                      backgroundColor: this.state.acceptPolicy
+                        ? PrimaryColor
+                        : 'white',
+                      borderColor: '#ccc',
+                      borderWidth: 1,
+                      margin: 5,
+                      paddingRight: 10,
+                    }}
+                  />
+                  <DefaultText>
+                    I have read and accept the{' '}
+                    <Text style={{color: PrimaryColor}}>
+                      Terms and condition
+                    </Text>{' '}
+                    and the{' '}
+                    <Text style={{color: PrimaryColor}}> Cookeis Policy</Text>
+                  </DefaultText>
+                </View>
               </ScrollView>
             </View>
           </View>
         </KeyboardAvoidingView>
-        
+
         <Button
           onPress={() => this.submitAction()}
           activeOpacity={0.8}
@@ -306,4 +321,10 @@ const styles = StyleSheet.create({
   },
 });
 
-export default Screen;
+const mapStateToProps = state => {
+  return {
+    language: state.language.defaultLanguage,
+  };
+};
+
+export default connect(mapStateToProps)(Screen);

@@ -5,7 +5,7 @@ INJECTED from /Users/poojagugu/Desktop/latest/SAICINSURANCE/android/app/src/main
 INJECTED from /Users/poojagugu/Desktop/latest/SAICINSURANCE/android/app/src/main/AndroidManifest.xml:1:1-47:12
 INJECTED from /Users/poojagugu/Desktop/latest/SAICINSURANCE/android/app/src/main/AndroidManifest.xml:1:1-47:12
 MERGED from /Users/poojagugu/Desktop/latest/SAICINSURANCE/android/app/src/main/AndroidManifest.xml:1:1-47:12
-MERGED from [hermes-debug.aar] /Users/poojagugu/.gradle/caches/transforms-2/files-2.1/0dc4dc93f74f22bb7a5efb3ea3129c65/AndroidManifest.xml:2:1-7:12
+MERGED from [hermes-debug.aar] /Users/poojagugu/.gradle/caches/transforms-2/files-2.1/6fa728018eb3ccf11c49ed694450f536/AndroidManifest.xml:2:1-7:12
 MERGED from [:react-native-linear-gradient] /Users/poojagugu/Desktop/latest/SAICINSURANCE/node_modules/react-native-linear-gradient/android/build/intermediates/library_manifest/debug/AndroidManifest.xml:2:1-11:12
 MERGED from [:WebRTCModule] /Users/poojagugu/Desktop/latest/SAICINSURANCE/node_modules/react-native-webrtc/android/build/intermediates/library_manifest/debug/AndroidManifest.xml:2:1-11:12
 MERGED from [:react-native-community_async-storage] /Users/poojagugu/Desktop/latest/SAICINSURANCE/node_modules/@react-native-community/async-storage/android/build/intermediates/library_manifest/debug/AndroidManifest.xml:2:1-9:12
@@ -18,58 +18,58 @@ MERGED from [:react-native-reanimated] /Users/poojagugu/Desktop/latest/SAICINSUR
 MERGED from [:react-native-safe-area-context] /Users/poojagugu/Desktop/latest/SAICINSURANCE/node_modules/react-native-safe-area-context/android/build/intermediates/library_manifest/debug/AndroidManifest.xml:2:1-9:12
 MERGED from [:react-native-screens] /Users/poojagugu/Desktop/latest/SAICINSURANCE/node_modules/react-native-screens/android/build/intermediates/library_manifest/debug/AndroidManifest.xml:2:1-11:12
 MERGED from [:react-native-vector-icons] /Users/poojagugu/Desktop/latest/SAICINSURANCE/node_modules/react-native-vector-icons/android/build/intermediates/library_manifest/debug/AndroidManifest.xml:2:1-11:12
-MERGED from [com.facebook.react:react-native:0.61.5] /Users/poojagugu/.gradle/caches/transforms-2/files-2.1/6d07d718f7de88f117923a9ef9ee51e0/AndroidManifest.xml:2:1-13:12
-MERGED from [com.github.yalantis:ucrop:2.2.5-native] /Users/poojagugu/.gradle/caches/transforms-2/files-2.1/23953f2e5627ab66f830c39b00eb65f1/AndroidManifest.xml:2:1-11:12
-MERGED from [com.google.android.material:material:1.1.0] /Users/poojagugu/.gradle/caches/transforms-2/files-2.1/0592b960560c4db6848ec5b2367a60a6/AndroidManifest.xml:17:1-24:12
-MERGED from [net.gotev:uploadservice-okhttp:3.4.2] /Users/poojagugu/.gradle/caches/transforms-2/files-2.1/463c16450c53834947d9b57bf83fd926/AndroidManifest.xml:2:1-14:12
-MERGED from [net.gotev:uploadservice:3.4.2] /Users/poojagugu/.gradle/caches/transforms-2/files-2.1/5bd602eb3b261caef2304de6f4f38542/AndroidManifest.xml:2:1-24:12
-MERGED from [androidx.appcompat:appcompat:1.1.0] /Users/poojagugu/.gradle/caches/transforms-2/files-2.1/6cc993681c9f7f29b3105fd19611a157/AndroidManifest.xml:17:1-24:12
-MERGED from [androidx.legacy:legacy-support-v4:1.0.0] /Users/poojagugu/.gradle/caches/transforms-2/files-2.1/c9388a27e92ac748ee87c6ef4c29c241/AndroidManifest.xml:17:1-22:12
-MERGED from [androidx.legacy:legacy-support-core-ui:1.0.0] /Users/poojagugu/.gradle/caches/transforms-2/files-2.1/e695bf423b8c511f1a033aafa7c1c96e/AndroidManifest.xml:17:1-22:12
-MERGED from [androidx.swiperefreshlayout:swiperefreshlayout:1.1.0-alpha02] /Users/poojagugu/.gradle/caches/transforms-2/files-2.1/69015ecad69265b07ce3008b2605268c/AndroidManifest.xml:17:1-24:12
+MERGED from [com.facebook.react:react-native:0.61.5] /Users/poojagugu/.gradle/caches/transforms-2/files-2.1/27c3c5560312452785951cf431a0c252/AndroidManifest.xml:2:1-13:12
+MERGED from [com.github.yalantis:ucrop:2.2.5-native] /Users/poojagugu/.gradle/caches/transforms-2/files-2.1/c68009ccb32800eef511a06f56d05a71/AndroidManifest.xml:2:1-11:12
+MERGED from [com.google.android.material:material:1.1.0] /Users/poojagugu/.gradle/caches/transforms-2/files-2.1/7b06547e9b760b11a8dbc2fc0c9710a4/AndroidManifest.xml:17:1-24:12
+MERGED from [net.gotev:uploadservice-okhttp:3.4.2] /Users/poojagugu/.gradle/caches/transforms-2/files-2.1/fb38b66432e92b306c8efa444da8e5b0/AndroidManifest.xml:2:1-14:12
+MERGED from [net.gotev:uploadservice:3.4.2] /Users/poojagugu/.gradle/caches/transforms-2/files-2.1/3260d124f6ae02de3013daa3475d0779/AndroidManifest.xml:2:1-24:12
+MERGED from [androidx.appcompat:appcompat:1.1.0] /Users/poojagugu/.gradle/caches/transforms-2/files-2.1/be60f0dd4bc5e2e0bdb1f9dd99732790/AndroidManifest.xml:17:1-24:12
+MERGED from [androidx.legacy:legacy-support-v4:1.0.0] /Users/poojagugu/.gradle/caches/transforms-2/files-2.1/bb5fe88da75b0910f2342278a5847dfa/AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.legacy:legacy-support-core-ui:1.0.0] /Users/poojagugu/.gradle/caches/transforms-2/files-2.1/5c9929cc8cdda00819a427deaebf201e/AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.swiperefreshlayout:swiperefreshlayout:1.1.0-alpha02] /Users/poojagugu/.gradle/caches/transforms-2/files-2.1/065058e479011d3e43dd422b34d1c798/AndroidManifest.xml:17:1-24:12
 MERGED from [:react-native-sound] /Users/poojagugu/Desktop/latest/SAICINSURANCE/node_modules/react-native-sound/android/build/intermediates/library_manifest/debug/AndroidManifest.xml:2:1-12:12
-MERGED from [com.facebook.fresco:fresco:2.0.0] /Users/poojagugu/.gradle/caches/transforms-2/files-2.1/631293d121b0ad00589c330fa2e453d4/AndroidManifest.xml:2:1-9:12
-MERGED from [com.facebook.fresco:imagepipeline-okhttp3:2.0.0] /Users/poojagugu/.gradle/caches/transforms-2/files-2.1/b67507f4419b4d871d0075138025a50f/AndroidManifest.xml:2:1-9:12
-MERGED from [com.facebook.fresco:drawee:2.0.0] /Users/poojagugu/.gradle/caches/transforms-2/files-2.1/f9edeb093fd990e4967f595ab931f67a/AndroidManifest.xml:2:1-9:12
-MERGED from [com.facebook.fresco:nativeimagefilters:2.0.0] /Users/poojagugu/.gradle/caches/transforms-2/files-2.1/22e9132cd00f504678fb4076be0a4c50/AndroidManifest.xml:2:1-9:12
-MERGED from [com.facebook.fresco:imagepipeline:2.0.0] /Users/poojagugu/.gradle/caches/transforms-2/files-2.1/84c8790efc06fd4791b9d0c84dd2ad2e/AndroidManifest.xml:2:1-9:12
-MERGED from [com.facebook.fresco:nativeimagetranscoder:2.0.0] /Users/poojagugu/.gradle/caches/transforms-2/files-2.1/9a9b7add004e9897d614fc8b578bc929/AndroidManifest.xml:2:1-9:12
-MERGED from [com.facebook.fresco:imagepipeline-base:2.0.0] /Users/poojagugu/.gradle/caches/transforms-2/files-2.1/b16aa49ef146accd5763f85d6f84b427/AndroidManifest.xml:2:1-9:12
-MERGED from [com.facebook.soloader:soloader:0.6.0] /Users/poojagugu/.gradle/caches/transforms-2/files-2.1/aeb8b74c1f4acf72f741bce9505f36c6/AndroidManifest.xml:2:1-13:12
-MERGED from [androidx.appcompat:appcompat-resources:1.1.0] /Users/poojagugu/.gradle/caches/transforms-2/files-2.1/7bf3131e93614c26de8564f6e9c83b3c/AndroidManifest.xml:17:1-24:12
-MERGED from [androidx.vectordrawable:vectordrawable-animated:1.1.0] /Users/poojagugu/.gradle/caches/transforms-2/files-2.1/3094a9882d2027b280f76be96a00c75a/AndroidManifest.xml:17:1-24:12
-MERGED from [androidx.interpolator:interpolator:1.0.0] /Users/poojagugu/.gradle/caches/transforms-2/files-2.1/031f86a116428114ed83ebdef4b71e67/AndroidManifest.xml:17:1-22:12
-MERGED from [androidx.media:media:1.0.0] /Users/poojagugu/.gradle/caches/transforms-2/files-2.1/136779fc6dbd0d370d86c25698334190/AndroidManifest.xml:17:1-22:12
-MERGED from [androidx.legacy:legacy-support-core-utils:1.0.0] /Users/poojagugu/.gradle/caches/transforms-2/files-2.1/ddd0742e039344a04bac886ed2af2c1c/AndroidManifest.xml:17:1-22:12
-MERGED from [androidx.viewpager2:viewpager2:1.0.0] /Users/poojagugu/.gradle/caches/transforms-2/files-2.1/07b98cb008ef8e84e271e4bc7cc29088/AndroidManifest.xml:17:1-24:12
-MERGED from [androidx.fragment:fragment:1.2.1] /Users/poojagugu/.gradle/caches/transforms-2/files-2.1/20e852b3e5e5c563964a655f2d853564/AndroidManifest.xml:17:1-24:12
-MERGED from [androidx.coordinatorlayout:coordinatorlayout:1.1.0] /Users/poojagugu/.gradle/caches/transforms-2/files-2.1/8b43107e7497ca52d1fac2b9418a4782/AndroidManifest.xml:17:1-24:12
-MERGED from [androidx.documentfile:documentfile:1.0.0] /Users/poojagugu/.gradle/caches/transforms-2/files-2.1/d8e06961f80ebc0322063951d0202094/AndroidManifest.xml:17:1-22:12
-MERGED from [androidx.loader:loader:1.0.0] /Users/poojagugu/.gradle/caches/transforms-2/files-2.1/e82ec4c21d436ed5fb320edfaf9d8325/AndroidManifest.xml:17:1-22:12
-MERGED from [androidx.localbroadcastmanager:localbroadcastmanager:1.0.0] /Users/poojagugu/.gradle/caches/transforms-2/files-2.1/2545ee5157c2f6b42976b2df6454ef82/AndroidManifest.xml:17:1-22:12
-MERGED from [androidx.print:print:1.0.0] /Users/poojagugu/.gradle/caches/transforms-2/files-2.1/35337d77c2323e781f4f29a877049984/AndroidManifest.xml:17:1-22:12
-MERGED from [androidx.viewpager:viewpager:1.0.0] /Users/poojagugu/.gradle/caches/transforms-2/files-2.1/4d84cbb1c6ffce58954ce817df5aa2b1/AndroidManifest.xml:17:1-22:12
-MERGED from [androidx.drawerlayout:drawerlayout:1.0.0] /Users/poojagugu/.gradle/caches/transforms-2/files-2.1/fd3a93803745f901281a200ae963c96d/AndroidManifest.xml:17:1-22:12
-MERGED from [androidx.slidingpanelayout:slidingpanelayout:1.0.0] /Users/poojagugu/.gradle/caches/transforms-2/files-2.1/518c2a9bf965b763d726425b87b3f8fd/AndroidManifest.xml:17:1-22:12
-MERGED from [androidx.recyclerview:recyclerview:1.1.0] /Users/poojagugu/.gradle/caches/transforms-2/files-2.1/036d8c9f384a54686002ca5319393b7b/AndroidManifest.xml:17:1-24:12
-MERGED from [androidx.customview:customview:1.0.0] /Users/poojagugu/.gradle/caches/transforms-2/files-2.1/237ef32aee9430f2e3b8d790e579b2d3/AndroidManifest.xml:17:1-22:12
-MERGED from [androidx.asynclayoutinflater:asynclayoutinflater:1.0.0] /Users/poojagugu/.gradle/caches/transforms-2/files-2.1/8cc6bc434cae1eb23ac0f72f5bb92cf4/AndroidManifest.xml:17:1-22:12
-MERGED from [androidx.cursoradapter:cursoradapter:1.0.0] /Users/poojagugu/.gradle/caches/transforms-2/files-2.1/513151f503ab0688e441ef1f02ed31aa/AndroidManifest.xml:17:1-22:12
-MERGED from [androidx.exifinterface:exifinterface:1.1.0-beta01] /Users/poojagugu/.gradle/caches/transforms-2/files-2.1/85052f24151ef956bef856eb9557cd20/AndroidManifest.xml:17:1-24:12
-MERGED from [androidx.activity:activity:1.1.0] /Users/poojagugu/.gradle/caches/transforms-2/files-2.1/e4a92d969d2496ef11bf7cc7d9ddfb6e/AndroidManifest.xml:17:1-24:12
-MERGED from [androidx.transition:transition:1.2.0] /Users/poojagugu/.gradle/caches/transforms-2/files-2.1/9595667bbfb525c0bc4eecfed01bf176/AndroidManifest.xml:17:1-24:12
-MERGED from [androidx.vectordrawable:vectordrawable:1.1.0] /Users/poojagugu/.gradle/caches/transforms-2/files-2.1/daebaa04a701aa88c55e572acf512ab0/AndroidManifest.xml:17:1-24:12
-MERGED from [androidx.core:core:1.1.0] /Users/poojagugu/.gradle/caches/transforms-2/files-2.1/482bfa17b0e4f2a98194caf0d65a7435/AndroidManifest.xml:17:1-26:12
-MERGED from [androidx.versionedparcelable:versionedparcelable:1.1.0] /Users/poojagugu/.gradle/caches/transforms-2/files-2.1/068a6d406fae6a7cfb81d52a076065fe/AndroidManifest.xml:17:1-27:12
-MERGED from [androidx.lifecycle:lifecycle-viewmodel-savedstate:2.2.0] /Users/poojagugu/.gradle/caches/transforms-2/files-2.1/ed966c657a9a0aaadc341acab4a303f0/AndroidManifest.xml:17:1-24:12
-MERGED from [androidx.lifecycle:lifecycle-viewmodel:2.2.0] /Users/poojagugu/.gradle/caches/transforms-2/files-2.1/b580f0e22bb637b6214672b1bfcda73e/AndroidManifest.xml:17:1-24:12
-MERGED from [androidx.cardview:cardview:1.0.0] /Users/poojagugu/.gradle/caches/transforms-2/files-2.1/d378cb885ac3202aa70959b4196d8b87/AndroidManifest.xml:17:1-22:12
-MERGED from [androidx.lifecycle:lifecycle-runtime:2.2.0] /Users/poojagugu/.gradle/caches/transforms-2/files-2.1/193c672577c93a0bac27fb7cd81b5614/AndroidManifest.xml:17:1-24:12
-MERGED from [androidx.savedstate:savedstate:1.0.0] /Users/poojagugu/.gradle/caches/transforms-2/files-2.1/2ed4cc64b67314fecdc1578491aa7e2a/AndroidManifest.xml:17:1-24:12
-MERGED from [androidx.lifecycle:lifecycle-livedata:2.0.0] /Users/poojagugu/.gradle/caches/transforms-2/files-2.1/651731db34447d8a7c3a0ec2423befd8/AndroidManifest.xml:17:1-22:12
-MERGED from [androidx.lifecycle:lifecycle-livedata-core:2.2.0] /Users/poojagugu/.gradle/caches/transforms-2/files-2.1/ff7bc93bf6222c3402f5f45fb9d08c6b/AndroidManifest.xml:17:1-24:12
-MERGED from [androidx.arch.core:core-runtime:2.1.0] /Users/poojagugu/.gradle/caches/transforms-2/files-2.1/a96e114334d990c8da79f6f0aae8d51f/AndroidManifest.xml:17:1-24:12
-MERGED from [com.facebook.fresco:fbcore:2.0.0] /Users/poojagugu/.gradle/caches/transforms-2/files-2.1/6f3a9030a2dc7571f5da5a019f42a74b/AndroidManifest.xml:2:1-9:12
+MERGED from [com.facebook.fresco:fresco:2.0.0] /Users/poojagugu/.gradle/caches/transforms-2/files-2.1/1025fdc76cabda8c210cf6dde8cab3b2/AndroidManifest.xml:2:1-9:12
+MERGED from [com.facebook.fresco:imagepipeline-okhttp3:2.0.0] /Users/poojagugu/.gradle/caches/transforms-2/files-2.1/2cec4caf473c169387d0530152bf4d1a/AndroidManifest.xml:2:1-9:12
+MERGED from [com.facebook.fresco:drawee:2.0.0] /Users/poojagugu/.gradle/caches/transforms-2/files-2.1/192b179e5956a90c2e7d8c484493527a/AndroidManifest.xml:2:1-9:12
+MERGED from [com.facebook.fresco:nativeimagefilters:2.0.0] /Users/poojagugu/.gradle/caches/transforms-2/files-2.1/b39c798500db651c8a004a5e141f785f/AndroidManifest.xml:2:1-9:12
+MERGED from [com.facebook.fresco:imagepipeline:2.0.0] /Users/poojagugu/.gradle/caches/transforms-2/files-2.1/91fd8a244c754a703208071682749751/AndroidManifest.xml:2:1-9:12
+MERGED from [com.facebook.fresco:nativeimagetranscoder:2.0.0] /Users/poojagugu/.gradle/caches/transforms-2/files-2.1/b1405e1107f6fcdc89c314ec9c49f34c/AndroidManifest.xml:2:1-9:12
+MERGED from [com.facebook.fresco:imagepipeline-base:2.0.0] /Users/poojagugu/.gradle/caches/transforms-2/files-2.1/e2f9b38a082b46e7d78c1e519af9c4ea/AndroidManifest.xml:2:1-9:12
+MERGED from [com.facebook.soloader:soloader:0.6.0] /Users/poojagugu/.gradle/caches/transforms-2/files-2.1/1d19fc1068c0d8248e2a166a2c3bccfd/AndroidManifest.xml:2:1-13:12
+MERGED from [androidx.appcompat:appcompat-resources:1.1.0] /Users/poojagugu/.gradle/caches/transforms-2/files-2.1/31b718feaea16d3c03cdf49e53e76c31/AndroidManifest.xml:17:1-24:12
+MERGED from [androidx.vectordrawable:vectordrawable-animated:1.1.0] /Users/poojagugu/.gradle/caches/transforms-2/files-2.1/ab697bfb74a5139738980c11365c1f07/AndroidManifest.xml:17:1-24:12
+MERGED from [androidx.interpolator:interpolator:1.0.0] /Users/poojagugu/.gradle/caches/transforms-2/files-2.1/6b46924240974422932500b7911e54c0/AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.media:media:1.0.0] /Users/poojagugu/.gradle/caches/transforms-2/files-2.1/5ceecb9bb3cf3ab26b18ae1caa72b843/AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.legacy:legacy-support-core-utils:1.0.0] /Users/poojagugu/.gradle/caches/transforms-2/files-2.1/bb1af9e3e8331db0a491db99b2ab0a84/AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.viewpager2:viewpager2:1.0.0] /Users/poojagugu/.gradle/caches/transforms-2/files-2.1/40b3651ad4eddee02be1547de71d8e48/AndroidManifest.xml:17:1-24:12
+MERGED from [androidx.fragment:fragment:1.2.1] /Users/poojagugu/.gradle/caches/transforms-2/files-2.1/a45d73796fe7e29fd9d7d52a5f97dcff/AndroidManifest.xml:17:1-24:12
+MERGED from [androidx.coordinatorlayout:coordinatorlayout:1.1.0] /Users/poojagugu/.gradle/caches/transforms-2/files-2.1/274142ea6f2fb665cf2a207e43d7f911/AndroidManifest.xml:17:1-24:12
+MERGED from [androidx.documentfile:documentfile:1.0.0] /Users/poojagugu/.gradle/caches/transforms-2/files-2.1/7e89b3d10b09afdc46bc36e96d46bfea/AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.loader:loader:1.0.0] /Users/poojagugu/.gradle/caches/transforms-2/files-2.1/8b7ec43e9242e364faa29af2bffe9921/AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.localbroadcastmanager:localbroadcastmanager:1.0.0] /Users/poojagugu/.gradle/caches/transforms-2/files-2.1/d4959957c23a0ed8f5f4c5d228758ccd/AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.print:print:1.0.0] /Users/poojagugu/.gradle/caches/transforms-2/files-2.1/2b5d3f009cc49aa8d76389f3bb66f171/AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.viewpager:viewpager:1.0.0] /Users/poojagugu/.gradle/caches/transforms-2/files-2.1/8197644cf7d30d121da50dc726859247/AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.drawerlayout:drawerlayout:1.0.0] /Users/poojagugu/.gradle/caches/transforms-2/files-2.1/3327c56fe1ddd026b893e4e940cd98f4/AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.slidingpanelayout:slidingpanelayout:1.0.0] /Users/poojagugu/.gradle/caches/transforms-2/files-2.1/6ade02cd51c5ef2d08610ddf9bef69f4/AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.recyclerview:recyclerview:1.1.0] /Users/poojagugu/.gradle/caches/transforms-2/files-2.1/4dac4bdfe94d5aa7a048cbcaddd21168/AndroidManifest.xml:17:1-24:12
+MERGED from [androidx.customview:customview:1.0.0] /Users/poojagugu/.gradle/caches/transforms-2/files-2.1/43ec0b9838f4032e3e119ca5e6719e3f/AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.asynclayoutinflater:asynclayoutinflater:1.0.0] /Users/poojagugu/.gradle/caches/transforms-2/files-2.1/4bd76aa339eda3291e61434fa97d4c5a/AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.cursoradapter:cursoradapter:1.0.0] /Users/poojagugu/.gradle/caches/transforms-2/files-2.1/a651ae6810917ba32977580271cff02b/AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.exifinterface:exifinterface:1.1.0-beta01] /Users/poojagugu/.gradle/caches/transforms-2/files-2.1/a8182e63786e4bc64f5dee37530252a1/AndroidManifest.xml:17:1-24:12
+MERGED from [androidx.activity:activity:1.1.0] /Users/poojagugu/.gradle/caches/transforms-2/files-2.1/cef91d50a5442d6c3994cb44a4798465/AndroidManifest.xml:17:1-24:12
+MERGED from [androidx.transition:transition:1.2.0] /Users/poojagugu/.gradle/caches/transforms-2/files-2.1/3c1d5c8a356f3f74eb3b0342eb4a0489/AndroidManifest.xml:17:1-24:12
+MERGED from [androidx.vectordrawable:vectordrawable:1.1.0] /Users/poojagugu/.gradle/caches/transforms-2/files-2.1/26b1d0e76331a0b71c3faa0984c007e6/AndroidManifest.xml:17:1-24:12
+MERGED from [androidx.core:core:1.1.0] /Users/poojagugu/.gradle/caches/transforms-2/files-2.1/d470e8f4784b63137be36d21e183591c/AndroidManifest.xml:17:1-26:12
+MERGED from [androidx.versionedparcelable:versionedparcelable:1.1.0] /Users/poojagugu/.gradle/caches/transforms-2/files-2.1/1dd5e0ac8698a9e8313b8626860d0c26/AndroidManifest.xml:17:1-27:12
+MERGED from [androidx.lifecycle:lifecycle-viewmodel-savedstate:2.2.0] /Users/poojagugu/.gradle/caches/transforms-2/files-2.1/c114d2c8909b58ed4e89e322793ffdec/AndroidManifest.xml:17:1-24:12
+MERGED from [androidx.lifecycle:lifecycle-viewmodel:2.2.0] /Users/poojagugu/.gradle/caches/transforms-2/files-2.1/858a182d6e8e90b73fd2b1034be0b606/AndroidManifest.xml:17:1-24:12
+MERGED from [androidx.cardview:cardview:1.0.0] /Users/poojagugu/.gradle/caches/transforms-2/files-2.1/9113c6aeb6f64daf8c2ae374d7a154ac/AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.lifecycle:lifecycle-runtime:2.2.0] /Users/poojagugu/.gradle/caches/transforms-2/files-2.1/0465e7a44e6574e95ed41b6bfaa2e168/AndroidManifest.xml:17:1-24:12
+MERGED from [androidx.savedstate:savedstate:1.0.0] /Users/poojagugu/.gradle/caches/transforms-2/files-2.1/a3cb13e3fc775e4fdc57f31e646cd258/AndroidManifest.xml:17:1-24:12
+MERGED from [androidx.lifecycle:lifecycle-livedata:2.0.0] /Users/poojagugu/.gradle/caches/transforms-2/files-2.1/9db00ea4c44d045e0980b906ef9787ee/AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.lifecycle:lifecycle-livedata-core:2.2.0] /Users/poojagugu/.gradle/caches/transforms-2/files-2.1/60fa9d98640a06b143aed8388a2eafa9/AndroidManifest.xml:17:1-24:12
+MERGED from [androidx.arch.core:core-runtime:2.1.0] /Users/poojagugu/.gradle/caches/transforms-2/files-2.1/86f6d48d51235cb7e80d8ca38f8c7cec/AndroidManifest.xml:17:1-24:12
+MERGED from [com.facebook.fresco:fbcore:2.0.0] /Users/poojagugu/.gradle/caches/transforms-2/files-2.1/906497c422a4776565d87d74a1749242/AndroidManifest.xml:2:1-9:12
 INJECTED from /Users/poojagugu/Desktop/latest/SAICINSURANCE/android/app/src/debug/AndroidManifest.xml:2:1-8:12
 INJECTED from /Users/poojagugu/Desktop/latest/SAICINSURANCE/android/app/src/debug/AndroidManifest.xml:2:1-8:12
 INJECTED from /Users/poojagugu/Desktop/latest/SAICINSURANCE/android/app/src/debug/AndroidManifest.xml:2:1-8:12
@@ -92,8 +92,8 @@ INJECTED from /Users/poojagugu/Desktop/latest/SAICINSURANCE/android/app/src/debu
 		ADDED from /Users/poojagugu/Desktop/latest/SAICINSURANCE/android/app/src/main/AndroidManifest.xml:1:11-69
 uses-permission#android.permission.INTERNET
 ADDED from /Users/poojagugu/Desktop/latest/SAICINSURANCE/android/app/src/main/AndroidManifest.xml:4:5-67
-MERGED from [net.gotev:uploadservice:3.4.2] /Users/poojagugu/.gradle/caches/transforms-2/files-2.1/5bd602eb3b261caef2304de6f4f38542/AndroidManifest.xml:11:5-67
-MERGED from [net.gotev:uploadservice:3.4.2] /Users/poojagugu/.gradle/caches/transforms-2/files-2.1/5bd602eb3b261caef2304de6f4f38542/AndroidManifest.xml:11:5-67
+MERGED from [net.gotev:uploadservice:3.4.2] /Users/poojagugu/.gradle/caches/transforms-2/files-2.1/3260d124f6ae02de3013daa3475d0779/AndroidManifest.xml:11:5-67
+MERGED from [net.gotev:uploadservice:3.4.2] /Users/poojagugu/.gradle/caches/transforms-2/files-2.1/3260d124f6ae02de3013daa3475d0779/AndroidManifest.xml:11:5-67
 	android:name
 		ADDED from /Users/poojagugu/Desktop/latest/SAICINSURANCE/android/app/src/main/AndroidManifest.xml:4:22-64
 uses-permission#android.permission.SYSTEM_ALERT_WINDOW
@@ -102,6 +102,10 @@ MERGED from /Users/poojagugu/Desktop/latest/SAICINSURANCE/android/app/src/main/A
 MERGED from /Users/poojagugu/Desktop/latest/SAICINSURANCE/android/app/src/main/AndroidManifest.xml:5:5-77
 	android:name
 		ADDED from /Users/poojagugu/Desktop/latest/SAICINSURANCE/android/app/src/main/AndroidManifest.xml:5:22-75
+uses-permission#android.permission.FOREGROUND_SERVICE
+ADDED from /Users/poojagugu/Desktop/latest/SAICINSURANCE/android/app/src/main/AndroidManifest.xml:6:3-75
+	android:name
+		ADDED from /Users/poojagugu/Desktop/latest/SAICINSURANCE/android/app/src/main/AndroidManifest.xml:6:20-72
 uses-permission#android.permission.CAMERA
 ADDED from /Users/poojagugu/Desktop/latest/SAICINSURANCE/android/app/src/main/AndroidManifest.xml:7:5-65
 	android:name
@@ -128,16 +132,16 @@ ADDED from /Users/poojagugu/Desktop/latest/SAICINSURANCE/android/app/src/main/An
 		ADDED from /Users/poojagugu/Desktop/latest/SAICINSURANCE/android/app/src/main/AndroidManifest.xml:13:22-68
 uses-permission#android.permission.WAKE_LOCK
 ADDED from /Users/poojagugu/Desktop/latest/SAICINSURANCE/android/app/src/main/AndroidManifest.xml:14:5-68
-MERGED from [net.gotev:uploadservice:3.4.2] /Users/poojagugu/.gradle/caches/transforms-2/files-2.1/5bd602eb3b261caef2304de6f4f38542/AndroidManifest.xml:14:5-68
-MERGED from [net.gotev:uploadservice:3.4.2] /Users/poojagugu/.gradle/caches/transforms-2/files-2.1/5bd602eb3b261caef2304de6f4f38542/AndroidManifest.xml:14:5-68
+MERGED from [net.gotev:uploadservice:3.4.2] /Users/poojagugu/.gradle/caches/transforms-2/files-2.1/3260d124f6ae02de3013daa3475d0779/AndroidManifest.xml:14:5-68
+MERGED from [net.gotev:uploadservice:3.4.2] /Users/poojagugu/.gradle/caches/transforms-2/files-2.1/3260d124f6ae02de3013daa3475d0779/AndroidManifest.xml:14:5-68
 	android:name
 		ADDED from /Users/poojagugu/Desktop/latest/SAICINSURANCE/android/app/src/main/AndroidManifest.xml:14:22-65
 uses-permission#android.permission.WRITE_EXTERNAL_STORAGE
 ADDED from /Users/poojagugu/Desktop/latest/SAICINSURANCE/android/app/src/main/AndroidManifest.xml:15:5-80
 MERGED from [:react-native-image-crop-picker] /Users/poojagugu/Desktop/latest/SAICINSURANCE/node_modules/react-native-image-crop-picker/android/build/intermediates/library_manifest/debug/AndroidManifest.xml:10:5-81
 MERGED from [:react-native-image-crop-picker] /Users/poojagugu/Desktop/latest/SAICINSURANCE/node_modules/react-native-image-crop-picker/android/build/intermediates/library_manifest/debug/AndroidManifest.xml:10:5-81
-MERGED from [net.gotev:uploadservice:3.4.2] /Users/poojagugu/.gradle/caches/transforms-2/files-2.1/5bd602eb3b261caef2304de6f4f38542/AndroidManifest.xml:13:5-81
-MERGED from [net.gotev:uploadservice:3.4.2] /Users/poojagugu/.gradle/caches/transforms-2/files-2.1/5bd602eb3b261caef2304de6f4f38542/AndroidManifest.xml:13:5-81
+MERGED from [net.gotev:uploadservice:3.4.2] /Users/poojagugu/.gradle/caches/transforms-2/files-2.1/3260d124f6ae02de3013daa3475d0779/AndroidManifest.xml:13:5-81
+MERGED from [net.gotev:uploadservice:3.4.2] /Users/poojagugu/.gradle/caches/transforms-2/files-2.1/3260d124f6ae02de3013daa3475d0779/AndroidManifest.xml:13:5-81
 	android:name
 		ADDED from /Users/poojagugu/Desktop/latest/SAICINSURANCE/android/app/src/main/AndroidManifest.xml:15:22-78
 application
@@ -146,22 +150,22 @@ MERGED from /Users/poojagugu/Desktop/latest/SAICINSURANCE/android/app/src/main/A
 MERGED from /Users/poojagugu/Desktop/latest/SAICINSURANCE/android/app/src/main/AndroidManifest.xml:18:5-45:19
 MERGED from [:react-native-image-crop-picker] /Users/poojagugu/Desktop/latest/SAICINSURANCE/node_modules/react-native-image-crop-picker/android/build/intermediates/library_manifest/debug/AndroidManifest.xml:12:5-26:19
 MERGED from [:react-native-image-crop-picker] /Users/poojagugu/Desktop/latest/SAICINSURANCE/node_modules/react-native-image-crop-picker/android/build/intermediates/library_manifest/debug/AndroidManifest.xml:12:5-26:19
-MERGED from [com.facebook.react:react-native:0.61.5] /Users/poojagugu/.gradle/caches/transforms-2/files-2.1/6d07d718f7de88f117923a9ef9ee51e0/AndroidManifest.xml:11:5-20
-MERGED from [com.facebook.react:react-native:0.61.5] /Users/poojagugu/.gradle/caches/transforms-2/files-2.1/6d07d718f7de88f117923a9ef9ee51e0/AndroidManifest.xml:11:5-20
-MERGED from [com.google.android.material:material:1.1.0] /Users/poojagugu/.gradle/caches/transforms-2/files-2.1/0592b960560c4db6848ec5b2367a60a6/AndroidManifest.xml:22:5-20
-MERGED from [com.google.android.material:material:1.1.0] /Users/poojagugu/.gradle/caches/transforms-2/files-2.1/0592b960560c4db6848ec5b2367a60a6/AndroidManifest.xml:22:5-20
-MERGED from [net.gotev:uploadservice-okhttp:3.4.2] /Users/poojagugu/.gradle/caches/transforms-2/files-2.1/463c16450c53834947d9b57bf83fd926/AndroidManifest.xml:11:5-12:19
-MERGED from [net.gotev:uploadservice-okhttp:3.4.2] /Users/poojagugu/.gradle/caches/transforms-2/files-2.1/463c16450c53834947d9b57bf83fd926/AndroidManifest.xml:11:5-12:19
-MERGED from [net.gotev:uploadservice:3.4.2] /Users/poojagugu/.gradle/caches/transforms-2/files-2.1/5bd602eb3b261caef2304de6f4f38542/AndroidManifest.xml:16:5-22:19
-MERGED from [net.gotev:uploadservice:3.4.2] /Users/poojagugu/.gradle/caches/transforms-2/files-2.1/5bd602eb3b261caef2304de6f4f38542/AndroidManifest.xml:16:5-22:19
-MERGED from [com.facebook.soloader:soloader:0.6.0] /Users/poojagugu/.gradle/caches/transforms-2/files-2.1/aeb8b74c1f4acf72f741bce9505f36c6/AndroidManifest.xml:11:5-20
-MERGED from [com.facebook.soloader:soloader:0.6.0] /Users/poojagugu/.gradle/caches/transforms-2/files-2.1/aeb8b74c1f4acf72f741bce9505f36c6/AndroidManifest.xml:11:5-20
-MERGED from [androidx.core:core:1.1.0] /Users/poojagugu/.gradle/caches/transforms-2/files-2.1/482bfa17b0e4f2a98194caf0d65a7435/AndroidManifest.xml:24:5-89
-MERGED from [androidx.core:core:1.1.0] /Users/poojagugu/.gradle/caches/transforms-2/files-2.1/482bfa17b0e4f2a98194caf0d65a7435/AndroidManifest.xml:24:5-89
-MERGED from [androidx.versionedparcelable:versionedparcelable:1.1.0] /Users/poojagugu/.gradle/caches/transforms-2/files-2.1/068a6d406fae6a7cfb81d52a076065fe/AndroidManifest.xml:24:5-25:19
-MERGED from [androidx.versionedparcelable:versionedparcelable:1.1.0] /Users/poojagugu/.gradle/caches/transforms-2/files-2.1/068a6d406fae6a7cfb81d52a076065fe/AndroidManifest.xml:24:5-25:19
+MERGED from [com.facebook.react:react-native:0.61.5] /Users/poojagugu/.gradle/caches/transforms-2/files-2.1/27c3c5560312452785951cf431a0c252/AndroidManifest.xml:11:5-20
+MERGED from [com.facebook.react:react-native:0.61.5] /Users/poojagugu/.gradle/caches/transforms-2/files-2.1/27c3c5560312452785951cf431a0c252/AndroidManifest.xml:11:5-20
+MERGED from [com.google.android.material:material:1.1.0] /Users/poojagugu/.gradle/caches/transforms-2/files-2.1/7b06547e9b760b11a8dbc2fc0c9710a4/AndroidManifest.xml:22:5-20
+MERGED from [com.google.android.material:material:1.1.0] /Users/poojagugu/.gradle/caches/transforms-2/files-2.1/7b06547e9b760b11a8dbc2fc0c9710a4/AndroidManifest.xml:22:5-20
+MERGED from [net.gotev:uploadservice-okhttp:3.4.2] /Users/poojagugu/.gradle/caches/transforms-2/files-2.1/fb38b66432e92b306c8efa444da8e5b0/AndroidManifest.xml:11:5-12:19
+MERGED from [net.gotev:uploadservice-okhttp:3.4.2] /Users/poojagugu/.gradle/caches/transforms-2/files-2.1/fb38b66432e92b306c8efa444da8e5b0/AndroidManifest.xml:11:5-12:19
+MERGED from [net.gotev:uploadservice:3.4.2] /Users/poojagugu/.gradle/caches/transforms-2/files-2.1/3260d124f6ae02de3013daa3475d0779/AndroidManifest.xml:16:5-22:19
+MERGED from [net.gotev:uploadservice:3.4.2] /Users/poojagugu/.gradle/caches/transforms-2/files-2.1/3260d124f6ae02de3013daa3475d0779/AndroidManifest.xml:16:5-22:19
+MERGED from [com.facebook.soloader:soloader:0.6.0] /Users/poojagugu/.gradle/caches/transforms-2/files-2.1/1d19fc1068c0d8248e2a166a2c3bccfd/AndroidManifest.xml:11:5-20
+MERGED from [com.facebook.soloader:soloader:0.6.0] /Users/poojagugu/.gradle/caches/transforms-2/files-2.1/1d19fc1068c0d8248e2a166a2c3bccfd/AndroidManifest.xml:11:5-20
+MERGED from [androidx.core:core:1.1.0] /Users/poojagugu/.gradle/caches/transforms-2/files-2.1/d470e8f4784b63137be36d21e183591c/AndroidManifest.xml:24:5-89
+MERGED from [androidx.core:core:1.1.0] /Users/poojagugu/.gradle/caches/transforms-2/files-2.1/d470e8f4784b63137be36d21e183591c/AndroidManifest.xml:24:5-89
+MERGED from [androidx.versionedparcelable:versionedparcelable:1.1.0] /Users/poojagugu/.gradle/caches/transforms-2/files-2.1/1dd5e0ac8698a9e8313b8626860d0c26/AndroidManifest.xml:24:5-25:19
+MERGED from [androidx.versionedparcelable:versionedparcelable:1.1.0] /Users/poojagugu/.gradle/caches/transforms-2/files-2.1/1dd5e0ac8698a9e8313b8626860d0c26/AndroidManifest.xml:24:5-25:19
 	android:appComponentFactory
-		ADDED from [androidx.core:core:1.1.0] /Users/poojagugu/.gradle/caches/transforms-2/files-2.1/482bfa17b0e4f2a98194caf0d65a7435/AndroidManifest.xml:24:18-86
+		ADDED from [androidx.core:core:1.1.0] /Users/poojagugu/.gradle/caches/transforms-2/files-2.1/d470e8f4784b63137be36d21e183591c/AndroidManifest.xml:24:18-86
 	android:label
 		ADDED from /Users/poojagugu/Desktop/latest/SAICINSURANCE/android/app/src/main/AndroidManifest.xml:20:7-39
 		ADDED from /Users/poojagugu/Desktop/latest/SAICINSURANCE/android/app/src/main/AndroidManifest.xml:20:7-39
@@ -222,8 +226,8 @@ uses-sdk
 INJECTED from /Users/poojagugu/Desktop/latest/SAICINSURANCE/android/app/src/main/AndroidManifest.xml reason: use-sdk injection requested
 INJECTED from /Users/poojagugu/Desktop/latest/SAICINSURANCE/android/app/src/main/AndroidManifest.xml
 INJECTED from /Users/poojagugu/Desktop/latest/SAICINSURANCE/android/app/src/main/AndroidManifest.xml
-MERGED from [hermes-debug.aar] /Users/poojagugu/.gradle/caches/transforms-2/files-2.1/0dc4dc93f74f22bb7a5efb3ea3129c65/AndroidManifest.xml:5:5-44
-MERGED from [hermes-debug.aar] /Users/poojagugu/.gradle/caches/transforms-2/files-2.1/0dc4dc93f74f22bb7a5efb3ea3129c65/AndroidManifest.xml:5:5-44
+MERGED from [hermes-debug.aar] /Users/poojagugu/.gradle/caches/transforms-2/files-2.1/6fa728018eb3ccf11c49ed694450f536/AndroidManifest.xml:5:5-44
+MERGED from [hermes-debug.aar] /Users/poojagugu/.gradle/caches/transforms-2/files-2.1/6fa728018eb3ccf11c49ed694450f536/AndroidManifest.xml:5:5-44
 MERGED from [:react-native-linear-gradient] /Users/poojagugu/Desktop/latest/SAICINSURANCE/node_modules/react-native-linear-gradient/android/build/intermediates/library_manifest/debug/AndroidManifest.xml:7:5-9:41
 MERGED from [:react-native-linear-gradient] /Users/poojagugu/Desktop/latest/SAICINSURANCE/node_modules/react-native-linear-gradient/android/build/intermediates/library_manifest/debug/AndroidManifest.xml:7:5-9:41
 MERGED from [:WebRTCModule] /Users/poojagugu/Desktop/latest/SAICINSURANCE/node_modules/react-native-webrtc/android/build/intermediates/library_manifest/debug/AndroidManifest.xml:7:5-9:41
@@ -248,110 +252,110 @@ MERGED from [:react-native-screens] /Users/poojagugu/Desktop/latest/SAICINSURANC
 MERGED from [:react-native-screens] /Users/poojagugu/Desktop/latest/SAICINSURANCE/node_modules/react-native-screens/android/build/intermediates/library_manifest/debug/AndroidManifest.xml:7:5-9:41
 MERGED from [:react-native-vector-icons] /Users/poojagugu/Desktop/latest/SAICINSURANCE/node_modules/react-native-vector-icons/android/build/intermediates/library_manifest/debug/AndroidManifest.xml:7:5-9:41
 MERGED from [:react-native-vector-icons] /Users/poojagugu/Desktop/latest/SAICINSURANCE/node_modules/react-native-vector-icons/android/build/intermediates/library_manifest/debug/AndroidManifest.xml:7:5-9:41
-MERGED from [com.facebook.react:react-native:0.61.5] /Users/poojagugu/.gradle/caches/transforms-2/files-2.1/6d07d718f7de88f117923a9ef9ee51e0/AndroidManifest.xml:7:5-9:41
-MERGED from [com.facebook.react:react-native:0.61.5] /Users/poojagugu/.gradle/caches/transforms-2/files-2.1/6d07d718f7de88f117923a9ef9ee51e0/AndroidManifest.xml:7:5-9:41
-MERGED from [com.github.yalantis:ucrop:2.2.5-native] /Users/poojagugu/.gradle/caches/transforms-2/files-2.1/23953f2e5627ab66f830c39b00eb65f1/AndroidManifest.xml:7:5-9:41
-MERGED from [com.github.yalantis:ucrop:2.2.5-native] /Users/poojagugu/.gradle/caches/transforms-2/files-2.1/23953f2e5627ab66f830c39b00eb65f1/AndroidManifest.xml:7:5-9:41
-MERGED from [com.google.android.material:material:1.1.0] /Users/poojagugu/.gradle/caches/transforms-2/files-2.1/0592b960560c4db6848ec5b2367a60a6/AndroidManifest.xml:20:5-44
-MERGED from [com.google.android.material:material:1.1.0] /Users/poojagugu/.gradle/caches/transforms-2/files-2.1/0592b960560c4db6848ec5b2367a60a6/AndroidManifest.xml:20:5-44
-MERGED from [net.gotev:uploadservice-okhttp:3.4.2] /Users/poojagugu/.gradle/caches/transforms-2/files-2.1/463c16450c53834947d9b57bf83fd926/AndroidManifest.xml:7:5-9:41
-MERGED from [net.gotev:uploadservice-okhttp:3.4.2] /Users/poojagugu/.gradle/caches/transforms-2/files-2.1/463c16450c53834947d9b57bf83fd926/AndroidManifest.xml:7:5-9:41
-MERGED from [net.gotev:uploadservice:3.4.2] /Users/poojagugu/.gradle/caches/transforms-2/files-2.1/5bd602eb3b261caef2304de6f4f38542/AndroidManifest.xml:7:5-9:41
-MERGED from [net.gotev:uploadservice:3.4.2] /Users/poojagugu/.gradle/caches/transforms-2/files-2.1/5bd602eb3b261caef2304de6f4f38542/AndroidManifest.xml:7:5-9:41
-MERGED from [androidx.appcompat:appcompat:1.1.0] /Users/poojagugu/.gradle/caches/transforms-2/files-2.1/6cc993681c9f7f29b3105fd19611a157/AndroidManifest.xml:20:5-22:41
-MERGED from [androidx.appcompat:appcompat:1.1.0] /Users/poojagugu/.gradle/caches/transforms-2/files-2.1/6cc993681c9f7f29b3105fd19611a157/AndroidManifest.xml:20:5-22:41
-MERGED from [androidx.legacy:legacy-support-v4:1.0.0] /Users/poojagugu/.gradle/caches/transforms-2/files-2.1/c9388a27e92ac748ee87c6ef4c29c241/AndroidManifest.xml:20:5-44
-MERGED from [androidx.legacy:legacy-support-v4:1.0.0] /Users/poojagugu/.gradle/caches/transforms-2/files-2.1/c9388a27e92ac748ee87c6ef4c29c241/AndroidManifest.xml:20:5-44
-MERGED from [androidx.legacy:legacy-support-core-ui:1.0.0] /Users/poojagugu/.gradle/caches/transforms-2/files-2.1/e695bf423b8c511f1a033aafa7c1c96e/AndroidManifest.xml:20:5-44
-MERGED from [androidx.legacy:legacy-support-core-ui:1.0.0] /Users/poojagugu/.gradle/caches/transforms-2/files-2.1/e695bf423b8c511f1a033aafa7c1c96e/AndroidManifest.xml:20:5-44
-MERGED from [androidx.swiperefreshlayout:swiperefreshlayout:1.1.0-alpha02] /Users/poojagugu/.gradle/caches/transforms-2/files-2.1/69015ecad69265b07ce3008b2605268c/AndroidManifest.xml:20:5-22:41
-MERGED from [androidx.swiperefreshlayout:swiperefreshlayout:1.1.0-alpha02] /Users/poojagugu/.gradle/caches/transforms-2/files-2.1/69015ecad69265b07ce3008b2605268c/AndroidManifest.xml:20:5-22:41
+MERGED from [com.facebook.react:react-native:0.61.5] /Users/poojagugu/.gradle/caches/transforms-2/files-2.1/27c3c5560312452785951cf431a0c252/AndroidManifest.xml:7:5-9:41
+MERGED from [com.facebook.react:react-native:0.61.5] /Users/poojagugu/.gradle/caches/transforms-2/files-2.1/27c3c5560312452785951cf431a0c252/AndroidManifest.xml:7:5-9:41
+MERGED from [com.github.yalantis:ucrop:2.2.5-native] /Users/poojagugu/.gradle/caches/transforms-2/files-2.1/c68009ccb32800eef511a06f56d05a71/AndroidManifest.xml:7:5-9:41
+MERGED from [com.github.yalantis:ucrop:2.2.5-native] /Users/poojagugu/.gradle/caches/transforms-2/files-2.1/c68009ccb32800eef511a06f56d05a71/AndroidManifest.xml:7:5-9:41
+MERGED from [com.google.android.material:material:1.1.0] /Users/poojagugu/.gradle/caches/transforms-2/files-2.1/7b06547e9b760b11a8dbc2fc0c9710a4/AndroidManifest.xml:20:5-44
+MERGED from [com.google.android.material:material:1.1.0] /Users/poojagugu/.gradle/caches/transforms-2/files-2.1/7b06547e9b760b11a8dbc2fc0c9710a4/AndroidManifest.xml:20:5-44
+MERGED from [net.gotev:uploadservice-okhttp:3.4.2] /Users/poojagugu/.gradle/caches/transforms-2/files-2.1/fb38b66432e92b306c8efa444da8e5b0/AndroidManifest.xml:7:5-9:41
+MERGED from [net.gotev:uploadservice-okhttp:3.4.2] /Users/poojagugu/.gradle/caches/transforms-2/files-2.1/fb38b66432e92b306c8efa444da8e5b0/AndroidManifest.xml:7:5-9:41
+MERGED from [net.gotev:uploadservice:3.4.2] /Users/poojagugu/.gradle/caches/transforms-2/files-2.1/3260d124f6ae02de3013daa3475d0779/AndroidManifest.xml:7:5-9:41
+MERGED from [net.gotev:uploadservice:3.4.2] /Users/poojagugu/.gradle/caches/transforms-2/files-2.1/3260d124f6ae02de3013daa3475d0779/AndroidManifest.xml:7:5-9:41
+MERGED from [androidx.appcompat:appcompat:1.1.0] /Users/poojagugu/.gradle/caches/transforms-2/files-2.1/be60f0dd4bc5e2e0bdb1f9dd99732790/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.appcompat:appcompat:1.1.0] /Users/poojagugu/.gradle/caches/transforms-2/files-2.1/be60f0dd4bc5e2e0bdb1f9dd99732790/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.legacy:legacy-support-v4:1.0.0] /Users/poojagugu/.gradle/caches/transforms-2/files-2.1/bb5fe88da75b0910f2342278a5847dfa/AndroidManifest.xml:20:5-44
+MERGED from [androidx.legacy:legacy-support-v4:1.0.0] /Users/poojagugu/.gradle/caches/transforms-2/files-2.1/bb5fe88da75b0910f2342278a5847dfa/AndroidManifest.xml:20:5-44
+MERGED from [androidx.legacy:legacy-support-core-ui:1.0.0] /Users/poojagugu/.gradle/caches/transforms-2/files-2.1/5c9929cc8cdda00819a427deaebf201e/AndroidManifest.xml:20:5-44
+MERGED from [androidx.legacy:legacy-support-core-ui:1.0.0] /Users/poojagugu/.gradle/caches/transforms-2/files-2.1/5c9929cc8cdda00819a427deaebf201e/AndroidManifest.xml:20:5-44
+MERGED from [androidx.swiperefreshlayout:swiperefreshlayout:1.1.0-alpha02] /Users/poojagugu/.gradle/caches/transforms-2/files-2.1/065058e479011d3e43dd422b34d1c798/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.swiperefreshlayout:swiperefreshlayout:1.1.0-alpha02] /Users/poojagugu/.gradle/caches/transforms-2/files-2.1/065058e479011d3e43dd422b34d1c798/AndroidManifest.xml:20:5-22:41
 MERGED from [:react-native-sound] /Users/poojagugu/Desktop/latest/SAICINSURANCE/node_modules/react-native-sound/android/build/intermediates/library_manifest/debug/AndroidManifest.xml:8:5-10:41
 MERGED from [:react-native-sound] /Users/poojagugu/Desktop/latest/SAICINSURANCE/node_modules/react-native-sound/android/build/intermediates/library_manifest/debug/AndroidManifest.xml:8:5-10:41
-MERGED from [com.facebook.fresco:fresco:2.0.0] /Users/poojagugu/.gradle/caches/transforms-2/files-2.1/631293d121b0ad00589c330fa2e453d4/AndroidManifest.xml:5:5-7:41
-MERGED from [com.facebook.fresco:fresco:2.0.0] /Users/poojagugu/.gradle/caches/transforms-2/files-2.1/631293d121b0ad00589c330fa2e453d4/AndroidManifest.xml:5:5-7:41
-MERGED from [com.facebook.fresco:imagepipeline-okhttp3:2.0.0] /Users/poojagugu/.gradle/caches/transforms-2/files-2.1/b67507f4419b4d871d0075138025a50f/AndroidManifest.xml:5:5-7:41
-MERGED from [com.facebook.fresco:imagepipeline-okhttp3:2.0.0] /Users/poojagugu/.gradle/caches/transforms-2/files-2.1/b67507f4419b4d871d0075138025a50f/AndroidManifest.xml:5:5-7:41
-MERGED from [com.facebook.fresco:drawee:2.0.0] /Users/poojagugu/.gradle/caches/transforms-2/files-2.1/f9edeb093fd990e4967f595ab931f67a/AndroidManifest.xml:5:5-7:41
-MERGED from [com.facebook.fresco:drawee:2.0.0] /Users/poojagugu/.gradle/caches/transforms-2/files-2.1/f9edeb093fd990e4967f595ab931f67a/AndroidManifest.xml:5:5-7:41
-MERGED from [com.facebook.fresco:nativeimagefilters:2.0.0] /Users/poojagugu/.gradle/caches/transforms-2/files-2.1/22e9132cd00f504678fb4076be0a4c50/AndroidManifest.xml:5:5-7:41
-MERGED from [com.facebook.fresco:nativeimagefilters:2.0.0] /Users/poojagugu/.gradle/caches/transforms-2/files-2.1/22e9132cd00f504678fb4076be0a4c50/AndroidManifest.xml:5:5-7:41
-MERGED from [com.facebook.fresco:imagepipeline:2.0.0] /Users/poojagugu/.gradle/caches/transforms-2/files-2.1/84c8790efc06fd4791b9d0c84dd2ad2e/AndroidManifest.xml:5:5-7:41
-MERGED from [com.facebook.fresco:imagepipeline:2.0.0] /Users/poojagugu/.gradle/caches/transforms-2/files-2.1/84c8790efc06fd4791b9d0c84dd2ad2e/AndroidManifest.xml:5:5-7:41
-MERGED from [com.facebook.fresco:nativeimagetranscoder:2.0.0] /Users/poojagugu/.gradle/caches/transforms-2/files-2.1/9a9b7add004e9897d614fc8b578bc929/AndroidManifest.xml:5:5-7:41
-MERGED from [com.facebook.fresco:nativeimagetranscoder:2.0.0] /Users/poojagugu/.gradle/caches/transforms-2/files-2.1/9a9b7add004e9897d614fc8b578bc929/AndroidManifest.xml:5:5-7:41
-MERGED from [com.facebook.fresco:imagepipeline-base:2.0.0] /Users/poojagugu/.gradle/caches/transforms-2/files-2.1/b16aa49ef146accd5763f85d6f84b427/AndroidManifest.xml:5:5-7:41
-MERGED from [com.facebook.fresco:imagepipeline-base:2.0.0] /Users/poojagugu/.gradle/caches/transforms-2/files-2.1/b16aa49ef146accd5763f85d6f84b427/AndroidManifest.xml:5:5-7:41
-MERGED from [com.facebook.soloader:soloader:0.6.0] /Users/poojagugu/.gradle/caches/transforms-2/files-2.1/aeb8b74c1f4acf72f741bce9505f36c6/AndroidManifest.xml:7:5-9:41
-MERGED from [com.facebook.soloader:soloader:0.6.0] /Users/poojagugu/.gradle/caches/transforms-2/files-2.1/aeb8b74c1f4acf72f741bce9505f36c6/AndroidManifest.xml:7:5-9:41
-MERGED from [androidx.appcompat:appcompat-resources:1.1.0] /Users/poojagugu/.gradle/caches/transforms-2/files-2.1/7bf3131e93614c26de8564f6e9c83b3c/AndroidManifest.xml:20:5-22:41
-MERGED from [androidx.appcompat:appcompat-resources:1.1.0] /Users/poojagugu/.gradle/caches/transforms-2/files-2.1/7bf3131e93614c26de8564f6e9c83b3c/AndroidManifest.xml:20:5-22:41
-MERGED from [androidx.vectordrawable:vectordrawable-animated:1.1.0] /Users/poojagugu/.gradle/caches/transforms-2/files-2.1/3094a9882d2027b280f76be96a00c75a/AndroidManifest.xml:20:5-22:41
-MERGED from [androidx.vectordrawable:vectordrawable-animated:1.1.0] /Users/poojagugu/.gradle/caches/transforms-2/files-2.1/3094a9882d2027b280f76be96a00c75a/AndroidManifest.xml:20:5-22:41
-MERGED from [androidx.interpolator:interpolator:1.0.0] /Users/poojagugu/.gradle/caches/transforms-2/files-2.1/031f86a116428114ed83ebdef4b71e67/AndroidManifest.xml:20:5-44
-MERGED from [androidx.interpolator:interpolator:1.0.0] /Users/poojagugu/.gradle/caches/transforms-2/files-2.1/031f86a116428114ed83ebdef4b71e67/AndroidManifest.xml:20:5-44
-MERGED from [androidx.media:media:1.0.0] /Users/poojagugu/.gradle/caches/transforms-2/files-2.1/136779fc6dbd0d370d86c25698334190/AndroidManifest.xml:20:5-44
-MERGED from [androidx.media:media:1.0.0] /Users/poojagugu/.gradle/caches/transforms-2/files-2.1/136779fc6dbd0d370d86c25698334190/AndroidManifest.xml:20:5-44
-MERGED from [androidx.legacy:legacy-support-core-utils:1.0.0] /Users/poojagugu/.gradle/caches/transforms-2/files-2.1/ddd0742e039344a04bac886ed2af2c1c/AndroidManifest.xml:20:5-44
-MERGED from [androidx.legacy:legacy-support-core-utils:1.0.0] /Users/poojagugu/.gradle/caches/transforms-2/files-2.1/ddd0742e039344a04bac886ed2af2c1c/AndroidManifest.xml:20:5-44
-MERGED from [androidx.viewpager2:viewpager2:1.0.0] /Users/poojagugu/.gradle/caches/transforms-2/files-2.1/07b98cb008ef8e84e271e4bc7cc29088/AndroidManifest.xml:20:5-22:41
-MERGED from [androidx.viewpager2:viewpager2:1.0.0] /Users/poojagugu/.gradle/caches/transforms-2/files-2.1/07b98cb008ef8e84e271e4bc7cc29088/AndroidManifest.xml:20:5-22:41
-MERGED from [androidx.fragment:fragment:1.2.1] /Users/poojagugu/.gradle/caches/transforms-2/files-2.1/20e852b3e5e5c563964a655f2d853564/AndroidManifest.xml:20:5-22:41
-MERGED from [androidx.fragment:fragment:1.2.1] /Users/poojagugu/.gradle/caches/transforms-2/files-2.1/20e852b3e5e5c563964a655f2d853564/AndroidManifest.xml:20:5-22:41
-MERGED from [androidx.coordinatorlayout:coordinatorlayout:1.1.0] /Users/poojagugu/.gradle/caches/transforms-2/files-2.1/8b43107e7497ca52d1fac2b9418a4782/AndroidManifest.xml:20:5-22:41
-MERGED from [androidx.coordinatorlayout:coordinatorlayout:1.1.0] /Users/poojagugu/.gradle/caches/transforms-2/files-2.1/8b43107e7497ca52d1fac2b9418a4782/AndroidManifest.xml:20:5-22:41
-MERGED from [androidx.documentfile:documentfile:1.0.0] /Users/poojagugu/.gradle/caches/transforms-2/files-2.1/d8e06961f80ebc0322063951d0202094/AndroidManifest.xml:20:5-44
-MERGED from [androidx.documentfile:documentfile:1.0.0] /Users/poojagugu/.gradle/caches/transforms-2/files-2.1/d8e06961f80ebc0322063951d0202094/AndroidManifest.xml:20:5-44
-MERGED from [androidx.loader:loader:1.0.0] /Users/poojagugu/.gradle/caches/transforms-2/files-2.1/e82ec4c21d436ed5fb320edfaf9d8325/AndroidManifest.xml:20:5-44
-MERGED from [androidx.loader:loader:1.0.0] /Users/poojagugu/.gradle/caches/transforms-2/files-2.1/e82ec4c21d436ed5fb320edfaf9d8325/AndroidManifest.xml:20:5-44
-MERGED from [androidx.localbroadcastmanager:localbroadcastmanager:1.0.0] /Users/poojagugu/.gradle/caches/transforms-2/files-2.1/2545ee5157c2f6b42976b2df6454ef82/AndroidManifest.xml:20:5-44
-MERGED from [androidx.localbroadcastmanager:localbroadcastmanager:1.0.0] /Users/poojagugu/.gradle/caches/transforms-2/files-2.1/2545ee5157c2f6b42976b2df6454ef82/AndroidManifest.xml:20:5-44
-MERGED from [androidx.print:print:1.0.0] /Users/poojagugu/.gradle/caches/transforms-2/files-2.1/35337d77c2323e781f4f29a877049984/AndroidManifest.xml:20:5-44
-MERGED from [androidx.print:print:1.0.0] /Users/poojagugu/.gradle/caches/transforms-2/files-2.1/35337d77c2323e781f4f29a877049984/AndroidManifest.xml:20:5-44
-MERGED from [androidx.viewpager:viewpager:1.0.0] /Users/poojagugu/.gradle/caches/transforms-2/files-2.1/4d84cbb1c6ffce58954ce817df5aa2b1/AndroidManifest.xml:20:5-44
-MERGED from [androidx.viewpager:viewpager:1.0.0] /Users/poojagugu/.gradle/caches/transforms-2/files-2.1/4d84cbb1c6ffce58954ce817df5aa2b1/AndroidManifest.xml:20:5-44
-MERGED from [androidx.drawerlayout:drawerlayout:1.0.0] /Users/poojagugu/.gradle/caches/transforms-2/files-2.1/fd3a93803745f901281a200ae963c96d/AndroidManifest.xml:20:5-44
-MERGED from [androidx.drawerlayout:drawerlayout:1.0.0] /Users/poojagugu/.gradle/caches/transforms-2/files-2.1/fd3a93803745f901281a200ae963c96d/AndroidManifest.xml:20:5-44
-MERGED from [androidx.slidingpanelayout:slidingpanelayout:1.0.0] /Users/poojagugu/.gradle/caches/transforms-2/files-2.1/518c2a9bf965b763d726425b87b3f8fd/AndroidManifest.xml:20:5-44
-MERGED from [androidx.slidingpanelayout:slidingpanelayout:1.0.0] /Users/poojagugu/.gradle/caches/transforms-2/files-2.1/518c2a9bf965b763d726425b87b3f8fd/AndroidManifest.xml:20:5-44
-MERGED from [androidx.recyclerview:recyclerview:1.1.0] /Users/poojagugu/.gradle/caches/transforms-2/files-2.1/036d8c9f384a54686002ca5319393b7b/AndroidManifest.xml:20:5-22:41
-MERGED from [androidx.recyclerview:recyclerview:1.1.0] /Users/poojagugu/.gradle/caches/transforms-2/files-2.1/036d8c9f384a54686002ca5319393b7b/AndroidManifest.xml:20:5-22:41
-MERGED from [androidx.customview:customview:1.0.0] /Users/poojagugu/.gradle/caches/transforms-2/files-2.1/237ef32aee9430f2e3b8d790e579b2d3/AndroidManifest.xml:20:5-44
-MERGED from [androidx.customview:customview:1.0.0] /Users/poojagugu/.gradle/caches/transforms-2/files-2.1/237ef32aee9430f2e3b8d790e579b2d3/AndroidManifest.xml:20:5-44
-MERGED from [androidx.asynclayoutinflater:asynclayoutinflater:1.0.0] /Users/poojagugu/.gradle/caches/transforms-2/files-2.1/8cc6bc434cae1eb23ac0f72f5bb92cf4/AndroidManifest.xml:20:5-44
-MERGED from [androidx.asynclayoutinflater:asynclayoutinflater:1.0.0] /Users/poojagugu/.gradle/caches/transforms-2/files-2.1/8cc6bc434cae1eb23ac0f72f5bb92cf4/AndroidManifest.xml:20:5-44
-MERGED from [androidx.cursoradapter:cursoradapter:1.0.0] /Users/poojagugu/.gradle/caches/transforms-2/files-2.1/513151f503ab0688e441ef1f02ed31aa/AndroidManifest.xml:20:5-44
-MERGED from [androidx.cursoradapter:cursoradapter:1.0.0] /Users/poojagugu/.gradle/caches/transforms-2/files-2.1/513151f503ab0688e441ef1f02ed31aa/AndroidManifest.xml:20:5-44
-MERGED from [androidx.exifinterface:exifinterface:1.1.0-beta01] /Users/poojagugu/.gradle/caches/transforms-2/files-2.1/85052f24151ef956bef856eb9557cd20/AndroidManifest.xml:20:5-22:41
-MERGED from [androidx.exifinterface:exifinterface:1.1.0-beta01] /Users/poojagugu/.gradle/caches/transforms-2/files-2.1/85052f24151ef956bef856eb9557cd20/AndroidManifest.xml:20:5-22:41
-MERGED from [androidx.activity:activity:1.1.0] /Users/poojagugu/.gradle/caches/transforms-2/files-2.1/e4a92d969d2496ef11bf7cc7d9ddfb6e/AndroidManifest.xml:20:5-22:41
-MERGED from [androidx.activity:activity:1.1.0] /Users/poojagugu/.gradle/caches/transforms-2/files-2.1/e4a92d969d2496ef11bf7cc7d9ddfb6e/AndroidManifest.xml:20:5-22:41
-MERGED from [androidx.transition:transition:1.2.0] /Users/poojagugu/.gradle/caches/transforms-2/files-2.1/9595667bbfb525c0bc4eecfed01bf176/AndroidManifest.xml:20:5-22:41
-MERGED from [androidx.transition:transition:1.2.0] /Users/poojagugu/.gradle/caches/transforms-2/files-2.1/9595667bbfb525c0bc4eecfed01bf176/AndroidManifest.xml:20:5-22:41
-MERGED from [androidx.vectordrawable:vectordrawable:1.1.0] /Users/poojagugu/.gradle/caches/transforms-2/files-2.1/daebaa04a701aa88c55e572acf512ab0/AndroidManifest.xml:20:5-22:41
-MERGED from [androidx.vectordrawable:vectordrawable:1.1.0] /Users/poojagugu/.gradle/caches/transforms-2/files-2.1/daebaa04a701aa88c55e572acf512ab0/AndroidManifest.xml:20:5-22:41
-MERGED from [androidx.core:core:1.1.0] /Users/poojagugu/.gradle/caches/transforms-2/files-2.1/482bfa17b0e4f2a98194caf0d65a7435/AndroidManifest.xml:20:5-22:41
-MERGED from [androidx.core:core:1.1.0] /Users/poojagugu/.gradle/caches/transforms-2/files-2.1/482bfa17b0e4f2a98194caf0d65a7435/AndroidManifest.xml:20:5-22:41
-MERGED from [androidx.versionedparcelable:versionedparcelable:1.1.0] /Users/poojagugu/.gradle/caches/transforms-2/files-2.1/068a6d406fae6a7cfb81d52a076065fe/AndroidManifest.xml:20:5-22:41
-MERGED from [androidx.versionedparcelable:versionedparcelable:1.1.0] /Users/poojagugu/.gradle/caches/transforms-2/files-2.1/068a6d406fae6a7cfb81d52a076065fe/AndroidManifest.xml:20:5-22:41
-MERGED from [androidx.lifecycle:lifecycle-viewmodel-savedstate:2.2.0] /Users/poojagugu/.gradle/caches/transforms-2/files-2.1/ed966c657a9a0aaadc341acab4a303f0/AndroidManifest.xml:20:5-22:41
-MERGED from [androidx.lifecycle:lifecycle-viewmodel-savedstate:2.2.0] /Users/poojagugu/.gradle/caches/transforms-2/files-2.1/ed966c657a9a0aaadc341acab4a303f0/AndroidManifest.xml:20:5-22:41
-MERGED from [androidx.lifecycle:lifecycle-viewmodel:2.2.0] /Users/poojagugu/.gradle/caches/transforms-2/files-2.1/b580f0e22bb637b6214672b1bfcda73e/AndroidManifest.xml:20:5-22:41
-MERGED from [androidx.lifecycle:lifecycle-viewmodel:2.2.0] /Users/poojagugu/.gradle/caches/transforms-2/files-2.1/b580f0e22bb637b6214672b1bfcda73e/AndroidManifest.xml:20:5-22:41
-MERGED from [androidx.cardview:cardview:1.0.0] /Users/poojagugu/.gradle/caches/transforms-2/files-2.1/d378cb885ac3202aa70959b4196d8b87/AndroidManifest.xml:20:5-44
-MERGED from [androidx.cardview:cardview:1.0.0] /Users/poojagugu/.gradle/caches/transforms-2/files-2.1/d378cb885ac3202aa70959b4196d8b87/AndroidManifest.xml:20:5-44
-MERGED from [androidx.lifecycle:lifecycle-runtime:2.2.0] /Users/poojagugu/.gradle/caches/transforms-2/files-2.1/193c672577c93a0bac27fb7cd81b5614/AndroidManifest.xml:20:5-22:41
-MERGED from [androidx.lifecycle:lifecycle-runtime:2.2.0] /Users/poojagugu/.gradle/caches/transforms-2/files-2.1/193c672577c93a0bac27fb7cd81b5614/AndroidManifest.xml:20:5-22:41
-MERGED from [androidx.savedstate:savedstate:1.0.0] /Users/poojagugu/.gradle/caches/transforms-2/files-2.1/2ed4cc64b67314fecdc1578491aa7e2a/AndroidManifest.xml:20:5-22:41
-MERGED from [androidx.savedstate:savedstate:1.0.0] /Users/poojagugu/.gradle/caches/transforms-2/files-2.1/2ed4cc64b67314fecdc1578491aa7e2a/AndroidManifest.xml:20:5-22:41
-MERGED from [androidx.lifecycle:lifecycle-livedata:2.0.0] /Users/poojagugu/.gradle/caches/transforms-2/files-2.1/651731db34447d8a7c3a0ec2423befd8/AndroidManifest.xml:20:5-44
-MERGED from [androidx.lifecycle:lifecycle-livedata:2.0.0] /Users/poojagugu/.gradle/caches/transforms-2/files-2.1/651731db34447d8a7c3a0ec2423befd8/AndroidManifest.xml:20:5-44
-MERGED from [androidx.lifecycle:lifecycle-livedata-core:2.2.0] /Users/poojagugu/.gradle/caches/transforms-2/files-2.1/ff7bc93bf6222c3402f5f45fb9d08c6b/AndroidManifest.xml:20:5-22:41
-MERGED from [androidx.lifecycle:lifecycle-livedata-core:2.2.0] /Users/poojagugu/.gradle/caches/transforms-2/files-2.1/ff7bc93bf6222c3402f5f45fb9d08c6b/AndroidManifest.xml:20:5-22:41
-MERGED from [androidx.arch.core:core-runtime:2.1.0] /Users/poojagugu/.gradle/caches/transforms-2/files-2.1/a96e114334d990c8da79f6f0aae8d51f/AndroidManifest.xml:20:5-22:41
-MERGED from [androidx.arch.core:core-runtime:2.1.0] /Users/poojagugu/.gradle/caches/transforms-2/files-2.1/a96e114334d990c8da79f6f0aae8d51f/AndroidManifest.xml:20:5-22:41
-MERGED from [com.facebook.fresco:fbcore:2.0.0] /Users/poojagugu/.gradle/caches/transforms-2/files-2.1/6f3a9030a2dc7571f5da5a019f42a74b/AndroidManifest.xml:5:5-7:41
-MERGED from [com.facebook.fresco:fbcore:2.0.0] /Users/poojagugu/.gradle/caches/transforms-2/files-2.1/6f3a9030a2dc7571f5da5a019f42a74b/AndroidManifest.xml:5:5-7:41
+MERGED from [com.facebook.fresco:fresco:2.0.0] /Users/poojagugu/.gradle/caches/transforms-2/files-2.1/1025fdc76cabda8c210cf6dde8cab3b2/AndroidManifest.xml:5:5-7:41
+MERGED from [com.facebook.fresco:fresco:2.0.0] /Users/poojagugu/.gradle/caches/transforms-2/files-2.1/1025fdc76cabda8c210cf6dde8cab3b2/AndroidManifest.xml:5:5-7:41
+MERGED from [com.facebook.fresco:imagepipeline-okhttp3:2.0.0] /Users/poojagugu/.gradle/caches/transforms-2/files-2.1/2cec4caf473c169387d0530152bf4d1a/AndroidManifest.xml:5:5-7:41
+MERGED from [com.facebook.fresco:imagepipeline-okhttp3:2.0.0] /Users/poojagugu/.gradle/caches/transforms-2/files-2.1/2cec4caf473c169387d0530152bf4d1a/AndroidManifest.xml:5:5-7:41
+MERGED from [com.facebook.fresco:drawee:2.0.0] /Users/poojagugu/.gradle/caches/transforms-2/files-2.1/192b179e5956a90c2e7d8c484493527a/AndroidManifest.xml:5:5-7:41
+MERGED from [com.facebook.fresco:drawee:2.0.0] /Users/poojagugu/.gradle/caches/transforms-2/files-2.1/192b179e5956a90c2e7d8c484493527a/AndroidManifest.xml:5:5-7:41
+MERGED from [com.facebook.fresco:nativeimagefilters:2.0.0] /Users/poojagugu/.gradle/caches/transforms-2/files-2.1/b39c798500db651c8a004a5e141f785f/AndroidManifest.xml:5:5-7:41
+MERGED from [com.facebook.fresco:nativeimagefilters:2.0.0] /Users/poojagugu/.gradle/caches/transforms-2/files-2.1/b39c798500db651c8a004a5e141f785f/AndroidManifest.xml:5:5-7:41
+MERGED from [com.facebook.fresco:imagepipeline:2.0.0] /Users/poojagugu/.gradle/caches/transforms-2/files-2.1/91fd8a244c754a703208071682749751/AndroidManifest.xml:5:5-7:41
+MERGED from [com.facebook.fresco:imagepipeline:2.0.0] /Users/poojagugu/.gradle/caches/transforms-2/files-2.1/91fd8a244c754a703208071682749751/AndroidManifest.xml:5:5-7:41
+MERGED from [com.facebook.fresco:nativeimagetranscoder:2.0.0] /Users/poojagugu/.gradle/caches/transforms-2/files-2.1/b1405e1107f6fcdc89c314ec9c49f34c/AndroidManifest.xml:5:5-7:41
+MERGED from [com.facebook.fresco:nativeimagetranscoder:2.0.0] /Users/poojagugu/.gradle/caches/transforms-2/files-2.1/b1405e1107f6fcdc89c314ec9c49f34c/AndroidManifest.xml:5:5-7:41
+MERGED from [com.facebook.fresco:imagepipeline-base:2.0.0] /Users/poojagugu/.gradle/caches/transforms-2/files-2.1/e2f9b38a082b46e7d78c1e519af9c4ea/AndroidManifest.xml:5:5-7:41
+MERGED from [com.facebook.fresco:imagepipeline-base:2.0.0] /Users/poojagugu/.gradle/caches/transforms-2/files-2.1/e2f9b38a082b46e7d78c1e519af9c4ea/AndroidManifest.xml:5:5-7:41
+MERGED from [com.facebook.soloader:soloader:0.6.0] /Users/poojagugu/.gradle/caches/transforms-2/files-2.1/1d19fc1068c0d8248e2a166a2c3bccfd/AndroidManifest.xml:7:5-9:41
+MERGED from [com.facebook.soloader:soloader:0.6.0] /Users/poojagugu/.gradle/caches/transforms-2/files-2.1/1d19fc1068c0d8248e2a166a2c3bccfd/AndroidManifest.xml:7:5-9:41
+MERGED from [androidx.appcompat:appcompat-resources:1.1.0] /Users/poojagugu/.gradle/caches/transforms-2/files-2.1/31b718feaea16d3c03cdf49e53e76c31/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.appcompat:appcompat-resources:1.1.0] /Users/poojagugu/.gradle/caches/transforms-2/files-2.1/31b718feaea16d3c03cdf49e53e76c31/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.vectordrawable:vectordrawable-animated:1.1.0] /Users/poojagugu/.gradle/caches/transforms-2/files-2.1/ab697bfb74a5139738980c11365c1f07/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.vectordrawable:vectordrawable-animated:1.1.0] /Users/poojagugu/.gradle/caches/transforms-2/files-2.1/ab697bfb74a5139738980c11365c1f07/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.interpolator:interpolator:1.0.0] /Users/poojagugu/.gradle/caches/transforms-2/files-2.1/6b46924240974422932500b7911e54c0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.interpolator:interpolator:1.0.0] /Users/poojagugu/.gradle/caches/transforms-2/files-2.1/6b46924240974422932500b7911e54c0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.media:media:1.0.0] /Users/poojagugu/.gradle/caches/transforms-2/files-2.1/5ceecb9bb3cf3ab26b18ae1caa72b843/AndroidManifest.xml:20:5-44
+MERGED from [androidx.media:media:1.0.0] /Users/poojagugu/.gradle/caches/transforms-2/files-2.1/5ceecb9bb3cf3ab26b18ae1caa72b843/AndroidManifest.xml:20:5-44
+MERGED from [androidx.legacy:legacy-support-core-utils:1.0.0] /Users/poojagugu/.gradle/caches/transforms-2/files-2.1/bb1af9e3e8331db0a491db99b2ab0a84/AndroidManifest.xml:20:5-44
+MERGED from [androidx.legacy:legacy-support-core-utils:1.0.0] /Users/poojagugu/.gradle/caches/transforms-2/files-2.1/bb1af9e3e8331db0a491db99b2ab0a84/AndroidManifest.xml:20:5-44
+MERGED from [androidx.viewpager2:viewpager2:1.0.0] /Users/poojagugu/.gradle/caches/transforms-2/files-2.1/40b3651ad4eddee02be1547de71d8e48/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.viewpager2:viewpager2:1.0.0] /Users/poojagugu/.gradle/caches/transforms-2/files-2.1/40b3651ad4eddee02be1547de71d8e48/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.fragment:fragment:1.2.1] /Users/poojagugu/.gradle/caches/transforms-2/files-2.1/a45d73796fe7e29fd9d7d52a5f97dcff/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.fragment:fragment:1.2.1] /Users/poojagugu/.gradle/caches/transforms-2/files-2.1/a45d73796fe7e29fd9d7d52a5f97dcff/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.coordinatorlayout:coordinatorlayout:1.1.0] /Users/poojagugu/.gradle/caches/transforms-2/files-2.1/274142ea6f2fb665cf2a207e43d7f911/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.coordinatorlayout:coordinatorlayout:1.1.0] /Users/poojagugu/.gradle/caches/transforms-2/files-2.1/274142ea6f2fb665cf2a207e43d7f911/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.documentfile:documentfile:1.0.0] /Users/poojagugu/.gradle/caches/transforms-2/files-2.1/7e89b3d10b09afdc46bc36e96d46bfea/AndroidManifest.xml:20:5-44
+MERGED from [androidx.documentfile:documentfile:1.0.0] /Users/poojagugu/.gradle/caches/transforms-2/files-2.1/7e89b3d10b09afdc46bc36e96d46bfea/AndroidManifest.xml:20:5-44
+MERGED from [androidx.loader:loader:1.0.0] /Users/poojagugu/.gradle/caches/transforms-2/files-2.1/8b7ec43e9242e364faa29af2bffe9921/AndroidManifest.xml:20:5-44
+MERGED from [androidx.loader:loader:1.0.0] /Users/poojagugu/.gradle/caches/transforms-2/files-2.1/8b7ec43e9242e364faa29af2bffe9921/AndroidManifest.xml:20:5-44
+MERGED from [androidx.localbroadcastmanager:localbroadcastmanager:1.0.0] /Users/poojagugu/.gradle/caches/transforms-2/files-2.1/d4959957c23a0ed8f5f4c5d228758ccd/AndroidManifest.xml:20:5-44
+MERGED from [androidx.localbroadcastmanager:localbroadcastmanager:1.0.0] /Users/poojagugu/.gradle/caches/transforms-2/files-2.1/d4959957c23a0ed8f5f4c5d228758ccd/AndroidManifest.xml:20:5-44
+MERGED from [androidx.print:print:1.0.0] /Users/poojagugu/.gradle/caches/transforms-2/files-2.1/2b5d3f009cc49aa8d76389f3bb66f171/AndroidManifest.xml:20:5-44
+MERGED from [androidx.print:print:1.0.0] /Users/poojagugu/.gradle/caches/transforms-2/files-2.1/2b5d3f009cc49aa8d76389f3bb66f171/AndroidManifest.xml:20:5-44
+MERGED from [androidx.viewpager:viewpager:1.0.0] /Users/poojagugu/.gradle/caches/transforms-2/files-2.1/8197644cf7d30d121da50dc726859247/AndroidManifest.xml:20:5-44
+MERGED from [androidx.viewpager:viewpager:1.0.0] /Users/poojagugu/.gradle/caches/transforms-2/files-2.1/8197644cf7d30d121da50dc726859247/AndroidManifest.xml:20:5-44
+MERGED from [androidx.drawerlayout:drawerlayout:1.0.0] /Users/poojagugu/.gradle/caches/transforms-2/files-2.1/3327c56fe1ddd026b893e4e940cd98f4/AndroidManifest.xml:20:5-44
+MERGED from [androidx.drawerlayout:drawerlayout:1.0.0] /Users/poojagugu/.gradle/caches/transforms-2/files-2.1/3327c56fe1ddd026b893e4e940cd98f4/AndroidManifest.xml:20:5-44
+MERGED from [androidx.slidingpanelayout:slidingpanelayout:1.0.0] /Users/poojagugu/.gradle/caches/transforms-2/files-2.1/6ade02cd51c5ef2d08610ddf9bef69f4/AndroidManifest.xml:20:5-44
+MERGED from [androidx.slidingpanelayout:slidingpanelayout:1.0.0] /Users/poojagugu/.gradle/caches/transforms-2/files-2.1/6ade02cd51c5ef2d08610ddf9bef69f4/AndroidManifest.xml:20:5-44
+MERGED from [androidx.recyclerview:recyclerview:1.1.0] /Users/poojagugu/.gradle/caches/transforms-2/files-2.1/4dac4bdfe94d5aa7a048cbcaddd21168/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.recyclerview:recyclerview:1.1.0] /Users/poojagugu/.gradle/caches/transforms-2/files-2.1/4dac4bdfe94d5aa7a048cbcaddd21168/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.customview:customview:1.0.0] /Users/poojagugu/.gradle/caches/transforms-2/files-2.1/43ec0b9838f4032e3e119ca5e6719e3f/AndroidManifest.xml:20:5-44
+MERGED from [androidx.customview:customview:1.0.0] /Users/poojagugu/.gradle/caches/transforms-2/files-2.1/43ec0b9838f4032e3e119ca5e6719e3f/AndroidManifest.xml:20:5-44
+MERGED from [androidx.asynclayoutinflater:asynclayoutinflater:1.0.0] /Users/poojagugu/.gradle/caches/transforms-2/files-2.1/4bd76aa339eda3291e61434fa97d4c5a/AndroidManifest.xml:20:5-44
+MERGED from [androidx.asynclayoutinflater:asynclayoutinflater:1.0.0] /Users/poojagugu/.gradle/caches/transforms-2/files-2.1/4bd76aa339eda3291e61434fa97d4c5a/AndroidManifest.xml:20:5-44
+MERGED from [androidx.cursoradapter:cursoradapter:1.0.0] /Users/poojagugu/.gradle/caches/transforms-2/files-2.1/a651ae6810917ba32977580271cff02b/AndroidManifest.xml:20:5-44
+MERGED from [androidx.cursoradapter:cursoradapter:1.0.0] /Users/poojagugu/.gradle/caches/transforms-2/files-2.1/a651ae6810917ba32977580271cff02b/AndroidManifest.xml:20:5-44
+MERGED from [androidx.exifinterface:exifinterface:1.1.0-beta01] /Users/poojagugu/.gradle/caches/transforms-2/files-2.1/a8182e63786e4bc64f5dee37530252a1/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.exifinterface:exifinterface:1.1.0-beta01] /Users/poojagugu/.gradle/caches/transforms-2/files-2.1/a8182e63786e4bc64f5dee37530252a1/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.activity:activity:1.1.0] /Users/poojagugu/.gradle/caches/transforms-2/files-2.1/cef91d50a5442d6c3994cb44a4798465/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.activity:activity:1.1.0] /Users/poojagugu/.gradle/caches/transforms-2/files-2.1/cef91d50a5442d6c3994cb44a4798465/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.transition:transition:1.2.0] /Users/poojagugu/.gradle/caches/transforms-2/files-2.1/3c1d5c8a356f3f74eb3b0342eb4a0489/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.transition:transition:1.2.0] /Users/poojagugu/.gradle/caches/transforms-2/files-2.1/3c1d5c8a356f3f74eb3b0342eb4a0489/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.vectordrawable:vectordrawable:1.1.0] /Users/poojagugu/.gradle/caches/transforms-2/files-2.1/26b1d0e76331a0b71c3faa0984c007e6/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.vectordrawable:vectordrawable:1.1.0] /Users/poojagugu/.gradle/caches/transforms-2/files-2.1/26b1d0e76331a0b71c3faa0984c007e6/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.core:core:1.1.0] /Users/poojagugu/.gradle/caches/transforms-2/files-2.1/d470e8f4784b63137be36d21e183591c/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.core:core:1.1.0] /Users/poojagugu/.gradle/caches/transforms-2/files-2.1/d470e8f4784b63137be36d21e183591c/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.versionedparcelable:versionedparcelable:1.1.0] /Users/poojagugu/.gradle/caches/transforms-2/files-2.1/1dd5e0ac8698a9e8313b8626860d0c26/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.versionedparcelable:versionedparcelable:1.1.0] /Users/poojagugu/.gradle/caches/transforms-2/files-2.1/1dd5e0ac8698a9e8313b8626860d0c26/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.lifecycle:lifecycle-viewmodel-savedstate:2.2.0] /Users/poojagugu/.gradle/caches/transforms-2/files-2.1/c114d2c8909b58ed4e89e322793ffdec/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.lifecycle:lifecycle-viewmodel-savedstate:2.2.0] /Users/poojagugu/.gradle/caches/transforms-2/files-2.1/c114d2c8909b58ed4e89e322793ffdec/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.lifecycle:lifecycle-viewmodel:2.2.0] /Users/poojagugu/.gradle/caches/transforms-2/files-2.1/858a182d6e8e90b73fd2b1034be0b606/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.lifecycle:lifecycle-viewmodel:2.2.0] /Users/poojagugu/.gradle/caches/transforms-2/files-2.1/858a182d6e8e90b73fd2b1034be0b606/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.cardview:cardview:1.0.0] /Users/poojagugu/.gradle/caches/transforms-2/files-2.1/9113c6aeb6f64daf8c2ae374d7a154ac/AndroidManifest.xml:20:5-44
+MERGED from [androidx.cardview:cardview:1.0.0] /Users/poojagugu/.gradle/caches/transforms-2/files-2.1/9113c6aeb6f64daf8c2ae374d7a154ac/AndroidManifest.xml:20:5-44
+MERGED from [androidx.lifecycle:lifecycle-runtime:2.2.0] /Users/poojagugu/.gradle/caches/transforms-2/files-2.1/0465e7a44e6574e95ed41b6bfaa2e168/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.lifecycle:lifecycle-runtime:2.2.0] /Users/poojagugu/.gradle/caches/transforms-2/files-2.1/0465e7a44e6574e95ed41b6bfaa2e168/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.savedstate:savedstate:1.0.0] /Users/poojagugu/.gradle/caches/transforms-2/files-2.1/a3cb13e3fc775e4fdc57f31e646cd258/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.savedstate:savedstate:1.0.0] /Users/poojagugu/.gradle/caches/transforms-2/files-2.1/a3cb13e3fc775e4fdc57f31e646cd258/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.lifecycle:lifecycle-livedata:2.0.0] /Users/poojagugu/.gradle/caches/transforms-2/files-2.1/9db00ea4c44d045e0980b906ef9787ee/AndroidManifest.xml:20:5-44
+MERGED from [androidx.lifecycle:lifecycle-livedata:2.0.0] /Users/poojagugu/.gradle/caches/transforms-2/files-2.1/9db00ea4c44d045e0980b906ef9787ee/AndroidManifest.xml:20:5-44
+MERGED from [androidx.lifecycle:lifecycle-livedata-core:2.2.0] /Users/poojagugu/.gradle/caches/transforms-2/files-2.1/60fa9d98640a06b143aed8388a2eafa9/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.lifecycle:lifecycle-livedata-core:2.2.0] /Users/poojagugu/.gradle/caches/transforms-2/files-2.1/60fa9d98640a06b143aed8388a2eafa9/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.arch.core:core-runtime:2.1.0] /Users/poojagugu/.gradle/caches/transforms-2/files-2.1/86f6d48d51235cb7e80d8ca38f8c7cec/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.arch.core:core-runtime:2.1.0] /Users/poojagugu/.gradle/caches/transforms-2/files-2.1/86f6d48d51235cb7e80d8ca38f8c7cec/AndroidManifest.xml:20:5-22:41
+MERGED from [com.facebook.fresco:fbcore:2.0.0] /Users/poojagugu/.gradle/caches/transforms-2/files-2.1/906497c422a4776565d87d74a1749242/AndroidManifest.xml:5:5-7:41
+MERGED from [com.facebook.fresco:fbcore:2.0.0] /Users/poojagugu/.gradle/caches/transforms-2/files-2.1/906497c422a4776565d87d74a1749242/AndroidManifest.xml:5:5-7:41
 INJECTED from /Users/poojagugu/Desktop/latest/SAICINSURANCE/android/app/src/debug/AndroidManifest.xml
 INJECTED from /Users/poojagugu/Desktop/latest/SAICINSURANCE/android/app/src/debug/AndroidManifest.xml
 	android:targetSdkVersion
@@ -383,14 +387,14 @@ ADDED from [:react-native-image-crop-picker] /Users/poojagugu/Desktop/latest/SAI
 	android:name
 		ADDED from [:react-native-image-crop-picker] /Users/poojagugu/Desktop/latest/SAICINSURANCE/node_modules/react-native-image-crop-picker/android/build/intermediates/library_manifest/debug/AndroidManifest.xml:24:13-60
 uses-permission#android.permission.READ_EXTERNAL_STORAGE
-ADDED from [net.gotev:uploadservice:3.4.2] /Users/poojagugu/.gradle/caches/transforms-2/files-2.1/5bd602eb3b261caef2304de6f4f38542/AndroidManifest.xml:12:5-80
+ADDED from [net.gotev:uploadservice:3.4.2] /Users/poojagugu/.gradle/caches/transforms-2/files-2.1/3260d124f6ae02de3013daa3475d0779/AndroidManifest.xml:12:5-80
 	android:name
-		ADDED from [net.gotev:uploadservice:3.4.2] /Users/poojagugu/.gradle/caches/transforms-2/files-2.1/5bd602eb3b261caef2304de6f4f38542/AndroidManifest.xml:12:22-77
+		ADDED from [net.gotev:uploadservice:3.4.2] /Users/poojagugu/.gradle/caches/transforms-2/files-2.1/3260d124f6ae02de3013daa3475d0779/AndroidManifest.xml:12:22-77
 service#net.gotev.uploadservice.UploadService
-ADDED from [net.gotev:uploadservice:3.4.2] /Users/poojagugu/.gradle/caches/transforms-2/files-2.1/5bd602eb3b261caef2304de6f4f38542/AndroidManifest.xml:17:9-21:19
+ADDED from [net.gotev:uploadservice:3.4.2] /Users/poojagugu/.gradle/caches/transforms-2/files-2.1/3260d124f6ae02de3013daa3475d0779/AndroidManifest.xml:17:9-21:19
 	android:enabled
-		ADDED from [net.gotev:uploadservice:3.4.2] /Users/poojagugu/.gradle/caches/transforms-2/files-2.1/5bd602eb3b261caef2304de6f4f38542/AndroidManifest.xml:19:13-35
+		ADDED from [net.gotev:uploadservice:3.4.2] /Users/poojagugu/.gradle/caches/transforms-2/files-2.1/3260d124f6ae02de3013daa3475d0779/AndroidManifest.xml:19:13-35
 	android:exported
-		ADDED from [net.gotev:uploadservice:3.4.2] /Users/poojagugu/.gradle/caches/transforms-2/files-2.1/5bd602eb3b261caef2304de6f4f38542/AndroidManifest.xml:20:13-37
+		ADDED from [net.gotev:uploadservice:3.4.2] /Users/poojagugu/.gradle/caches/transforms-2/files-2.1/3260d124f6ae02de3013daa3475d0779/AndroidManifest.xml:20:13-37
 	android:name
-		ADDED from [net.gotev:uploadservice:3.4.2] /Users/poojagugu/.gradle/caches/transforms-2/files-2.1/5bd602eb3b261caef2304de6f4f38542/AndroidManifest.xml:18:13-65
+		ADDED from [net.gotev:uploadservice:3.4.2] /Users/poojagugu/.gradle/caches/transforms-2/files-2.1/3260d124f6ae02de3013daa3475d0779/AndroidManifest.xml:18:13-65

@@ -1,4 +1,4 @@
-#Wed Jun 17 10:47:46 GST 2020
+#Wed Jun 17 11:43:07 GST 2020
 base.0=/Users/poojagugu/Desktop/latest/SAICINSURANCE/android/app/build/intermediates/transforms/dexMerger/debug/0
 renamed.0=classes.dex
 path.0=classes.dex

@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, {Component} from 'react';
 import {
   View,
   Text,
@@ -17,15 +17,15 @@ import {
   widthPercentageToDP as wp,
   heightPercentageToDP as hp,
 } from 'react-native-responsive-screen';
+import {connect} from 'react-redux';
 import DefaultText from '../../components/DefaultText';
-import { TouchableOpacity } from 'react-native-gesture-handler';
+import {TouchableOpacity} from 'react-native-gesture-handler';
 
-const { width, height } = Dimensions.get('screen');
+const {width, height} = Dimensions.get('screen');
 const normalizeFont = size => {
   return size * (width * 0.0025);
 };
-const cards =
-{
+const cards = {
   text: 'Card One',
   name: 'One',
   image: require('./img/swiper-2.png'),
@@ -109,7 +109,7 @@ class VewCard extends Component {
           </Text>
           <Icons
             size={hp('2.5')}
-            style={{ position: 'absolute', right: 0 }}
+            style={{position: 'absolute', right: 0}}
             name="file-download"
             color={PrimaryColor}
           />
@@ -283,28 +283,29 @@ class VewCard extends Component {
           </View>
         </View>
       </View>
-
     );
   };
   render() {
+    const {language} = this.props;
     return (
       <View style={styles.screen}>
         <Header
           Back
           navigation={this.props.navigation}
-          Heading="View E-Card"
+          Heading={strings({key: 'ViewECard', language})}
         />
-        <ScrollView contentContainerStyle={{ flex: 1 }}>
+        <ScrollView contentContainerStyle={{flex: 1}}>
           <View style={styles.headerView}>
-            <View style={{ flex: 0.8 }}>
-              <Text style={styles.BeneficiaryText}>Policy Number</Text>
+            <View style={{flex: 0.8}}>
+              <Text style={styles.BeneficiaryText}>
+                {strings({key: 'PolicyNumber', language})}
+              </Text>
             </View>
 
             <View style={styles.RightView}>
-              <Text style={[styles.textObj, { paddingRight: hp('1') }]}>
+              <Text style={[styles.textObj, {paddingRight: hp('1')}]}>
                 GRX-5835
               </Text>
-
             </View>
           </View>
 
@@ -314,8 +315,6 @@ class VewCard extends Component {
               justifyContent: 'space-between',
               backgroundColor: '#F7F7F7',
             }}>
-
-
             <View
               style={{
                 flex: 1,
@@ -324,13 +323,16 @@ class VewCard extends Component {
                 paddingTop: 10,
               }}>
               <FlatList
-                data={this.state.dataSource}
+                data={
+                  language === 'English'
+                    ? this.state.dataSource
+                    : this.state.dataSourceAR
+                }
                 keyExtractor={(item, index) => item.id}
                 renderItem={itemDtata => this.renderItem(itemDtata)}
                 showsVerticalScrollIndicator={false}
               />
             </View>
-
           </View>
         </ScrollView>
       </View>
@@ -386,7 +388,7 @@ const styles = StyleSheet.create({
     marginHorizontal: hp('2'),
     flexDirection: 'row',
     shadowColor: 'black',
-    shadowOffset: { width: 0, height: 1 },
+    shadowOffset: {width: 0, height: 1},
     shadowOpacity: 0.2,
     shadowRadius: 0.2,
     borderRadius: 5,
@@ -486,7 +488,7 @@ const styles = StyleSheet.create({
     paddingLeft: hp('1'),
     borderRadius: 10,
     shadowColor: 'black',
-    shadowOffset: { width: 0, height: 2 },
+    shadowOffset: {width: 0, height: 2},
     shadowOpacity: 0.2,
     shadowRadius: 5,
     flexDirection: 'row',
@@ -504,7 +506,7 @@ const styles = StyleSheet.create({
     backgroundColor: 'white',
     marginTop: hp('1.5'),
     shadowColor: 'black',
-    shadowOffset: { width: 0, height: 2 },
+    shadowOffset: {width: 0, height: 2},
     shadowOpacity: 0.2,
     shadowRadius: 5,
     paddingHorizontal: 10,
@@ -545,4 +547,10 @@ const styles = StyleSheet.create({
   },
 });
 
-export default VewCard;
+const mapStateToProps = state => {
+  return {
+    language: state.language.defaultLanguage,
+  };
+};
+
+export default connect(mapStateToProps)(VewCard);
