@@ -1,4 +1,5 @@
 import RestApi from './restapi';
+import moment from 'moment';
 
 export default class AppApi {
   sendVerificationSMS = async params => {
@@ -119,6 +120,61 @@ export default class AppApi {
     }
   };
 
+  DeleteClaim = async params => {
+    var details = {
+      'ClaimId': params.ID,
+      
+  };
+    const restApi = new RestApi({controller: `api/DeleteClaim?ClaimId=`+params.ID});
+    try {
+      let response = await restApi.get({
+        url: '',
+        body: '',
+        cancelable: true,
+        showAlerts: true,
+      });
+      return response.data;
+    } catch (error) {
+      throw error;
+    }
+  };
+  
+
+  SaveClaim = async params => {
+    // let serviceDt= params.serviceDate.replace(/-/g,'/');
+    let convertedDate= params.serviceDate.substr(3, 2)+"/"+params.serviceDate.substr(0, 2)+"/"+params.serviceDate.substr(6, 4);
+    var details = {
+      'PolicyCode': 'CP1912151312482198510',
+      'ClaimTypeId': 1,
+      'ProviderId': 1,
+      'ServiceTypeId': 1,
+      'ClaimedAmount': params.claimAccount,
+      'ClaimReference': '',
+      'ServiceDate' : convertedDate,
+      'CurrencyId' : 1,
+      'Comments': '',
+  };
+  var formBody = [];
+  for (var property in details) {
+    var encodedKey = decodeURIComponent(property);
+    var encodedValue = decodeURIComponent(details[property]);
+    formBody.push(encodedKey + "=" + encodedValue);
+  }
+  formBody = formBody.join("&");
+    const restApi = new RestApi({controller: `api/SaveClaim`});
+    try {
+      let response = await restApi.post({
+        url: '',
+        body: formBody,
+        cancelable: true,
+        showAlerts: true,
+      });
+      return response.data;
+    } catch (error) {
+      throw error;
+    }
+  };
+
   getClaims = async params => {
     const restApi = new RestApi({controller: `api/GetClaims?PolicyCode=CP1912151312482198510`});
     try {
@@ -166,6 +222,25 @@ export default class AppApi {
       throw error;
     }
   };
+
+  SubmitClaim = async params => {
+    const restApi = new RestApi({controller: 'api/SubmitClaim'});
+    try {
+      let response = await restApi.post({
+        url: 'GetVehicleViolator',
+        body: {
+          ClaimId: params.ID,
+          PaymentMethodId: 1,
+        },
+        cancelable: true,
+        showAlerts: true,
+      });
+      return response.data.result;
+    } catch (error) {
+      throw error;
+    }
+  };
+  
 
   confirmsmsTocken = async params => {
     const restApi = new RestApi({controller: 'Inspection'});

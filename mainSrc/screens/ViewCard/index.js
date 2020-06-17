@@ -11,6 +11,7 @@ import {
 } from 'react-native';
 import Header from '../../components/Header';
 import Icons from 'react-native-vector-icons/MaterialIcons';
+import strings from '../../api/helperServices/language';
 import { PrimaryColor } from '../../config';
 import {
   widthPercentageToDP as wp,
@@ -37,27 +38,30 @@ class VewCard extends Component {
       dataSource: [
         {
           id: 0,
-          date: 'Apr 2',
-          status: 'Processed',
-          claimType: 'Direct',
-          provider: 'Taha Medical Center',
-          serviceType: 'Out-Patient',
-          claimedAmount: 0,
-          claimReference: 'C00121241198/1',
+          CardNumber: "C951-52D2-D491-807B",
+          Policy: 'GRX-5835',
+          ValidDate: "14-10-2020",
+          GodId: "784-189-313039-5",
+          Category: "CAT A",
+          Yob: '1982',
+          Hadd: '30089',
+          StaffID: "201800001",
           name: 'BIBIN PRATHAP ABRAHAM PRATAP',
-          image: require('./img/swiper-2.png'),
+          Company: 'TECH MAHENDRA LTD-ABU'
         },
         {
           id: 1,
-          date: ' Mar 29',
+          CardNumber: "D952-62D2-D491-807B",
           status: 'Not Used',
-          claimType: 'Direct',
-          provider: 'Taha Pharmacy Center',
-          serviceType: 'Out-Patient',
-          claimedAmount: 0,
-          claimReference: 'C00121241198/1',
-          name: 'MYSELF',
-          image: require('./img/swiper-3.png')
+          Policy: 'GRX-5835',
+          ValidDate: "14-12-2020",
+          GodId: "884-289-313039-6",
+          Category: "CAT B",
+          Yob: '2001',
+          Hadd: '33089',
+          StaffID: "202000001",
+          name: 'MY SELF',
+          Company: 'TECH MAHENDRA LTD-ABU'
         },
       ],
     };
@@ -65,10 +69,34 @@ class VewCard extends Component {
 
   renderItem = item => {
     let dataItem = item.item;
+    const { language } = this.props;
     return (
+      // <View>
+      //   <View style={{ flexDirection: 'row', marginTop: 10 }}>
+
+      //     <Text
+      //       style={{
+      //         textAlign: 'left',
+      //         fontWeight: 'bold',
+      //         fontSize: normalizeFont(14),
+      //         color: '#000000',
+      //         paddingBottom: hp('1'),
+      //       }}>
+      //       {dataItem.name}
+      //     </Text>
+      //     <Icons
+      //       size={hp('2.5')}
+      //       style={{ position: 'absolute', right: 0 }}
+      //       name="file-download"
+      //       color= {PrimaryColor}
+      //     />
+      //   </View>
+      //   <Image style={{ height: 320, width: windowSize.width, flex: 1 }} source={dataItem.image} />
+      // </View>
+
+
       <View>
         <View style={{ flexDirection: 'row', marginTop: 10 }}>
-
           <Text
             style={{
               textAlign: 'left',
@@ -83,10 +111,177 @@ class VewCard extends Component {
             size={hp('2.5')}
             style={{ position: 'absolute', right: 0 }}
             name="file-download"
-            color= {PrimaryColor}
+            color={PrimaryColor}
           />
         </View>
-        <Image style={{ height: 320, width: windowSize.width, flex: 1 }} source={dataItem.image} />
+
+        <View style={styles.renderItem}>
+
+          <View style={{ width: 2, height: '80%', backgroundColor: '#ccc' }} />
+          <View style={{ flex: 0.8 }}>
+            <View style={styles.valueContainer}>
+              <Text
+                style={{
+                  fontFamily: 'Roboto-Medium',
+                  fontSize: normalizeFont(17),
+                  color: '#FFA500',
+                }}>
+                {dataItem.name}
+              </Text>
+            </View>
+            <View style={{ flex: 0.9 }}>
+              <View style={styles.valueContain}>
+                <View style={styles.keyValue}>
+                  <Text style={{ paddingLeft: 5, fontWeight: 'bold', marginTop: 15 }}>
+                    {' '}
+                    {'Policy#:'}
+                  </Text>
+
+
+                  <Text
+                    style={{
+                      color: 'grey',
+                      fontSize: normalizeFont(12),
+                      fontFamily: 'Roboto-Light',
+                      marginTop: 15
+                    }}>
+                    {dataItem.Policy}
+                  </Text>
+                </View>
+              </View>
+              <View style={styles.cardContain}>
+                <View style={styles.keyValue}>
+                  <Text style={{ paddingLeft: 5, fontWeight: 'bold', marginTop: 10 }}>
+                    {' '}
+                    {'Card#:'}
+                  </Text>
+                  <Text
+                    style={{
+                      color: 'grey',
+                      fontSize: normalizeFont(12),
+                      fontFamily: 'Roboto-Light',
+                      marginTop: 10,
+                    }}>
+                    {dataItem.CardNumber}
+                  </Text>
+                </View>
+                <View style={styles.keyValue}>
+                  <Text style={{ paddingLeft: 65, fontWeight: 'bold', marginTop: 10 }}>
+                    {' '}
+                    {'Valid Until:'}
+                  </Text>
+
+
+                  <Text
+                    style={{
+                      color: 'grey',
+                      fontSize: normalizeFont(12),
+                      fontFamily: 'Roboto-Light',
+                      marginTop: 10
+                    }}>
+                    {dataItem.ValidDate}
+                  </Text>
+                </View>
+              </View>
+              <View style={styles.cardContain}>
+                <View style={styles.keyValue}>
+                  <Text style={{ paddingLeft: 5, fontWeight: 'bold', marginTop: 10 }}>
+                    {' '}
+                    {'Gov Id:'}
+                  </Text>
+                  <Text
+                    style={{
+                      color: 'grey',
+                      fontSize: normalizeFont(12),
+                      fontFamily: 'Roboto-Light',
+                      marginTop: 10
+                    }}>
+                    {dataItem.GodId}
+                  </Text>
+                </View>
+                <View style={styles.keyValue}>
+                  <Text style={{ paddingLeft: 65, fontWeight: 'bold', marginTop: 10 }}>
+                    {' '}
+                    {'Category:'}
+                  </Text>
+
+
+                  <Text
+                    style={{
+                      color: 'grey',
+                      fontSize: normalizeFont(12),
+                      fontFamily: 'Roboto-Light',
+                      marginTop: 10
+                    }}>
+                    {dataItem.Category}
+                  </Text>
+                </View>
+              </View>
+              <View style={styles.cardContain}>
+                <View style={styles.keyValue}>
+                  <Text style={{ paddingLeft: 5, fontWeight: 'bold', marginTop: 10 }}>
+                    {' '}
+                    {'YOB:'}
+                  </Text>
+                  <Text
+                    style={{
+                      color: 'grey',
+                      fontSize: normalizeFont(12),
+                      fontFamily: 'Roboto-Light',
+                      marginTop: 10
+                    }}>
+                    {dataItem.Yob}
+                  </Text>
+                </View>
+                <View style={styles.keyValue}>
+                  <Text style={{ paddingLeft: 65, fontWeight: 'bold', marginTop: 10 }}>
+                    {' '}
+                    {'HADD #:'}
+                  </Text>
+
+
+                  <Text
+                    style={{
+                      color: 'grey',
+                      fontSize: normalizeFont(12),
+                      fontFamily: 'Roboto-Light',
+                      marginTop: 10
+                    }}>
+                    {dataItem.Hadd}
+                  </Text>
+                </View>
+              </View>
+              <View style={styles.keyValue}>
+                <Text style={{ paddingLeft: 12, fontWeight: 'bold' , marginTop: 10}}>
+                  {' '}
+                  {'StaffID:'}
+                </Text>
+
+
+                <Text
+                  style={{
+                    color: 'grey',
+                    fontSize: normalizeFont(12),
+                    fontFamily: 'Roboto-Light',
+                    marginTop: 10
+                  }}>
+                  {dataItem.StaffID}
+                </Text>
+              </View>
+              <View style={{ flexDirection: 'row', marginTop: 10, paddingLeft: 12 }}>
+                <Text
+                  style={{
+                    fontFamily: 'Roboto-Medium',
+                    fontSize: normalizeFont(15),
+                    color: '#40E0D0',
+                  }}>
+                  {dataItem.Company}
+                </Text>
+              </View>
+
+            </View>
+          </View>
+        </View>
       </View>
 
     );
@@ -227,8 +422,6 @@ const styles = StyleSheet.create({
   },
   valueContainer: {
     flex: 0.1,
-    alignItems: 'center',
-    justifyContent: 'flex-end',
     flexDirection: 'row',
     paddingHorizontal: 10,
   },
@@ -240,7 +433,14 @@ const styles = StyleSheet.create({
     marginRight: hp('1'),
   },
   valueContain: {
-    height: hp('4.5'),
+    height: hp('2.5'),
+    width: '100%',
+    marginBottom: 5,
+    flexDirection: 'row',
+    paddingHorizontal: 5,
+  },
+  cardContain: {
+    height: hp('3.5'),
     width: '100%',
     marginBottom: 5,
     flexDirection: 'row',

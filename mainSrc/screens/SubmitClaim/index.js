@@ -118,6 +118,7 @@ class Screen extends Component {
       branchName: '',
       cityName: '',
       phoneNumber: '',
+      
       emailName: '',
       serviceData: [
         {
@@ -138,7 +139,17 @@ class Screen extends Component {
           "ID": 1,
           "EName": "IRAQ"
         },
-      ]
+      ],
+      SaveClaimData:[
+        {
+          "ID": 0,
+          "Message": "Not Updated"
+        }
+      ],
+      SubmitClaimData:{
+        ID:1,
+        Message:'Please complete claim details'
+      }
     };
   }
 
@@ -154,6 +165,10 @@ onCurrencyChange = (Value) => {
 onCountriesChange = (country) => {
   this.setState({myCountry: country});
 }
+accountValueChange = (acconunt) => {
+  this.setState({accountNumber: acconunt});
+}
+
 
   async componentDidUpdate() {
     //const data = await api.getServiceType();
@@ -205,7 +220,13 @@ onCountriesChange = (country) => {
       console.log(error); 
     }
   };
-  
+  DeleteCurrentClaim = async() => { 
+    try {
+  const    data = await api.DeleteClaim(this.state.SaveClaimData);
+    } catch (error) {
+      console.log(error); 
+    }
+  };
 
   componentDidMount() {
 
@@ -274,6 +295,40 @@ onCountriesChange = (country) => {
       });
   }
 
+  saveclaimDataForm =  async()  => {
+    let details = {...this.state};
+    try {
+      const    data = await api.SaveClaim({...details});
+      this.setState({
+        loading: false,
+        SaveClaimData: data
+      })
+        } catch (error) {
+          console.log(error); 
+        }
+  }
+
+  submitClaimData =  async()  => {
+     
+    try {
+      const    data = await api.SubmitClaim(this.state.SaveClaimData);
+      this.setState({
+        loading: false,
+        SubmitClaimData: data
+      })
+      if(data.IsSuccess){
+        Alert.alert('Successfully Submitted', '', [
+          {
+            text: 'OK',
+            onPress: () => this.props.navigation.goBack(),
+          },
+        ]);
+      }
+        } catch (error) {
+          console.log(error); 
+        }
+  }
+
   continueAction = () => {
     const {
       selectNumber,
@@ -307,6 +362,9 @@ onCountriesChange = (country) => {
         alert('Complete your claim details');
         return;
       }
+      else{
+        this.saveclaimDataForm();
+      }
     }
 
     if (currentPosition === 1) {
@@ -317,13 +375,11 @@ onCountriesChange = (country) => {
     }
 
     if (currentPosition === 2) {
-      if (
-        myCountry.trim() === '' ||
-        swiftBIC.trim() === '' ||
+      if (   
+        swiftBIC=== '' ||
         iBAN.trim() === '' ||
         accountNumber.trim() === '' ||
-        accountName.trim() === '' ||
-        myCurrency.trim() === '' ||
+        accountName.trim() === '' ||     
         branchName.trim() === '' ||
         cityName.trim() === '' ||
         phoneNumber.trim() === '' ||
@@ -335,7 +391,6 @@ onCountriesChange = (country) => {
         alert('Complete your payment Details before continue');
         return;
       }
-
       if (!this.validateEmail(this.state.emailName)) {
         alert('invalid Email');
         return;
@@ -344,6 +399,9 @@ onCountriesChange = (country) => {
 
     if (this.state.currentPosition !== 3) {
       this.setState({currentPosition: this.state.currentPosition + 1});
+    }
+    if (this.state.currentPosition === 3) {
+      this.submitClaimData;
     }
   };
 
@@ -404,8 +462,16 @@ onCountriesChange = (country) => {
         <ForgetModal
           isVisible={this.state.cancelModal}
           onBackdropPress={() => this.setState({cancelModal: false})}
-          renderModel= {() => this.props.navigation.goBack()}
-          hideModal={() => this.setState({cancelModal: false})}
+          renderModel= {() => {
+            this.DeleteCurrentClaim();
+            this.props.navigation.goBack()
+          }
+        }
+          hideModal={   
+            () => {
+              this.setState({cancelModal: false})
+            }
+          }
           iconName="person"
           title="Attention"
           subTitle="Are you sure you want to cancel claim submission?"
@@ -515,9 +581,7 @@ onCountriesChange = (country) => {
                 swiftBIC={this.state.swiftBIC}
                 swiftBICValueChange={text => this.setState({swiftBIC: text})}
                 accountNumber={this.state.accountNumber}
-                accountValueChange={text =>
-                  this.setState({accountNumber: text})
-                }
+                accountValueChange={this.accountValueChange}
                 accountName={this.state.accountName}
                 accountNameChange={text => this.setState({accountName: text})}
                 bankName={this.state.bankName}

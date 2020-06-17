@@ -84,6 +84,9 @@ class PaymentMethods extends Component {
       paymentOptions: value
     });
 }
+onAccountValueChange(value) {
+  this.props.accountValueChange(value);
+}
 onCurrencyValueChange(value) {
   this.props.currencyValueChange(value);
 }
@@ -125,7 +128,7 @@ onCurrencyValueChange(value) {
           </View>
         </Panel>
         {this.state.paymentOptions=="Bank Transfer" ?
-        <Panel header="Bank Account Details" maxItem={640}>
+        <Panel header="Bank Account Details"maxItem={990} >
           <View style={{flex: 1}}>
             <View style={[styles.header]}>
               <PaymentMethod
@@ -211,8 +214,8 @@ onCurrencyValueChange(value) {
                     mode="dropdown"
                     iosHeader="Select"
                     iosIcon={<Icon name="arrow-dropdown-circle" style={{ color: "#007aff", fontSize: 14 }} />}
-                    selectedValue={this.props.currencyValue}
-                    onValueChange={this.onCurrencyValueChange.bind(this)}
+                    selectedValue={this.props.accountNumber}
+                    onValueChange={this.onAccountValueChange.bind(this)}
                     
                   >                
                        {this.state.accountData.map((_ID, index) => (
